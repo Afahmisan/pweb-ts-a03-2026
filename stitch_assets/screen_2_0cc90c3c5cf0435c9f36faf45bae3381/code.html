@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"inverse-surface":"#213145","surface-bright":"#f8f9ff","tertiary-fixed":"#eaddff","on-secondary-fixed":"#002113","on-secondary":"#ffffff","on-secondary-container":"#00714d","tertiary-container":"#8a4cfc","primary-container":"#007bb9","on-tertiary-fixed":"#25005a","primary":"#006194","on-primary":"#ffffff","secondary-container":"#6cf8bb","surface-container-low":"#eff4ff","tertiary":"#712ae2","on-surface-variant":"#3f4850","background":"#f8f9ff","inverse-primary":"#93ccff","error":"#ba1a1a","outline-variant":"#bfc7d2","inverse-on-surface":"#eaf1ff","on-primary-fixed":"#001d31","on-tertiary":"#ffffff","secondary-fixed-dim":"#4edea3","primary-fixed-dim":"#93ccff","surface-dim":"#cbdbf5","surface-container-lowest":"#ffffff","on-primary-fixed-variant":"#004b73","on-tertiary-fixed-variant":"#5a00c6","primary-fixed":"#cce5ff","surface-variant":"#d3e4fe","surface":"#f8f9ff","secondary":"#006c49","on-background":"#0b1c30","on-surface":"#0b1c30","surface-tint":"#006398","secondary-fixed":"#6ffbbe","on-tertiary-container":"#fffbff","on-error-container":"#93000a","surface-container-high":"#dce9ff","surface-container-highest":"#d3e4fe","on-primary-container":"#fdfcff","tertiary-fixed-dim":"#d2bbff","error-container":"#ffdad6","outline":"#707881","on-secondary-fixed-variant":"#005236","on-error":"#ffffff","surface-container":"#e5eeff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"margin-tablet":"1.5rem","space-md":"1rem","space-xl":"2rem","space-lg":"1.5rem","space-xs":"0.25rem","gutter":"1rem","margin":"1rem","margin-desktop":"2rem","space-2xl":"3rem","space-sm":"0.5rem","gutter-desktop":"1.5rem"},fontFamily:{"body-md":["Inter"],"code-tabular":["Inter"],"body-sm":["Inter"],"headline-md":["Inter"],"display-ticket":["Inter"],"title-md":["Inter"],"title-sm":["Inter"],"label-sm":["Inter"],"label-md":["Inter"],"body-lg":["Inter"],"headline-sm":["Inter"],"headline-lg":["Inter"],"headline-lg-mobile":["Inter"],"display-ticket-mobile":["Inter"],"label-lg":["Inter"]},fontSize:{"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"code-tabular":["14px",{lineHeight:"20px",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"display-ticket":["64px",{lineHeight:"72px",letterSpacing:"-0.02em",fontWeight:"700"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"title-sm":["14px",{lineHeight:"20px",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.03em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-sm":["20px",{lineHeight:"28px",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.01em",fontWeight:"600"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}],"display-ticket-mobile":["36px",{lineHeight:"44px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 w-full px-margin-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-lg flex-shrink-0"><div class="flex items-center gap-space-sm"><img alt="Klinik Medika Utama Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WWzisdqCCET2xS0KWgLe_Znz7j07TBRvL6q1biRrxqtM9UnOWDZjpicTZJNvf9Bt2KX2rch0hjFeifUmup2z3fFe68TEkA2SmGeNFECvbdHX4WlWcgB8a598NgycQes_-hd_5czaXNJy0d791VJOMX9xw3-gyVs68xneolxPb6DMPlIhytbnOLU5CuEYzKAU2uCzZr9h1CL_q0KhMLPjyH7SFxNC6wUetgtLmU7QRTJ3g1UcaNFqOUAQ"/><div class="flex flex-col"><span class="font-title-sm text-title-sm text-primary tracking-tight leading-none">Klinik Medika Utama</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Enterprise Queue System</span></div></div><div class="h-6 w-px bg-outline-variant hidden lg:block"></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low text-on-surface"><span class="material-symbols-outlined text-primary text-[18px]">apartment</span><span class="font-label-md text-label-md font-medium text-on-surface">RS Medika Utama - Cabang Pusat Salemba</span><span class="material-symbols-outlined text-outline text-[16px]">expand_more</span></div></div><nav class="hidden xl:flex items-center gap-space-xs" data-active-classes="bg-primary text-on-primary font-title-sm shadow-sm"><a class="font-label-lg text-label-lg px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="operator-console" href="#">Operator Console</a><a aria-current="page" class="px-space-md py-space-xs rounded transition-colors bg-primary text-on-primary font-title-sm shadow-sm" data-path="admin-crud" href="#">Admin CRUD</a><a class="font-label-lg text-label-lg px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="public-tv-display" href="#">Public TV Display</a><a class="font-label-lg text-label-lg px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="patient-kiosk" href="#">Patient Kiosk</a></nav><div class="flex items-center gap-space-md flex-shrink-0"><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container/20"><span class="h-2 w-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm font-semibold text-secondary uppercase tracking-wider">Loket 04 • Aktif Melayani</span></div><div class="flex items-center gap-space-xs pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg56jSRTWplOPC2zlZA1JkOrEqfzgl_3wXudAUNCk4H7U6ouIlTfbDGnlDBHeE3KQuPSS9pujDrmEMC2VMJcDCLSMTP2yN4fTYkApQIWzki1l9lTZ8OntTbCKQ45iE7pk2GiY7r3AI2Bpu6bH_KkrSHD5FjrmB50c7hRuUcVEi8gZfx7_Aq2AG6Dok9VZq5ZjMJnxtstltbT5xO6T7DtBHrtwlJq2XMWRS6QU90GTIFrQqSl8302M"/><div class="hidden sm:flex flex-col text-left"><span class="font-title-sm text-title-sm text-on-surface leading-none">Ns. Ratna Sari, S.Kep</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Petugas Admisi Reguler</span></div></div></div></div></header><aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 flex flex-col justify-between py-space-md"><div class="px-space-md"><div class="px-space-sm pb-space-sm mb-space-sm text-label-sm font-label-sm font-bold tracking-wider text-outline uppercase">Navigasi Admin &amp; Loket</div><nav class="space-y-1" data-active-classes="bg-surface-container-high text-primary font-title-sm"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="operator-console" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-md text-label-md">Operator Console</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors bg-surface-container-high text-primary font-title-sm" data-path="admin-crud" href="#"><span class="material-symbols-outlined text-[20px]">table_chart</span><span class="font-label-md text-label-md">Kelola Loket &amp; Poli</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="queue-monitoring" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-md text-label-md">Live Queue Monitor</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="voice-synthesizer-settings" href="#"><span class="material-symbols-outlined text-[20px]">volume_up</span><span class="font-label-md text-label-md">Voice &amp; Audio Calling</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="reporting-analytics" href="#"><span class="material-symbols-outlined text-[20px]">analytics</span><span class="font-label-md text-label-md">Laporan Waktu Tunggu</span></a></nav></div><div class="px-space-md pt-space-md"><div class="p-space-sm rounded bg-surface-container-low"><div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-1"><span>Kapasitas Harian</span><span class="font-code-tabular text-code-tabular text-primary font-bold">82%</span></div><div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden"><div class="bg-primary h-full w-[82%]"></div></div><div class="mt-2 font-label-sm text-label-sm text-on-surface-variant flex justify-between"><span>Terlayani: 412</span><span>Antre: 89</span></div></div></div></aside><div class="pl-64"><main class="relative pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
+<!-- Status & Quick Alert Bar -->
+<section class="w-full bg-surface-container-low px-space-xl py-space-sm flex flex-wrap items-center justify-between gap-space-md shadow-sm">
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="flex items-center gap-space-xs px-2.5 py-1 bg-surface-container-lowest rounded shadow-sm">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">HIS / SIMRS Connected</span>
+</div>
+<span class="text-outline-variant font-label-sm">|</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span>Sesi Kredensial: <strong>Admin Unit Pusat (Level 1)</strong></span>
+</div>
+<span class="text-outline-variant font-label-sm">|</span>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[18px] text-tertiary">dns</span>
+<span>Server Antrian: <strong>JKT-MEDIKA-SRV02 (Latency: 14ms)</strong></span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-1.5 px-3 py-1 bg-surface-container-highest rounded text-on-surface font-code-tabular text-code-tabular font-medium shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-outline">schedule</span>
+<span id="live-clock">10:42:18 WIB</span>
+</div>
+<button class="px-2.5 py-1 text-on-surface hover:bg-surface-container-highest transition-colors rounded font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">sync</span>
+<span>Auto-sync (15s)</span>
+</button>
+</div>
+</section>
+<!-- Core Content Container -->
+<div class="w-full p-space-xl space-y-space-xl">
+<!-- Top Summary Metric Cards -->
+<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-lg">
+<!-- Metric 1: Total Antrian Hari Ini -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Total Antrian Hari Ini</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-ticket-mobile text-display-ticket-mobile text-on-surface tracking-tight font-bold">342</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tiket</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-primary-fixed/40 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">confirmation_number</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="font-bold">+12%</span>
+<span class="text-on-surface-variant font-normal">dari kemarin</span>
+</div>
+<span class="font-code-tabular text-body-sm text-outline">H-1: 305</span>
+</div>
+<!-- Subtle sparkline visual representation -->
+<div class="mt-space-sm pt-space-xs">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden flex">
+<div class="bg-primary h-full w-[65%]" title="Reguler"></div>
+<div class="bg-secondary h-full w-[20%]" title="BPJS"></div>
+<div class="bg-tertiary h-full w-[15%]" title="VIP/Khusus"></div>
+</div>
+</div>
+</div>
+<!-- Metric 2: Sedang Dilayani -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Sedang Dilayani</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-ticket-mobile text-display-ticket-mobile text-secondary tracking-tight font-bold">8</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Loket Aktif</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-secondary-fixed/40 flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">record_voice_over</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>8 dari 13 loket fisik operasional</span>
+</div>
+<span class="font-code-tabular text-body-sm text-secondary font-semibold">61.5% Util</span>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-[61.5%]"></div>
+</div>
+</div>
+</div>
+<!-- Metric 3: Sisa Antrian Menunggu -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Sisa Antrian Menunggu</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-ticket-mobile text-display-ticket-mobile text-primary tracking-tight font-bold">27</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pasien Terdaftar</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">hourglass_top</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+<span>Avg Wait: <strong class="text-on-surface font-code-tabular">8.4 menit</strong></span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-1.5 py-0.5 rounded font-medium">Under SLA</span>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[35%]"></div>
+</div>
+</div>
+</div>
+<!-- Metric 4: Kategori Prioritas Terlayani -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-start justify-between gap-space-sm mb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Kategori Prioritas Terlayani</span>
+<div class="flex items-baseline gap-space-xs mt-1">
+<span class="font-display-ticket-mobile text-display-ticket-mobile text-on-surface tracking-tight font-bold">94.2%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Tepat Waktu</span>
+</div>
+</div>
+<div class="w-10 h-10 rounded bg-tertiary-fixed/50 flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
+<span>SLA Maksimal: <strong class="text-on-surface font-code-tabular">&lt; 15 mnt</strong></span>
+</div>
+<span class="font-code-tabular text-body-sm text-secondary font-bold">Optimal</span>
+</div>
+<div class="mt-space-sm pt-space-xs">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="bg-tertiary h-full w-[94.2%]"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 2-Column Operational Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+<!-- COLUMN 1: 60% Width (7 / 12 cols in tailwind) -> Manajemen Layanan & Loket (CRUD) -->
+<section class="lg:col-span-7 space-y-space-md">
+<!-- Table Card Wrapper -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex flex-col">
+<!-- Card Header & Action Filter Toolbar -->
+<div class="p-space-lg bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">medical_services</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Manajemen Layanan &amp; Loket</h2>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Konfigurasi loket aktif, rute poliklinik, dan parameter estimasi pelayanan.</p>
+</div>
+<div class="flex items-center gap-space-sm flex-wrap">
+<div class="relative">
+<input class="h-[36px] pl-8 pr-3 py-1 bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm rounded focus:bg-surface-container-lowest focus:outline-none transition-all w-48 sm:w-56" placeholder="Cari nama poli / kode..." type="text"/>
+<span class="material-symbols-outlined absolute left-2 top-2 text-outline text-[18px]">search</span>
+</div>
+<button class="h-[36px] px-3 bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+<span>Semua Status</span>
+</button>
+</div>
+</div>
+<!-- Tabular Medical Queue Data -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold w-16 text-center">Kode</th>
+<th class="py-3 px-4 font-semibold">Nama Unit Poliklinik</th>
+<th class="py-3 px-3 font-semibold text-center w-28">Loket Buka</th>
+<th class="py-3 px-3 font-semibold text-center w-28">Est. Waktu</th>
+<th class="py-3 px-3 font-semibold text-center w-28">Status</th>
+<th class="py-3 px-4 font-semibold text-right w-36">Aksi Cepat</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-md text-on-surface">
+<!-- Row 1: Kode A -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">A</span>
+</td>
+<td class="py-3.5 px-4 font-title-sm">
+<div class="font-semibold text-on-surface">Poli Umum &amp; Rujukan</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-outline">domain</span> Lantai 1 • Sayap Timur (R.101 - R.103)
+                    </div>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">3 Loket</span>
+</td>
+<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
+<span class="font-medium text-on-surface">8</span> Menit
+                  </td>
+<td class="py-3.5 px-3 text-center">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                      Aktif
+                    </button>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Poli Umum &amp; Rujukan', 'A')" title="Reset Antrian Poli A">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Kode B -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">B</span>
+</td>
+<td class="py-3.5 px-4 font-title-sm">
+<div class="font-semibold text-on-surface">Poli Anak, Tumbuh Kembang &amp; Imunisasi</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-outline">child_care</span> Lantai 1 • Area Pediatrik (R.108 - R.109)
+                    </div>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">2 Loket</span>
+</td>
+<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
+<span class="font-medium text-on-surface">12</span> Menit
+                  </td>
+<td class="py-3.5 px-3 text-center">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                      Aktif
+                    </button>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Poli Anak &amp; Imunisasi', 'B')" title="Reset Antrian Poli B">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Kode C -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">C</span>
+</td>
+<td class="py-3.5 px-4 font-title-sm">
+<div class="font-semibold text-on-surface">Poli Penyakit Dalam &amp; Geriatri</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-outline">elderly</span> Lantai 2 • Poli Spesialis (R.204 - R.205)
+                    </div>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">2 Loket</span>
+</td>
+<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
+<span class="font-medium text-on-surface">15</span> Menit
+                  </td>
+<td class="py-3.5 px-3 text-center">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                      Aktif
+                    </button>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Poli Penyakit Dalam', 'C')" title="Reset Antrian Poli C">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Kode D -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">D</span>
+</td>
+<td class="py-3.5 px-4 font-title-sm">
+<div class="font-semibold text-on-surface">Instalasi Farmasi &amp; Pengambilan Obat</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-outline">medication</span> Lantai 1 • Sentral Farmasi (Dispensing A-D)
+                    </div>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">4 Loket</span>
+</td>
+<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
+<span class="font-medium text-on-surface">5</span> Menit
+                  </td>
+<td class="py-3.5 px-3 text-center">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                      Aktif
+                    </button>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Instalasi Farmasi', 'D')" title="Reset Antrian Farmasi">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Kode E -->
+<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/30 group">
+<td class="py-3.5 px-4 text-center">
+<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-surface-container-highest text-outline font-code-tabular font-bold">E</span>
+</td>
+<td class="py-3.5 px-4 font-title-sm opacity-80">
+<div class="font-semibold text-on-surface">Kasir &amp; Verifikasi BPJS/Asuransi</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-[14px] text-outline">payments</span> Lantai 1 • Front Office Billing
+                    </div>
+</td>
+<td class="py-3.5 px-3 text-center">
+<span class="font-code-tabular font-semibold text-outline px-2 py-0.5 rounded bg-surface-container">2 Loket</span>
+</td>
+<td class="py-3.5 px-3 text-center font-code-tabular text-outline">
+<span class="font-medium">4</span> Menit
+                  </td>
+<td class="py-3.5 px-3 text-center">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                      Non-aktif
+                    </button>
+</td>
+<td class="py-3.5 px-4 text-right">
+<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
+<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Kasir &amp; Verifikasi', 'E')" title="Reset Antrian Kasir">
+<span class="material-symbols-outlined text-[18px]">restart_alt</span>
+</button>
+<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Bottom Table Action Bar -->
+<div class="p-space-md bg-surface-container-lowest flex flex-wrap items-center justify-between gap-space-md border-t-0">
+<div class="flex items-center gap-space-sm flex-wrap">
+<button class="px-space-md py-2 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded shadow-sm flex items-center gap-1.5 transition-colors" onclick="openNewServiceModal()">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Tambah Layanan Baru</span>
+</button>
+<div class="relative group">
+<button class="px-space-md py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span>Ekspor Laporan Harian</span>
+<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
+</button>
+<div class="hidden group-hover:block absolute left-0 bottom-full mb-1 w-44 bg-surface-container-lowest shadow-lg rounded p-1 z-30">
+<a class="flex items-center gap-2 px-3 py-1.5 text-body-sm text-on-surface hover:bg-surface-container-low rounded" href="#">
+<span class="material-symbols-outlined text-[16px] text-error">picture_as_pdf</span> PDF Format (.pdf)
+                  </a>
+<a class="flex items-center gap-2 px-3 py-1.5 text-body-sm text-on-surface hover:bg-surface-container-low rounded" href="#">
+<span class="material-symbols-outlined text-[16px] text-secondary">table_view</span> Excel Sheet (.xlsx)
+                  </a>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="px-space-md py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded flex items-center gap-1.5 transition-colors" title="Sinkronisasi Cloud HIS/SIMRS">
+<span class="material-symbols-outlined text-[18px] text-primary">cloud_sync</span>
+<span>Sinkronisasi Cloud HIS/SIMRS</span>
+</button>
+<span class="font-label-sm text-label-sm text-outline hidden sm:inline">5 Dari 5 Unit Tampil</span>
+</div>
+</div>
+</div>
+<!-- Clinical Operational Banner -->
+<div class="p-space-md bg-surface-container-low rounded-lg flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">volume_up</span>
+</div>
+<div>
+<div class="font-title-sm text-title-sm text-on-surface">Sistem Pemanggilan Suara Terhubung</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Speaker Hall Utama Salemba, Audio Poli Anak, Display Ruang Farmasi tersinkronisasi.</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-code-tabular text-body-sm text-secondary font-semibold">100% Ready</span>
+</div>
+</div>
+</section>
+<!-- COLUMN 2: 40% Width (5 / 12 cols in tailwind) -> Penerbitan Tiket Manual -->
+<section class="lg:col-span-5 space-y-space-md">
+<!-- Ticket Dispensing Form Card -->
+<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm flex flex-col space-y-space-md">
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">confirmation_number</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Penerbitan Tiket Manual</h3>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Loket Front Office / Registrasi Darurat</span>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded bg-surface-container-high font-code-tabular font-bold text-label-sm text-primary uppercase">Manual Mode</span>
+</div>
+<form class="space-y-space-md" id="manual-ticket-form" onsubmit="event.preventDefault(); emitManualTicket();">
+<!-- Service Selector Dropdown -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-semibold" for="service-select">
+                Pilih Poliklinik / Layanan Tujuan <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-[40px] px-3 pr-9 bg-surface-container-low text-on-surface rounded text-body-md appearance-none focus:outline-none focus:bg-surface-container-lowest cursor-pointer font-medium" id="service-select" onchange="updateTicketPreview()">
+<option data-name="Poli Umum &amp; Rujukan" value="A">A - Poli Umum &amp; Rujukan (3 Loket Aktif)</option>
+<option data-name="Poli Anak, Tumbuh Kembang &amp; Imunisasi" selected="" value="B">B - Poli Anak, Tumbuh Kembang &amp; Imunisasi</option>
+<option data-name="Poli Penyakit Dalam &amp; Geriatri" value="C">C - Poli Penyakit Dalam &amp; Geriatri</option>
+<option data-name="Instalasi Farmasi" value="D">D - Instalasi Farmasi &amp; Pengambilan Obat</option>
+<option data-name="Kasir &amp; Verifikasi" value="E">E - Kasir &amp; Verifikasi BPJS/Asuransi</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-outline text-[20px]">unfold_more</span>
+</div>
+</div>
+<!-- Priority Level Radio Selection -->
+<div class="space-y-2">
+<div class="flex items-center justify-between">
+<label class="block font-label-md text-label-md text-on-surface font-semibold">
+                  Tingkat Prioritas Pasien <span class="text-error">*</span>
+</label>
+<span class="text-outline font-label-sm text-label-sm">Sesuai Triase &amp; Regulasi</span>
+</div>
+<div class="grid grid-cols-1 gap-2" id="priority-selector">
+<!-- Radio 1: Normal -->
+<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('Normal', 'slate')">
+<div class="flex items-center gap-space-sm">
+<input checked="" class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="Normal"/>
+<span class="font-title-sm text-title-sm text-on-surface">Normal</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(Kode Standar)</span>
+</div>
+<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-surface-container-highest text-on-surface-variant font-code-tabular">
+                    Standard
+                  </span>
+</label>
+<!-- Radio 2: Lansia / Disabilitas -->
+<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('Lansia / Disabilitas', 'amber')">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="Lansia / Disabilitas"/>
+<span class="font-title-sm text-title-sm text-on-surface">Lansia / Disabilitas</span>
+</div>
+<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-amber-100 text-amber-800 font-code-tabular">
+                    Akses Khusus &amp; Roda
+                  </span>
+</label>
+<!-- Radio 3: Ibu Hamil & Balita -->
+<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('Ibu Hamil &amp; Balita', 'teal')">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="Ibu Hamil &amp; Balita"/>
+<span class="font-title-sm text-title-sm text-on-surface">Ibu Hamil &amp; Balita</span>
+</div>
+<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-secondary-container/50 text-secondary font-code-tabular">
+                    Maternal Priority
+                  </span>
+</label>
+<!-- Radio 4: VIP / MCU Eksekutif -->
+<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('VIP / Executive MCU', 'purple')">
+<div class="flex items-center gap-space-sm">
+<input class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="VIP / MCU Eksekutif"/>
+<span class="font-title-sm text-title-sm text-on-surface">VIP / Medical Checkup Eksekutif</span>
+</div>
+<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-tertiary-fixed text-on-tertiary-fixed font-code-tabular">
+                    Fast Track
+                  </span>
+</label>
+</div>
+</div>
+<!-- Optional Patient MRN / NIK -->
+<div class="space-y-1">
+<div class="flex items-center justify-between">
+<label class="block font-label-md text-label-md text-on-surface font-semibold" for="patient-rm-nik">
+                  Nomor Rekam Medis (RM) / NIK Pasien
+                </label>
+<span class="font-label-sm text-label-sm text-outline">Opsional</span>
+</div>
+<div class="relative">
+<input class="w-full h-[40px] pl-9 pr-3 bg-surface-container-low text-on-surface placeholder:text-outline rounded text-body-md focus:bg-surface-container-lowest focus:outline-none font-code-tabular" id="patient-rm-nik" oninput="updateTicketPreviewMRN(this.value)" placeholder="Contoh: RM-2024-8841 atau NIK 3171..." type="text"/>
+<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-[18px]">badge</span>
+</div>
+</div>
+<!-- Live Ticket Preview Card -->
+<div class="p-space-md bg-surface-container rounded-lg space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Pratinjau Tiket Siap Cetak</span>
+<span class="font-code-tabular text-label-sm text-outline" id="preview-timestamp">10:42 WIB</span>
+</div>
+<!-- Thermal Ticket Simulation -->
+<div class="bg-surface-container-lowest p-space-md rounded shadow-sm text-center relative overflow-hidden">
+<div class="text-on-surface-variant font-label-sm uppercase tracking-widest font-semibold">Klinik Medika Utama Pusat</div>
+<div class="font-body-sm text-body-sm text-outline mt-0.5">Salemba Tengah No. 41 • Jakarta Pusat</div>
+<div class="my-space-sm py-space-xs bg-surface-container-low rounded">
+<div class="font-display-ticket text-display-ticket text-primary font-bold tracking-tight" id="preview-ticket-code">B-042</div>
+<div class="font-title-md text-title-md text-on-surface font-semibold px-2" id="preview-service-name">Poli Anak &amp; Imunisasi</div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs">
+<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-semibold" id="preview-priority-badge">Prioritas: Normal</span>
+<span class="font-code-tabular text-outline" id="preview-mrn-val">Walk-in Umum</span>
+</div>
+</div>
+</div>
+<!-- Primary Print Button -->
+<button class="w-full py-3 px-space-md bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-space-sm active:scale-[0.99]" type="submit">
+<span class="material-symbols-outlined text-[24px]">print</span>
+<span>Cetak Tiket Manual (F9)</span>
+</button>
+<div class="text-center font-label-sm text-label-sm text-outline">
+              Pintasan Keyboard: Tekan <kbd class="px-1.5 py-0.5 bg-surface-container rounded font-code-tabular font-bold">F9</kbd> untuk mencetak langsung ke thermal printer EPSON TM-T82.
+            </div>
+</form>
+</div>
+<!-- Quick Summary of Queue Pace -->
+<div class="bg-surface-container-lowest rounded-lg p-space-md shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-secondary">local_printshop</span>
+              Status Thermal Printer
+            </span>
+<span class="inline-flex items-center gap-1 text-secondary font-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Online • Kertas 88%
+            </span>
+</div>
+<div class="flex items-center justify-between text-body-sm pt-1">
+<span class="text-on-surface-variant font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-primary">sensors</span>
+              Kios Mandiri Lobby
+            </span>
+<span class="font-code-tabular text-body-sm text-on-surface font-semibold">2 Mesin Beroperasi</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Notification Toast Simulation -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none" id="toast-notification">
+<div class="bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-lg shadow-xl flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-[24px]">check_circle</span>
+<div>
+<div class="font-title-sm text-title-sm font-bold" id="toast-title">Tiket Berhasil Dicetak</div>
+<div class="font-body-sm text-body-sm text-inverse-on-surface/80" id="toast-body">Nomor B-042 telah dikirim ke printer thermal loket.</div>
+</div>
+</div>
+</div>
+<!-- Simple Modal for "Tambah Layanan Baru" -->
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 hidden items-center justify-center p-4" id="new-service-modal">
+<div class="bg-surface-container-lowest rounded-lg max-w-lg w-full p-space-xl shadow-2xl space-y-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[24px]">add_box</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Tambah Layanan Unit Baru</h3>
+</div>
+<button class="text-outline hover:text-on-surface p-1 rounded" onclick="closeNewServiceModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Kode Huruf Layanan</label>
+<input class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface font-code-tabular uppercase font-bold focus:outline-none" maxlength="2" placeholder="Contoh: F" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Nama Poliklinik / Layanan</label>
+<input class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface focus:outline-none" placeholder="Contoh: Poli Gigi &amp; Mulut" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Jumlah Loket</label>
+<input class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface font-code-tabular focus:outline-none" max="10" min="1" type="number" value="2"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1">Estimasi (Menit)</label>
+<input class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface font-code-tabular focus:outline-none" max="60" min="1" type="number" value="10"/>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-end gap-space-sm pt-space-sm">
+<button class="px-4 py-2 rounded bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-colors" onclick="closeNewServiceModal()">
+          Batal
+        </button>
+<button class="px-4 py-2 rounded bg-primary text-on-primary font-label-lg hover:bg-primary-container transition-colors" onclick="saveNewService()">
+          Simpan Layanan
+        </button>
+</div>
+</div>
+</div>
+<script>
+    // Live Clock Update
+    function updateLiveClock() {
+      const now = new Date();
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      const clockEl = document.getElementById('live-clock');
+      if (clockEl) {
+        clockEl.textContent = `${hours}:${minutes}:${seconds} WIB`;
+      }
+      const previewTimeEl = document.getElementById('preview-timestamp');
+      if (previewTimeEl) {
+        previewTimeEl.textContent = `${hours}:${minutes} WIB`;
+      }
+    }
+    setInterval(updateLiveClock, 1000);
+    updateLiveClock();
+
+    // Global Interactive State
+    let currentTicketSequence = 42;
+    let selectedPriorityText = 'Normal';
+
+    function updateTicketPreview() {
+      const select = document.getElementById('service-select');
+      const selectedOption = select.options[select.selectedIndex];
+      const code = selectedOption.value;
+      const name = selectedOption.getAttribute('data-name');
+      
+      const paddedNum = String(currentTicketSequence).padStart(3, '0');
+      document.getElementById('preview-ticket-code').textContent = `${code}-${paddedNum}`;
+      document.getElementById('preview-service-name').textContent = name;
+    }
+
+    function updateTicketPriority(priorityName, variant) {
+      selectedPriorityText = priorityName;
+      const badge = document.getElementById('preview-priority-badge');
+      badge.textContent = `Prioritas: ${priorityName}`;
+      
+      if (variant === 'amber') {
+        badge.className = "px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-semibold";
+      } else if (variant === 'teal') {
+        badge.className = "px-2 py-0.5 rounded bg-secondary-container/50 text-secondary font-semibold";
+      } else if (variant === 'purple') {
+        badge.className = "px-2 py-0.5 rounded bg-tertiary-fixed text-on-tertiary-fixed font-semibold";
+      } else {
+        badge.className = "px-2 py-0.5 rounded bg-surface-container text-on-surface font-semibold";
+      }
+    }
+
+    function updateTicketPreviewMRN(val) {
+      const mrnVal = document.getElementById('preview-mrn-val');
+      if (val.trim()) {
+        mrnVal.textContent = val.trim();
+        mrnVal.classList.remove('text-outline');
+        mrnVal.classList.add('text-primary', 'font-semibold');
+      } else {
+        mrnVal.textContent = 'Walk-in Umum';
+        mrnVal.classList.remove('text-primary', 'font-semibold');
+        mrnVal.classList.add('text-outline');
+      }
+    }
+
+    function emitManualTicket() {
+      const select = document.getElementById('service-select');
+      const code = select.value;
+      const ticketNum = `${code}-${String(currentTicketSequence).padStart(3, '0')}`;
+
+      showToast(`Tiket ${ticketNum} Dicetak!`, `Berhasil mengeluarkan tiket manual untuk kategori [${selectedPriorityText}].`);
+      
+      // Increment next ticket
+      currentTicketSequence += 1;
+      updateTicketPreview();
+
+      // Reset MRN input
+      const mrnInput = document.getElementById('patient-rm-nik');
+      if (mrnInput) {
+        mrnInput.value = '';
+        updateTicketPreviewMRN('');
+      }
+    }
+
+    function resetQueuePrompt(serviceName, code) {
+      if (confirm(`Konfirmasi reset antrian harian untuk [${code}] - ${serviceName}?\nNomor antrian akan dikembalikan ke urutan 001.`)) {
+        showToast(`Antrian ${code} Direset`, `Unit ${serviceName} kini kembali ke antrian awal (001).`);
+      }
+    }
+
+    function showToast(title, body) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-title').textContent = title;
+      document.getElementById('toast-body').textContent = body;
+      
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    // Modal Handlers
+    function openNewServiceModal() {
+      const modal = document.getElementById('new-service-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeNewServiceModal() {
+      const modal = document.getElementById('new-service-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveNewService() {
+      closeNewServiceModal();
+      showToast('Layanan Ditambahkan', 'Data unit poliklinik baru berhasil disimpan ke database SIMRS.');
+    }
+
+    // Global Key Listener for F9 Ticket Quick Print
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'F9') {
+        e.preventDefault();
+        emitManualTicket();
+      }
+    });
+  </script>
+</div></main></div></body></html>

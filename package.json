@@ -1,0 +1,22 @@
+{
+  "name": "pweb-ts-a03-2026",
+  "version": "1.0.0",
+  "description": "Sistem Antrian Rumah Sakit Terpadu - Native TypeScript & Clinical Enterprise Design",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "keywords": [
+    "typescript",
+    "queue-management",
+    "hospital",
+    "clinical",
+    "native"
+  ],
+  "author": "Front-End Systems Architect",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "projectId": "130103002641058601",
+  "projectTitle": "Clinical Queue Management System",
+  "source": "Google Stitch (stitch.withgoogle.com)",
+  "mcpStatus": "Cached / Authenticated Export Synchronized",
+  "screens": [
+    {
+      "screenNumber": 1,
+      "screenId": "ae473d20051e431fac0b1f9c7f0b9077",
+      "name": "Login Screen",
+      "targetHtml": "login.html",
+      "localPath": "stitch_assets/screen_1_ae473d20051e431fac0b1f9c7f0b9077"
+    },
+    {
+      "screenNumber": 2,
+      "screenId": "0cc90c3c5cf0435c9f36faf45bae3381",
+      "name": "Admin Dashboard",
+      "targetHtml": "index.html",
+      "localPath": "stitch_assets/screen_2_0cc90c3c5cf0435c9f36faf45bae3381"
+    },
+    {
+      "screenNumber": 3,
+      "screenId": "c1afebe650154ff2ab7c47c9fa5207eb",
+      "name": "Operator Console",
+      "targetHtml": "operator.html",
+      "localPath": "stitch_assets/screen_3_c1afebe650154ff2ab7c47c9fa5207eb"
+    },
+    {
+      "screenNumber": 4,
+      "screenId": "1da5734359294e9db98ece542d4dcab6",
+      "name": "Public TV Screen",
+      "targetHtml": "layar.html",
+      "localPath": "stitch_assets/screen_4_1da5734359294e9db98ece542d4dcab6"
+    },
+    {
+      "screenNumber": 5,
+      "screenId": "114cd5f751a14b3f9eef4987bc6656f8",
+      "name": "Self Service Kiosk",
+      "targetHtml": "ambil-antrian.html",
+      "localPath": "stitch_assets/screen_5_114cd5f751a14b3f9eef4987bc6656f8"
+    }
+  ]
+}
