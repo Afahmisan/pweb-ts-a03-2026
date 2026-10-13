@@ -85,7 +85,7 @@ Data akun rujukan dari DummyJSON:
   - `hospital_services`: Master data jenis poliklinik/layanan.
   - `hospital_tickets`: Daftar seluruh tiket antrian aktif dan riwayat status.
   - `hospital_counters`: Penghitung urutan nomor tiket 3-digit per layanan.
-- **Sinkronisasi Antar-Tab**: Komunikasi real-time lintas tab peramban menggunakan `BroadcastChannel` dan `StorageEvent`, dilengkapi fallback interval polling 2–3 detik.
+- **Sinkronisasi Antar-Tab**: Komunikasi real-time lintas tab peramban menggunakan `BroadcastChannel` dan `StorageEvent`, dilengkapi fallback interval polling 2-3 detik.
 - **Logika Antrian Prioritas**:
   - Bobot prioritas: `VIP` (4) > `Disabilitas` (3) > `Lansia` (2) > `Normal` (1).
   - Tiket dengan prioritas sama diurutkan secara FIFO berdasarkan waktu pengambilan (`createdAt`).
