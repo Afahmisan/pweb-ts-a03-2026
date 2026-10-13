@@ -1,835 +1,507 @@
 <!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta content="web_dashboard" name="shell-type"/>
+  <title>Antrian RS - Dashboard Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+  </style>
+  <link rel="stylesheet" href="css/stitch.css"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <script type="module" src="dist/pages/index.js" defer></script>
+</head>
+<body class="bg-[#F8FAF9] font-body-md text-[#111827] antialiased min-h-screen flex flex-col justify-between">
 
-<html lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link rel="stylesheet" href="css/stitch.css"/><link rel="stylesheet" href="css/style.css"/><script type="module" src="dist/pages/index.js" defer></script></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="navbar-header fixed top-0 left-0 right-0 z-50 bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="nav-container h-16 w-full px-margin-desktop flex items-center justify-between gap-space-lg"><div class="nav-brand flex items-center gap-space-lg flex-shrink-0"><div class="flex items-center gap-space-sm"><img alt="Klinik Medika Utama Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WWzisdqCCET2xS0KWgLe_Znz7j07TBRvL6q1biRrxqtM9UnOWDZjpicTZJNvf9Bt2KX2rch0hjFeifUmup2z3fFe68TEkA2SmGeNFECvbdHX4WlWcgB8a598NgycQes_-hd_5czaXNJy0d791VJOMX9xw3-gyVs68xneolxPb6DMPlIhytbnOLU5CuEYzKAU2uCzZr9h1CL_q0KhMLPjyH7SFxNC6wUetgtLmU7QRTJ3g1UcaNFqOUAQ"/><div class="flex flex-col"><span class="font-title-sm text-title-sm text-primary tracking-tight leading-none">Klinik Medika Utama</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Enterprise Queue System</span></div></div><div class="h-6 w-px bg-outline-variant hidden lg:block"></div><div class="hidden lg:flex items-center gap-space-xs px-space-sm py-1 rounded bg-surface-container-low text-on-surface"><span class="material-symbols-outlined text-primary text-[18px]">apartment</span><span class="font-label-md text-label-md font-medium text-on-surface">RS Medika Utama - Cabang Pusat Salemba</span><span class="material-symbols-outlined text-outline text-[16px]">expand_more</span></div></div><nav class="nav-links hidden md:flex items-center gap-space-xs" data-active-classes="bg-primary text-on-primary font-title-sm shadow-sm"><a aria-current="page" class="px-space-md py-space-xs rounded transition-colors bg-primary text-on-primary font-title-sm shadow-sm" data-path="admin-crud" href="index.html">Dashboard</a><a class="font-label-lg text-label-lg px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="operator-console" href="operator.html">Operator</a><a class="font-label-lg text-label-lg px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="public-tv-display" href="layar.html">Monitor</a><a class="font-label-lg text-label-lg px-space-md py-space-xs rounded text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" data-path="patient-kiosk" href="ambil-antrian.html">Ambil Tiket</a></nav><div class="nav-user-section flex items-center gap-space-md flex-shrink-0"><div class="inline-flex items-center gap-space-xs px-space-sm py-1 rounded-full bg-secondary-container/20"><span class="h-2 w-2 rounded-full bg-secondary"></span><span class="font-label-sm text-label-sm font-semibold text-secondary uppercase tracking-wider" id="headerDeskBadge">Admin Hub • SIMRS Online</span></div><div class="flex items-center gap-space-xs pl-space-xs cursor-pointer" id="btnLogout" title="Klik untuk Logout"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" id="userAvatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg56jSRTWplOPC2zlZA1JkOrEqfzgl_3wXudAUNCk4H7U6ouIlTfbDGnlDBHeE3KQuPSS9pujDrmEMC2VMJcDCLSMTP2yN4fTYkApQIWzki1l9lTZ8OntTbCKQ45iE7pk2GiY7r3AI2Bpu6bH_KkrSHD5FjrmB50c7hRuUcVEi8gZfx7_Aq2AG6Dok9VZq5ZjMJnxtstltbT5xO6T7DtBHrtwlJq2XMWRS6QU90GTIFrQqSl8302M"/><div class="hidden sm:flex flex-col text-left"><span class="font-title-sm text-title-sm text-on-surface leading-none" id="userFullName">Ns. Ratna Sari, S.Kep</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-tight" id="userRoleBadge">Petugas Admisi Reguler (Logout)</span></div></div></div></div></header><aside class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-surface-container-lowest shadow-[0_1px_8px_rgba(0,0,0,0.03)] z-40 flex flex-col justify-between py-space-md"><div class="px-space-md"><div class="px-space-sm pb-space-sm mb-space-sm text-label-sm font-label-sm font-bold tracking-wider text-outline uppercase">Navigasi Admin &amp; Loket</div><nav class="space-y-1" data-active-classes="bg-surface-container-high text-primary font-title-sm"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded transition-colors bg-surface-container-high text-primary font-title-sm" data-path="admin-crud" href="index.html"><span class="material-symbols-outlined text-[20px]">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="operator-console" href="operator.html"><span class="material-symbols-outlined text-[20px]">support_agent</span><span class="font-label-md text-label-md">Operator</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="queue-monitoring" href="layar.html"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="font-label-md text-label-md">Monitor</span></a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="patient-kiosk" href="ambil-antrian.html"><span class="material-symbols-outlined text-[20px]">confirmation_number</span><span class="font-label-md text-label-md">Ambil Tiket</span></a></nav></div><div class="px-space-md pt-space-md"><div class="p-space-sm rounded bg-surface-container-low"><div class="flex items-center justify-between text-label-sm font-label-sm text-outline mb-1"><span>Kapasitas Harian</span><span class="font-code-tabular text-code-tabular text-primary font-bold">82%</span></div><div class="w-full bg-outline-variant h-1.5 rounded-full overflow-hidden"><div class="bg-primary h-full w-[82%]"></div></div><div class="mt-2 font-label-sm text-label-sm text-on-surface-variant flex justify-between"><span>Terlayani: 412</span><span>Antre: 89</span></div></div></div></aside><div class="pl-64"><main class="relative pt-16 bg-background min-h-screen"><div class="flex flex-col w-full">
-<!-- Status & Quick Alert Bar -->
-<section class="w-full bg-surface-container-low px-space-xl py-space-sm flex flex-wrap items-center justify-between gap-space-md shadow-sm">
-<div class="flex items-center gap-space-sm flex-wrap">
-<div class="flex items-center gap-space-xs px-2.5 py-1 bg-surface-container-lowest rounded shadow-sm">
-<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-semibold">HIS / SIMRS Connected</span>
-</div>
-<span class="text-outline-variant font-label-sm">|</span>
-<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
-<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
-<span>Sesi Kredensial: <strong>Admin Unit Pusat (Level 1)</strong></span>
-</div>
-<span class="text-outline-variant font-label-sm">|</span>
-<div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
-<span class="material-symbols-outlined text-[18px] text-tertiary">dns</span>
-<span>Server Antrian: <strong>JKT-MEDIKA-SRV02 (Latency: 14ms)</strong></span>
-</div>
-</div>
-<div class="flex items-center gap-space-sm">
-<div class="flex items-center gap-1.5 px-3 py-1 bg-surface-container-highest rounded text-on-surface font-code-tabular text-code-tabular font-medium shadow-sm">
-<span class="material-symbols-outlined text-[16px] text-outline">schedule</span>
-<span id="live-clock">10:42:18 WIB</span>
-</div>
-<button class="px-2.5 py-1 text-on-surface hover:bg-surface-container-highest transition-colors rounded font-label-sm text-label-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[16px]">sync</span>
-<span>Auto-sync (15s)</span>
-</button>
-</div>
-</section>
-<!-- Core Content Container -->
-<div class="w-full p-space-xl space-y-space-xl">
-<!-- Top Summary Metric Cards -->
-<section class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-lg">
-<!-- Metric 1: Total Antrian Hari Ini -->
-<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
-<div class="flex items-start justify-between gap-space-sm mb-space-sm">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Total Antrian Hari Ini</span>
-<div class="flex items-baseline gap-space-xs mt-1">
-<span class="font-display-ticket-mobile text-display-ticket-mobile text-on-surface tracking-tight font-bold" id="metric-total-tickets">0</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Tiket</span>
-</div>
-</div>
-<div class="w-10 h-10 rounded bg-primary-fixed/40 flex items-center justify-center text-primary flex-shrink-0">
-<span class="material-symbols-outlined text-[22px]">confirmation_number</span>
-</div>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<div class="inline-flex items-center gap-1 text-secondary font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[16px]">trending_up</span>
-<span class="font-bold">+12%</span>
-<span class="text-on-surface-variant font-normal">hari ini</span>
-</div>
-<span class="font-code-tabular text-body-sm text-outline">Total Tiket</span>
-</div>
-<!-- Subtle sparkline visual representation -->
-<div class="mt-space-sm pt-space-xs">
-<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden flex">
-<div class="bg-primary h-full w-[65%]" title="Reguler"></div>
-<div class="bg-secondary h-full w-[20%]" title="BPJS"></div>
-<div class="bg-tertiary h-full w-[15%]" title="VIP/Khusus"></div>
-</div>
-</div>
-</div>
-<!-- Metric 2: Sedang Dilayani -->
-<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
-<div class="flex items-start justify-between gap-space-sm mb-space-sm">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Sedang Dipanggil</span>
-<div class="flex items-baseline gap-space-xs mt-1">
-<span class="font-display-ticket-mobile text-display-ticket-mobile text-secondary tracking-tight font-bold" id="metric-calling-tickets">0</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Loket Aktif</span>
-</div>
-</div>
-<div class="w-10 h-10 rounded bg-secondary-fixed/40 flex items-center justify-center text-secondary flex-shrink-0">
-<span class="material-symbols-outlined text-[22px]">record_voice_over</span>
-</div>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<div class="inline-flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
-<span class="w-2 h-2 rounded-full bg-secondary"></span>
-<span>Loket operasional aktif</span>
-</div>
-<span class="font-code-tabular text-body-sm text-secondary font-semibold">Live Calling</span>
-</div>
-<div class="mt-space-sm pt-space-xs">
-<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-<div class="bg-secondary h-full w-[100%]"></div>
-</div>
-</div>
-</div>
-<!-- Metric 3: Sisa Antrian Menunggu -->
-<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
-<div class="flex items-start justify-between gap-space-sm mb-space-sm">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Sisa Antrian Menunggu</span>
-<div class="flex items-baseline gap-space-xs mt-1">
-<span class="font-display-ticket-mobile text-display-ticket-mobile text-primary tracking-tight font-bold" id="metric-waiting-tickets">0</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Pasien Terdaftar</span>
-</div>
-</div>
-<div class="w-10 h-10 rounded bg-primary-container/10 flex items-center justify-center text-primary flex-shrink-0">
-<span class="material-symbols-outlined text-[22px]">hourglass_top</span>
-</div>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
-<span>Prioritas: <strong>VIP &amp; Difabel Lebih Cepat</strong></span>
-</div>
-<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-1.5 py-0.5 rounded font-medium">FIFO</span>
-</div>
-<div class="mt-space-sm pt-space-xs">
-<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-<div class="bg-primary h-full w-[50%]"></div>
-</div>
-</div>
-</div>
-<!-- Metric 4: Kategori Prioritas Terlayani -->
-<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm hover:shadow-md transition-shadow relative overflow-hidden flex flex-col justify-between">
-<div class="flex items-start justify-between gap-space-sm mb-space-sm">
-<div class="flex flex-col">
-<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Poli Rawat Jalan</span>
-<div class="flex items-baseline gap-space-xs mt-1">
-<span class="font-display-ticket-mobile text-display-ticket-mobile text-on-surface tracking-tight font-bold" id="metric-active-services">0</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Unit Buka</span>
-</div>
-</div>
-<div class="w-10 h-10 rounded bg-tertiary-fixed/50 flex items-center justify-center text-tertiary flex-shrink-0">
-<span class="material-symbols-outlined text-[22px]">health_and_safety</span>
-</div>
-</div>
-<div class="pt-space-xs flex items-center justify-between">
-<div class="inline-flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
-<span class="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
-<span>Status Layanan: <strong>Optimal</strong></span>
-</div>
-<span class="font-code-tabular text-body-sm text-secondary font-bold">100% Ready</span>
-</div>
-<div class="mt-space-sm pt-space-xs">
-<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
-<div class="bg-tertiary h-full w-[100%]"></div>
-</div>
-</div>
-</div>
-</section>
-<!-- 2-Column Operational Grid -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
-<!-- COLUMN 1: 60% Width (7 / 12 cols in tailwind) -> Manajemen Layanan & Loket (CRUD) -->
-<section class="lg:col-span-7 space-y-space-md">
-<!-- Table Card Wrapper -->
-<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden flex flex-col">
-<!-- Card Header & Action Filter Toolbar -->
-<div class="p-space-lg bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
-<div>
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[22px]">medical_services</span>
-<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Manajemen Layanan &amp; Loket</h2>
-</div>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Konfigurasi loket aktif, rute poliklinik, dan parameter penomoran antrean.</p>
-</div>
-<div class="flex items-center gap-space-sm flex-wrap">
-<div class="relative">
-<input id="searchServiceInput" class="h-[36px] pl-8 pr-3 py-1 bg-surface-container-low text-on-surface placeholder:text-outline text-body-sm rounded focus:bg-surface-container-lowest focus:outline-none transition-all w-48 sm:w-56" placeholder="Cari nama poli / kode..." type="text"/>
-<span class="material-symbols-outlined absolute left-2 top-2 text-outline text-[18px]">search</span>
-</div>
-<button id="btnOpenAddService" class="h-[36px] px-3 bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded flex items-center gap-1 transition-colors cursor-pointer" onclick="openNewServiceModal()">
-<span class="material-symbols-outlined text-[18px]">add_circle</span>
-<span>Tambah Poli</span>
-</button>
-<button id="btnOpenUserModal" class="h-[36px] px-3 bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md rounded flex items-center gap-1 transition-colors cursor-pointer" title="Kelola akun staf dan pengguna SIMRS">
-<span class="material-symbols-outlined text-[18px]">manage_accounts</span>
-<span>Kelola Pengguna</span>
-</button>
-<button id="btnResetAllQueues" class="h-[36px] px-3 bg-error-container/30 hover:bg-error-container text-error font-label-md text-label-md rounded flex items-center gap-1 transition-colors cursor-pointer" title="Reset seluruh antrean dan kembalikan urutan nomor tiket ke awal">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-<span>Reset Seluruh Antrian</span>
-</button>
-</div>
-</div>
-<!-- Tabular Medical Queue Data -->
-<div class="w-full overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
-<th class="py-3 px-4 font-semibold w-16 text-center">Kode</th>
-<th class="py-3 px-4 font-semibold">Nama Unit Poliklinik</th>
-<th class="py-3 px-3 font-semibold text-center w-28">No. Terakhir</th>
-<th class="py-3 px-3 font-semibold text-center w-28">Status</th>
-<th class="py-3 px-4 font-semibold text-right w-36">Aksi Cepat</th>
-</tr>
-</thead>
-<tbody id="service-table-body" class="divide-y divide-surface-container text-body-md text-on-surface">
-<!-- Row 1: Kode A -->
-<tr class="hover:bg-surface-container-low/60 transition-colors group">
-<td class="py-3.5 px-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">A</span>
-</td>
-<td class="py-3.5 px-4 font-title-sm">
-<div class="font-semibold text-on-surface">Poli Umum &amp; Rujukan</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[14px] text-outline">domain</span> Lantai 1 • Sayap Timur (R.101 - R.103)
-                    </div>
-</td>
-<td class="py-3.5 px-3 text-center">
-<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">3 Loket</span>
-</td>
-<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
-<span class="font-medium text-on-surface">8</span> Menit
-                  </td>
-<td class="py-3.5 px-3 text-center">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                      Aktif
-                    </button>
-</td>
-<td class="py-3.5 px-4 text-right">
-<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
-<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Poli Umum &amp; Rujukan', 'A')" title="Reset Antrian Poli A">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 2: Kode B -->
-<tr class="hover:bg-surface-container-low/60 transition-colors group">
-<td class="py-3.5 px-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">B</span>
-</td>
-<td class="py-3.5 px-4 font-title-sm">
-<div class="font-semibold text-on-surface">Poli Anak, Tumbuh Kembang &amp; Imunisasi</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[14px] text-outline">child_care</span> Lantai 1 • Area Pediatrik (R.108 - R.109)
-                    </div>
-</td>
-<td class="py-3.5 px-3 text-center">
-<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">2 Loket</span>
-</td>
-<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
-<span class="font-medium text-on-surface">12</span> Menit
-                  </td>
-<td class="py-3.5 px-3 text-center">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                      Aktif
-                    </button>
-</td>
-<td class="py-3.5 px-4 text-right">
-<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
-<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Poli Anak &amp; Imunisasi', 'B')" title="Reset Antrian Poli B">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 3: Kode C -->
-<tr class="hover:bg-surface-container-low/60 transition-colors group">
-<td class="py-3.5 px-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">C</span>
-</td>
-<td class="py-3.5 px-4 font-title-sm">
-<div class="font-semibold text-on-surface">Poli Penyakit Dalam &amp; Geriatri</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[14px] text-outline">elderly</span> Lantai 2 • Poli Spesialis (R.204 - R.205)
-                    </div>
-</td>
-<td class="py-3.5 px-3 text-center">
-<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">2 Loket</span>
-</td>
-<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
-<span class="font-medium text-on-surface">15</span> Menit
-                  </td>
-<td class="py-3.5 px-3 text-center">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                      Aktif
-                    </button>
-</td>
-<td class="py-3.5 px-4 text-right">
-<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
-<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Poli Penyakit Dalam', 'C')" title="Reset Antrian Poli C">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 4: Kode D -->
-<tr class="hover:bg-surface-container-low/60 transition-colors group">
-<td class="py-3.5 px-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-primary-fixed text-on-primary-fixed font-code-tabular font-bold">D</span>
-</td>
-<td class="py-3.5 px-4 font-title-sm">
-<div class="font-semibold text-on-surface">Instalasi Farmasi &amp; Pengambilan Obat</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[14px] text-outline">medication</span> Lantai 1 • Sentral Farmasi (Dispensing A-D)
-                    </div>
-</td>
-<td class="py-3.5 px-3 text-center">
-<span class="font-code-tabular font-semibold text-on-surface px-2 py-0.5 rounded bg-surface-container">4 Loket</span>
-</td>
-<td class="py-3.5 px-3 text-center font-code-tabular text-on-surface-variant">
-<span class="font-medium text-on-surface">5</span> Menit
-                  </td>
-<td class="py-3.5 px-3 text-center">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-container/30 text-secondary font-label-sm text-label-sm font-semibold hover:bg-secondary-container/50 transition-colors">
-<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                      Aktif
-                    </button>
-</td>
-<td class="py-3.5 px-4 text-right">
-<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
-<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Instalasi Farmasi', 'D')" title="Reset Antrian Farmasi">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<!-- Row 5: Kode E -->
-<tr class="hover:bg-surface-container-low/60 transition-colors bg-surface-container-low/30 group">
-<td class="py-3.5 px-4 text-center">
-<span class="inline-flex items-center justify-center w-8 h-8 rounded bg-surface-container-highest text-outline font-code-tabular font-bold">E</span>
-</td>
-<td class="py-3.5 px-4 font-title-sm opacity-80">
-<div class="font-semibold text-on-surface">Kasir &amp; Verifikasi BPJS/Asuransi</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-<span class="material-symbols-outlined text-[14px] text-outline">payments</span> Lantai 1 • Front Office Billing
-                    </div>
-</td>
-<td class="py-3.5 px-3 text-center">
-<span class="font-code-tabular font-semibold text-outline px-2 py-0.5 rounded bg-surface-container">2 Loket</span>
-</td>
-<td class="py-3.5 px-3 text-center font-code-tabular text-outline">
-<span class="font-medium">4</span> Menit
-                  </td>
-<td class="py-3.5 px-3 text-center">
-<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-highest text-on-surface-variant font-label-sm text-label-sm font-semibold hover:bg-surface-container transition-colors">
-<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
-                      Non-aktif
-                    </button>
-</td>
-<td class="py-3.5 px-4 text-right">
-<div class="inline-flex items-center gap-1 opacity-90 group-hover:opacity-100">
-<button class="p-1 rounded text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Ubah Parameter Poli">
-<span class="material-symbols-outlined text-[18px]">edit</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" onclick="resetQueuePrompt('Kasir &amp; Verifikasi', 'E')" title="Reset Antrian Kasir">
-<span class="material-symbols-outlined text-[18px]">restart_alt</span>
-</button>
-<button class="p-1 rounded text-on-surface-variant hover:text-error hover:bg-error-container/40 transition-colors" title="Hapus Unit">
-<span class="material-symbols-outlined text-[18px]">delete</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Bottom Table Action Bar -->
-<div class="p-space-md bg-surface-container-lowest flex flex-wrap items-center justify-between gap-space-md border-t-0">
-<div class="flex items-center gap-space-sm flex-wrap">
-<button id="btnOpenAddServiceBottom" class="px-space-md py-2 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded shadow-sm flex items-center gap-1.5 transition-colors" onclick="openNewServiceModal()">
-<span class="material-symbols-outlined text-[20px]">add</span>
-<span>Tambah Layanan Baru</span>
-</button>
-<button id="btnResetAllQueuesBottom" class="px-space-md py-2 bg-error-container/30 hover:bg-error-container text-error font-label-lg text-label-lg rounded shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer" title="Reset seluruh antrean dan kembalikan urutan nomor tiket ke awal">
-<span class="material-symbols-outlined text-[20px]">restart_alt</span>
-<span>Reset Seluruh Antrian</span>
-</button>
-<div class="relative group" id="export-dropdown-wrapper">
-<button id="btnExportDropdown" type="button" class="px-space-md py-2 bg-surface-container-high hover:bg-surface-variant text-on-surface font-label-md text-label-md rounded flex items-center gap-1.5 transition-colors cursor-pointer" aria-haspopup="true" aria-expanded="false" title="Pilih format ekspor laporan harian">
-<span class="material-symbols-outlined text-[18px]">file_download</span>
-<span>Ekspor Laporan Harian</span>
-<span class="material-symbols-outlined text-[16px] text-outline">expand_more</span>
-</button>
-<div id="export-dropdown-menu" class="hidden group-hover:block absolute left-0 bottom-full mb-1 w-52 bg-surface-container-lowest shadow-lg rounded p-1 z-30 border border-outline-variant/30">
-<button id="btnExportCsv" type="button" class="w-full text-left flex items-center gap-2 px-3 py-2 text-body-sm text-on-surface hover:bg-surface-container-low rounded transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[18px] text-secondary">table_view</span>
-<div class="flex flex-col">
-<span class="font-medium text-on-surface">Format CSV (.csv)</span>
-<span class="text-[11px] text-on-surface-variant leading-none">Tabel spreadsheet harian</span>
-</div>
-</button>
-<button id="btnExportJson" type="button" class="w-full text-left flex items-center gap-2 px-3 py-2 text-body-sm text-on-surface hover:bg-surface-container-low rounded transition-colors cursor-pointer">
-<span class="material-symbols-outlined text-[18px] text-primary">data_object</span>
-<div class="flex flex-col">
-<span class="font-medium text-on-surface">Backup JSON (.json)</span>
-<span class="text-[11px] text-on-surface-variant leading-none">Audit trail data antrean</span>
-</div>
-</button>
-</div>
-</div>
-</div>
-<div class="flex items-center gap-space-sm">
-<button class="px-space-md py-2 bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded flex items-center gap-1.5 transition-colors" title="Sinkronisasi Cloud HIS/SIMRS">
-<span class="material-symbols-outlined text-[18px] text-primary">cloud_sync</span>
-<span>Sinkronisasi Cloud HIS/SIMRS</span>
-</button>
-<span class="font-label-sm text-label-sm text-outline hidden sm:inline">5 Dari 5 Unit Tampil</span>
-</div>
-</div>
-</div>
-<!-- Clinical Operational Banner -->
-<div class="p-space-md bg-surface-container-low rounded-lg flex items-center justify-between gap-space-md">
-<div class="flex items-center gap-space-md">
-<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
-<span class="material-symbols-outlined text-[20px]">volume_up</span>
-</div>
-<div>
-<div class="font-title-sm text-title-sm text-on-surface">Sistem Pemanggilan Suara Terhubung</div>
-<div class="font-body-sm text-body-sm text-on-surface-variant">Speaker Hall Utama Salemba, Audio Poli Anak, Display Ruang Farmasi tersinkronisasi.</div>
-</div>
-</div>
-<div class="flex items-center gap-2">
-<span class="font-code-tabular text-body-sm text-secondary font-semibold">100% Ready</span>
-</div>
-</div>
-</section>
-<!-- COLUMN 2: 40% Width (5 / 12 cols in tailwind) -> Penerbitan Tiket Manual -->
-<section class="lg:col-span-5 space-y-space-md">
-<!-- Ticket Dispensing Form Card -->
-<div class="bg-surface-container-lowest rounded-lg p-space-lg shadow-sm flex flex-col space-y-space-md">
-<div class="flex items-center justify-between pb-2">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[22px]">confirmation_number</span>
-<div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Penerbitan Tiket Manual</h3>
-<span class="font-body-sm text-body-sm text-on-surface-variant">Loket Front Office / Registrasi Darurat</span>
-</div>
-</div>
-<span class="px-2 py-0.5 rounded bg-surface-container-high font-code-tabular font-bold text-label-sm text-primary uppercase">Manual Mode</span>
-</div>
-<form class="space-y-space-md" id="manual-ticket-form" onsubmit="event.preventDefault(); emitManualTicket(); return false;">
-<!-- Service Selector Dropdown -->
-<div class="space-y-1">
-<label class="block font-label-md text-label-md text-on-surface font-semibold" for="service-select">
-                Pilih Poliklinik / Layanan Tujuan <span class="text-error">*</span>
-</label>
-<div class="relative">
-<select class="w-full h-[40px] px-3 pr-9 bg-surface-container-low text-on-surface rounded text-body-md appearance-none focus:outline-none focus:bg-surface-container-lowest cursor-pointer font-medium" id="service-select" onchange="updateTicketPreview()">
-<option data-name="Poli Umum &amp; Rujukan" value="A">A - Poli Umum &amp; Rujukan (3 Loket Aktif)</option>
-<option data-name="Poli Anak, Tumbuh Kembang &amp; Imunisasi" selected="" value="B">B - Poli Anak, Tumbuh Kembang &amp; Imunisasi</option>
-<option data-name="Poli Penyakit Dalam &amp; Geriatri" value="C">C - Poli Penyakit Dalam &amp; Geriatri</option>
-<option data-name="Instalasi Farmasi" value="D">D - Instalasi Farmasi &amp; Pengambilan Obat</option>
-<option data-name="Kasir &amp; Verifikasi" value="E">E - Kasir &amp; Verifikasi BPJS/Asuransi</option>
-</select>
-<span class="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-outline text-[20px]">unfold_more</span>
-</div>
-</div>
-<!-- Priority Level Radio Selection -->
-<div class="space-y-2">
-<div class="flex items-center justify-between">
-<label class="block font-label-md text-label-md text-on-surface font-semibold">
-                  Tingkat Prioritas Pasien <span class="text-error">*</span>
-</label>
-<span class="text-outline font-label-sm text-label-sm">Sesuai Triase &amp; Regulasi</span>
-</div>
-<div class="grid grid-cols-1 gap-2" id="priority-selector">
-<!-- Radio 1: Normal -->
-<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('Normal', 'slate')">
-<div class="flex items-center gap-space-sm">
-<input checked="" class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="Normal"/>
-<span class="font-title-sm text-title-sm text-on-surface">Normal</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">(Pasien Umum Standar)</span>
-</div>
-<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-surface-container-highest text-on-surface-variant font-code-tabular">
-                    Standard
-                  </span>
-</label>
-<!-- Radio 2: Lansia -->
-<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('Lansia', 'orange')">
-<div class="flex items-center gap-space-sm">
-<input class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="Lansia"/>
-<span class="font-title-sm text-title-sm text-on-surface">Lansia</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">(≥ 60 Tahun)</span>
-</div>
-<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-orange-100 text-orange-900 font-code-tabular">
-                    Geriatri
-                  </span>
-</label>
-<!-- Radio 3: Disabilitas -->
-<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('Disabilitas', 'amber')">
-<div class="flex items-center gap-space-sm">
-<input class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="Disabilitas"/>
-<span class="font-title-sm text-title-sm text-on-surface">Disabilitas</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">(Kursi Roda / Khusus)</span>
-</div>
-<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-amber-100 text-amber-900 font-code-tabular">
-                    Akses Khusus
-                  </span>
-</label>
-<!-- Radio 4: VIP -->
-<label class="flex items-center justify-between p-2.5 rounded bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer" onclick="updateTicketPriority('VIP', 'purple')">
-<div class="flex items-center gap-space-sm">
-<input class="w-4 h-4 text-primary focus:ring-0" name="priority_tier" type="radio" value="VIP"/>
-<span class="font-title-sm text-title-sm text-on-surface">VIP</span>
-<span class="font-body-sm text-body-sm text-on-surface-variant">(Eksekutif)</span>
-</div>
-<span class="px-2.5 py-0.5 rounded text-label-sm font-semibold bg-purple-100 text-purple-900 font-code-tabular">
-                    Fast Track
-                  </span>
-</label>
-</div>
-</div>
-<!-- Optional Patient MRN / NIK -->
-<div class="space-y-1">
-<div class="flex items-center justify-between">
-<label class="block font-label-md text-label-md text-on-surface font-semibold" for="patient-rm-nik">
-                  Nomor Rekam Medis (RM) / NIK Pasien
-                </label>
-<span class="font-label-sm text-label-sm text-outline">Opsional</span>
-</div>
-<div class="relative">
-<input class="w-full h-[40px] pl-9 pr-3 bg-surface-container-low text-on-surface placeholder:text-outline rounded text-body-md focus:bg-surface-container-lowest focus:outline-none font-code-tabular" id="patient-rm-nik" oninput="updateTicketPreviewMRN(this.value)" placeholder="Contoh: RM-2024-8841 atau NIK 3171..." type="text"/>
-<span class="material-symbols-outlined absolute left-2.5 top-2.5 text-outline text-[18px]">badge</span>
-</div>
-</div>
-<!-- Live Ticket Preview Card -->
-<div class="p-space-md bg-surface-container rounded-lg space-y-space-sm" id="ticket-preview-wrapper">
-<div class="flex items-center justify-between no-print">
-<span class="font-label-sm text-label-sm text-outline uppercase font-semibold">Pratinjau Tiket Siap Cetak</span>
-<span class="font-code-tabular text-label-sm text-outline" id="preview-timestamp">10:42 WIB</span>
-</div>
-<!-- Thermal Ticket Simulation -->
-<div class="thermal-receipt bg-surface-container-lowest p-space-md rounded shadow-sm text-center relative overflow-hidden" id="thermal-receipt-preview">
-<div class="receipt-header">
-<div class="text-on-surface-variant font-label-sm uppercase tracking-widest font-bold">Klinik Medika Utama Pusat</div>
-<div class="font-body-sm text-body-sm text-outline mt-0.5">Jl. Salemba Raya No. 42 • Jakarta Pusat</div>
-<div class="font-label-sm text-label-sm text-outline">Telp: (021) 390-2811 • Unit Admisi Terpadu</div>
-</div>
-<div class="receipt-divider"></div>
-<div class="receipt-title font-label-sm text-label-sm text-outline uppercase tracking-wider font-semibold">Struk Nomor Antrian</div>
-<div class="my-space-sm py-space-xs bg-surface-container-low rounded receipt-number-box">
-<div class="font-display-ticket text-display-ticket text-primary font-bold tracking-tight" id="preview-ticket-code">B-042</div>
-<div class="font-title-md text-title-md text-on-surface font-semibold px-2" id="preview-service-name">Poli Anak &amp; Imunisasi</div>
-</div>
-<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface-variant pt-space-xs receipt-meta-row">
-<span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-semibold" id="preview-priority-badge">Prioritas: Normal</span>
-<span class="font-code-tabular text-outline" id="preview-mrn-val">Walk-in Umum</span>
-</div>
-<div class="receipt-divider"></div>
-<div class="receipt-meta-print text-left font-body-sm text-label-sm space-y-1">
-<div class="flex items-center justify-between">
-<span class="text-outline">Waktu Cetak:</span>
-<span class="font-medium font-code-tabular text-on-surface" id="preview-print-time">11/10/2026 - 19:35 WIB</span>
-</div>
-<div class="flex items-center justify-between">
-<span class="text-outline">Loket:</span>
-<span class="font-medium text-on-surface">Loket Admisi 1</span>
-</div>
-</div>
-<div class="receipt-divider"></div>
-<div class="receipt-footer font-label-sm text-label-sm text-on-surface-variant italic font-semibold mt-1" id="preview-receipt-footer">
-*Harap simpan tiket ini hingga dipanggil.
-</div>
-</div>
-</div>
-<!-- Primary Print & Issue Action Controls -->
-<div class="flex flex-col gap-2.5">
-<button id="btnManualSubmit" class="w-full py-3.5 px-space-md bg-primary hover:bg-primary-container text-on-primary font-title-md text-title-md rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-space-sm active:scale-[0.99] cursor-pointer" type="button">
-<span class="material-symbols-outlined text-[24px]">confirmation_number</span>
-<span>Cetak Tiket</span>
-</button>
-<button id="btnManualPrintPhysical" class="w-full py-2 px-space-md bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md rounded-lg border border-outline-variant/50 transition-all flex items-center justify-center gap-space-sm active:scale-[0.99] cursor-pointer" type="button">
-<span class="material-symbols-outlined text-[18px]">print</span>
-<span>Cetak Fisik Receipt (window.print())</span>
-</button>
-<label class="flex items-center justify-center gap-2 text-label-sm text-on-surface-variant cursor-pointer pt-0.5">
-<input type="checkbox" id="checkAutoPrintOnSubmit" class="w-4 h-4 text-primary rounded focus:ring-0 cursor-pointer" />
-<span>Otomatis buka dialog cetak fisik (window.print()) saat tekan F9 / Cetak Tiket</span>
-</label>
-</div>
-<div class="text-center font-label-sm text-label-sm text-outline">
-              Pintasan Keyboard: Tekan <kbd class="px-1.5 py-0.5 bg-surface-container rounded font-code-tabular font-bold">F9</kbd> untuk mencetak tiket langsung.
-            </div>
-</form>
-</div>
-</section>
-</div>
-<!-- Collapsible Card: Monitoring Meja Bantuan Kiosk Mandiri -->
-<section id="assistance-dispatch-section" class="w-full bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/40 overflow-hidden flex flex-col">
-  <details class="group" open>
-    <summary class="p-space-lg bg-surface-container-lowest flex flex-col md:flex-row md:items-center justify-between gap-space-md cursor-pointer select-none border-b border-surface-container hover:bg-surface-container-low/40 transition-colors list-none">
-      <div class="flex items-center gap-3">
-        <span class="material-symbols-outlined text-primary text-[26px]">support_agent</span>
-        <div>
-          <div class="flex items-center gap-2.5 flex-wrap">
-            <h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Monitoring Panggilan Bantuan & Nurse Call</h2>
-            <span id="assistance-pending-badge" class="px-2.5 py-0.5 rounded-full bg-error-container text-error font-code-tabular text-label-sm font-bold animate-pulse">0 Menunggu Petugas</span>
-          </div>
-          <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Permintaan pendampingan prioritas dan asistensi cetak tiket dari Kiosk Mandiri pengunjung.</p>
-        </div>
+  <!-- Top Navigation Header (Exact Figma Spec) -->
+  <header class="w-full bg-white border-b border-[#E5E7EB] py-3.5 px-6 sm:px-10 flex items-center justify-between shadow-none">
+    <!-- Brand Logo & Title -->
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-[#235347] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+        <span class="material-symbols-outlined text-2xl font-bold">add</span>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="inline-flex items-center gap-1.5 bg-surface-container-low p-1 rounded-full border border-surface-container">
-          <button type="button" id="filter-assistance-all" class="filter-assistance-btn px-3 py-1.5 rounded-full font-label-sm font-semibold transition-colors bg-primary text-on-primary shadow-sm cursor-pointer">
-            Semua
-          </button>
-          <button type="button" id="filter-assistance-pending" class="filter-assistance-btn px-3 py-1.5 rounded-full font-label-sm font-semibold transition-colors bg-surface-container text-on-surface-variant hover:bg-surface-container-high cursor-pointer">
-            Menunggu
-          </button>
-          <button type="button" id="filter-assistance-resolved" class="filter-assistance-btn px-3 py-1.5 rounded-full font-label-sm font-semibold transition-colors bg-surface-container text-on-surface-variant hover:bg-surface-container-high cursor-pointer">
-            Selesai
-          </button>
-        </div>
-        <div class="filter-dropdown-container">
-          <label for="filterStatusSelect">Filter Status:</label>
-          <select id="filterStatusSelect" class="form-select">
-            <option value="ALL">Semua Panggilan</option>
-            <option value="WAITING">Menunggu Petugas</option>
-            <option value="HANDLED">Sudah Didatangi / Selesai</option>
-          </select>
-        </div>
-        <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform text-[22px]">expand_more</span>
+      <div>
+        <h1 class="text-[15px] font-bold text-[#111827] leading-tight">Antrian RS</h1>
+        <p class="text-[11px] text-[#6B7280]">Pelayanan rumah sakit</p>
       </div>
-    </summary>
-    <div class="w-full overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="bg-surface-container-low text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
-            <th class="py-3 px-4 font-semibold w-44">Waktu Panggil</th>
-            <th class="py-3 px-4 font-semibold">Lokasi Terminal</th>
-            <th class="py-3 px-4 font-semibold text-center w-48">Status</th>
-            <th class="py-3 px-4 font-semibold w-60">Petugas Penangan</th>
-            <th class="py-3 px-4 font-semibold text-right w-64">Aksi Cepat</th>
-          </tr>
-        </thead>
-        <tbody id="assistance-table-body" class="divide-y divide-surface-container text-body-md text-on-surface">
-          <!-- Rendered dynamically by TypeScript -->
-        </tbody>
-      </table>
     </div>
-    <div class="p-space-md bg-surface-container-lowest flex items-center justify-between text-body-sm text-on-surface-variant border-t border-surface-container">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
-        <span class="font-label-sm">Sinkronisasi otomatis real-time aktif dengan Kiosk Mandiri</span>
+
+    <!-- Center Nav Links -->
+    <nav class="hidden md:flex items-center gap-6 text-sm">
+      <a href="index.html" data-path="admin-crud" aria-current="page" class="text-[#235347] font-semibold border-b-2 border-[#235347] pb-1">Dashboard Admin</a>
+      <a href="operator.html" data-path="operator-console" class="text-[#4B5563] hover:text-[#111827] transition-colors">Panel Operator</a>
+      <a href="ambil-antrian.html" data-path="patient-kiosk" class="text-[#4B5563] hover:text-[#111827] transition-colors">Ambil Antrian</a>
+      <a href="layar.html" data-path="public-tv-display" class="text-[#4B5563] hover:text-[#111827] transition-colors">Layar Antrian</a>
+    </nav>
+
+    <!-- Right User Profile & Controls -->
+    <div class="flex items-center gap-3">
+      <div id="headerDeskBadge" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF4EE] text-[#235347] text-xs font-semibold">
+        <span class="w-2 h-2 rounded-full bg-[#235347]"></span>
+        Admin Hub • SIMRS Online
       </div>
-      <span class="font-label-sm text-outline">Pembaruan realtime via StorageService</span>
-    </div>
-  </details>
-</section>
-</div>
-<!-- Notification Toast Simulation -->
-<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none" id="toast-notification">
-<div class="bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-lg shadow-xl flex items-center gap-3">
-<span class="material-symbols-outlined text-secondary text-[24px]">check_circle</span>
-<div>
-<div class="font-title-sm text-title-sm font-bold" id="toast-title">Tiket Berhasil Dicetak</div>
-<div class="font-body-sm text-body-sm text-inverse-on-surface/80" id="toast-body">Nomor B-042 telah dikirim ke printer thermal loket.</div>
-</div>
-</div>
-</div>
-<!-- Simple Modal for "Tambah Layanan Baru" -->
-<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 hidden items-center justify-center p-4" id="new-service-modal">
-<div class="bg-surface-container-lowest rounded-lg max-w-lg w-full p-space-xl shadow-2xl space-y-space-md">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[24px]">add_box</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Tambah Layanan Unit Baru</h3>
-</div>
-<button id="btnCloseNewServiceModal" class="text-outline hover:text-on-surface p-1 rounded" onclick="closeNewServiceModal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-</div>
-<div class="space-y-space-md">
-<div>
-<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newServiceCode">Kode Huruf Layanan</label>
-<input id="newServiceCode" class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface font-code-tabular uppercase font-bold focus:outline-none" maxlength="2" placeholder="Contoh: F" type="text"/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newServiceName">Nama Poliklinik / Layanan</label>
-<input id="newServiceName" class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface focus:outline-none" placeholder="Contoh: Poli Gigi &amp; Mulut" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-3">
-<div>
-<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newServiceDeskCount">Jumlah Loket</label>
-<input id="newServiceDeskCount" class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface font-code-tabular focus:outline-none" max="10" min="1" type="number" value="2"/>
-</div>
-<div>
-<label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newServiceEstTime">Estimasi (Menit)</label>
-<input id="newServiceEstTime" class="w-full h-[40px] px-3 bg-surface-container-low rounded text-on-surface font-code-tabular focus:outline-none" max="60" min="1" type="number" value="10"/>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-end gap-space-sm pt-space-sm">
-<button id="btnCancelNewService" class="px-4 py-2 rounded bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-colors" onclick="closeNewServiceModal()">
-          Batal
-        </button>
-<button id="btnSaveNewService" class="px-4 py-2 rounded bg-primary text-on-primary font-label-lg hover:bg-primary-container transition-colors" onclick="saveNewService()">
-          Simpan Layanan
-        </button>
-</div>
-</div>
-</div>
-<!-- Modal: Manajemen Akun Pengguna (SIMRS) -->
-<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-50 hidden items-center justify-center p-4 overflow-y-auto" id="user-management-modal">
-  <div class="bg-surface-container-lowest rounded-xl max-w-2xl w-full p-space-xl shadow-2xl space-y-space-lg my-8 max-h-[90vh] flex flex-col">
-    <!-- Header -->
-    <div class="flex items-center justify-between border-b border-surface-container pb-space-sm flex-shrink-0">
-      <div class="flex items-center gap-2.5">
-        <div class="w-10 h-10 rounded-lg bg-primary-fixed/40 flex items-center justify-center text-primary">
-          <span class="material-symbols-outlined text-[24px]">manage_accounts</span>
-        </div>
-        <div>
-          <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Manajemen Pengguna SIMRS</h3>
-          <p class="font-body-sm text-body-sm text-on-surface-variant">Buat dan kelola akun staf untuk akses Admin, Operator, Supervisor, atau Pasien.</p>
-        </div>
+      <div class="flex flex-col text-right">
+        <span class="text-xs font-bold text-[#111827]" id="userFullName">Emily</span>
+        <span class="text-[11px] text-[#6B7280]" id="userRoleBadge">Admin</span>
       </div>
-      <button id="btnCloseUserModal" class="text-outline hover:text-on-surface p-1.5 rounded-lg hover:bg-surface-container transition-colors" title="Tutup">
-        <span class="material-symbols-outlined">close</span>
+      <img id="userAvatar" class="hidden" alt="Profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg56jSRTWplOPC2zlZA1JkOrEqfzgl_3wXudAUNCk4H7U6ouIlTfbDGnlDBHeE3KQuPSS9pujDrmEMC2VMJcDCLSMTP2yN4fTYkApQIWzki1l9lTZ8OntTbCKQ45iE7pk2GiY7r3AI2Bpu6bH_KkrSHD5FjrmB50c7hRuUcVEi8gZfx7_Aq2AG6Dok9VZq5ZjMJnxtstltbT5xO6T7DtBHrtwlJq2XMWRS6QU90GTIFrQqSl8302M" />
+      <button type="button" id="btnLogout" class="px-3 py-1 rounded-lg border border-[#E5E7EB] bg-white hover:bg-[#F3F4F6] text-xs font-semibold text-[#111827] transition-colors cursor-pointer">
+        Logout
       </button>
     </div>
+  </header>
 
-    <!-- Body Scrollable -->
-    <div class="space-y-space-lg overflow-y-auto pr-1 flex-1">
-      <!-- Form Tambah Akun Baru -->
-      <div class="bg-surface-container-low p-space-md rounded-xl space-y-3 border border-outline-variant/40">
-        <h4 class="font-title-sm text-title-sm text-on-surface font-bold flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-[20px]">person_add</span>
-          <span>Buat Akun Pengguna Baru</span>
-        </h4>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newFullName">Nama Lengkap</label>
-            <input id="newFullName" class="w-full h-[40px] px-3 bg-surface-container-lowest border border-outline-variant/60 rounded text-on-surface focus:border-primary focus:outline-none" placeholder="Contoh: dr. Andi Prasetyo, Sp.A" type="text" />
-          </div>
-          <div>
-            <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newUsername">Username ID</label>
-            <input id="newUsername" class="w-full h-[40px] px-3 bg-surface-container-lowest border border-outline-variant/60 rounded text-on-surface font-code-tabular focus:border-primary focus:outline-none" placeholder="Contoh: andip" type="text" />
-          </div>
-          <div>
-            <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newPassword">Kata Sandi / Password</label>
-            <input id="newPassword" class="w-full h-[40px] px-3 bg-surface-container-lowest border border-outline-variant/60 rounded text-on-surface focus:border-primary focus:outline-none" placeholder="Minimal 4 karakter" type="password" />
-          </div>
-          <div>
-            <label class="block font-label-md text-label-md text-on-surface font-semibold mb-1" for="newUserRole">Hak Akses / Role</label>
-            <select id="newUserRole" class="w-full h-[40px] px-3 bg-surface-container-lowest border border-outline-variant/60 rounded text-on-surface font-label-md font-semibold focus:border-primary focus:outline-none cursor-pointer">
-              <option value="operator">Operator Loket (operator)</option>
-              <option value="admin">Administrator Unit (admin)</option>
-              <option value="moderator">Supervisor / Moderator (moderator)</option>
-              <option value="user">Pasien / Pengunjung (user)</option>
-            </select>
-          </div>
+  <!-- Main Content Body -->
+  <main class="w-full flex-1 px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center">
+    <div class="w-full max-w-6xl flex flex-col gap-8">
+
+      <!-- Page Title & Top Metric Badge -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-2xl font-bold text-[#111827] tracking-tight">Dashboard Admin</h2>
+          <p class="text-xs sm:text-sm text-[#6B7280] mt-1">Kelola jenis layanan, kontrol panggilan pasien, dan loket khusus prioritas.</p>
         </div>
-        <div class="flex justify-end pt-1">
-          <button id="btnSaveUser" type="button" class="px-4 py-2 bg-primary hover:bg-primary-container text-on-primary font-label-md font-semibold rounded shadow-sm flex items-center gap-1.5 transition-colors cursor-pointer">
-            <span class="material-symbols-outlined text-[18px]">save</span>
-            <span>Simpan Akun Pengguna</span>
-          </button>
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF4EE] text-[#235347] text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-[#235347]"></span>
+            <span id="activeServicesBadgeText"><span id="metric-active-services">6</span> layanan aktif</span>
+          </span>
+          <span id="metric-total-tickets" class="hidden">0</span>
         </div>
       </div>
 
-      <!-- Tabel Daftar Akun Pengguna Kustom -->
-      <div class="space-y-2">
-        <div class="flex items-center justify-between">
-          <h4 class="font-title-sm text-title-sm text-on-surface font-bold flex items-center gap-2">
-            <span class="material-symbols-outlined text-outline text-[20px]">group</span>
-            <span>Daftar Akun Pengguna Lokal Tersimpan</span>
-          </h4>
-          <span class="font-label-sm text-label-sm text-outline" id="custom-user-count">0 Pengguna</span>
+      <!-- SECTION 1: GRID KONTROL PANGGILAN PASIEN & LOKASI KHUSUS VIP/DISABILITAS -->
+      <section class="space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[#235347] text-xl">contactless</span>
+              <h3 class="text-lg font-bold text-[#111827]">Kontrol Panggilan Antrian &amp; Lokasi Khusus Prioritas</h3>
+            </div>
+            <p class="text-xs text-[#6B7280] mt-0.5">Panggil pasien berikutnya, lewati antrian, atau selesaikan layanan secara langsung.</p>
+          </div>
+          <div>
+            <span id="adminWaitingTotalBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EBF4EE] text-[#235347] text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-[#235347]"></span>
+              <span id="adminWaitingTotalText">0 tiket menunggu</span>
+            </span>
+          </div>
         </div>
-        <div class="border border-outline-variant/40 rounded-xl overflow-hidden bg-surface-container-lowest">
-          <table class="w-full text-left border-collapse text-body-sm">
+
+        <!-- 3-Column Grid for Calling Cards & VIP Special Location -->
+        <div id="adminServiceCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Populated dynamically by index.ts: Card 1 is Lokasi Khusus VIP & Disabilitas, followed by Service Cards -->
+          <div class="col-span-full py-8 text-center text-[#6B7280] bg-white rounded-2xl border border-[#E5E7EB]">
+            <span class="material-symbols-outlined text-[#235347] text-2xl animate-spin block mx-auto mb-2">progress_activity</span>
+            Memuat kartu kontrol panggilan antrian...
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1B: DAFTAR PASIEN MENGANTRI (LIVE QUEUE ROSTER) -->
+      <section id="patient-queue-roster-section" class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm space-y-4">
+        <!-- Header & Filter Row -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[#F3F4F6]">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-[#EBF4EE] text-[#235347] flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-xl">group</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base font-bold text-[#111827]">Daftar Pasien Mengantri</h3>
+                <span id="rosterWaitingBadge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#EBF4EE] text-[#235347] text-xs font-semibold">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#235347] animate-pulse"></span>
+                  <span id="rosterWaitingCount">0 Pasien Menunggu</span>
+                </span>
+              </div>
+              <p class="text-xs text-[#6B7280] mt-0.5">Daftar urutan pasien yang sedang menunggu dan dipanggil secara live di rumah sakit.</p>
+            </div>
+          </div>
+
+          <!-- Search & Filter Controls -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+            <div class="relative w-full sm:w-56">
+              <input type="text" id="searchQueueInput" placeholder="Cari nama, no. tiket, poli..." class="w-full py-2 pl-8 pr-3 text-xs bg-white border border-[#E5E7EB] rounded-xl text-[#111827] focus:outline-none focus:border-[#235347]" />
+              <span class="material-symbols-outlined absolute left-2.5 top-2.5 text-[#9CA3AF] text-sm pointer-events-none">search</span>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="inline-flex rounded-xl border border-[#E5E7EB] p-1 bg-[#F9FAFB] text-xs" id="rosterFilterGroup">
+              <button type="button" id="roster-filter-all" class="px-3 py-1 rounded-lg font-semibold text-[#111827] bg-white shadow-xs cursor-pointer transition-all">Semua</button>
+              <button type="button" id="roster-filter-waiting" class="px-3 py-1 rounded-lg font-medium text-[#6B7280] hover:text-[#111827] cursor-pointer transition-all">Menunggu</button>
+              <button type="button" id="roster-filter-priority" class="px-3 py-1 rounded-lg font-medium text-[#6B7280] hover:text-[#111827] cursor-pointer transition-all">Prioritas</button>
+              <button type="button" id="roster-filter-calling" class="px-3 py-1 rounded-lg font-medium text-[#6B7280] hover:text-[#111827] cursor-pointer transition-all">Dipanggil</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Queue Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
             <thead>
-              <tr class="bg-surface-container-low text-on-surface-variant font-label-sm uppercase tracking-wider">
-                <th class="py-2.5 px-3 font-semibold">Nama Lengkap</th>
-                <th class="py-2.5 px-3 font-semibold">Username</th>
-                <th class="py-2.5 px-3 font-semibold text-center">Role</th>
-                <th class="py-2.5 px-3 font-semibold text-center">Dibuat</th>
-                <th class="py-2.5 px-3 font-semibold text-right">Aksi</th>
+              <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-semibold uppercase tracking-wider text-[11px]">
+                <th class="py-2.5 px-3">NO. TIKET</th>
+                <th class="py-2.5 px-4">NAMA PASIEN / IDENTITAS</th>
+                <th class="py-2.5 px-3">POLIKLINIK / LAYANAN</th>
+                <th class="py-2.5 px-3 text-center">PRIORITAS</th>
+                <th class="py-2.5 px-3">WAKTU DAFTAR</th>
+                <th class="py-2.5 px-3 text-center">STATUS</th>
+                <th class="py-2.5 px-3 text-right">AKSI</th>
               </tr>
             </thead>
-            <tbody id="custom-user-table-body" class="divide-y divide-surface-container text-on-surface">
-              <!-- Rendered via JavaScript -->
+            <tbody id="patient-queue-table-body" class="divide-y divide-[#F3F4F6]">
+              <!-- Populated dynamically by index.ts -->
             </tbody>
           </table>
         </div>
+      </section>
+
+      <!-- SECTION 2: 2-COLUMN OPERATIONAL LAYOUT (Jenis Antrian + Penerbitan Tiket Manual) -->
+      <section class="admin-two-col-grid">
+
+        <!-- KOLOM KIRI (admin-col-left): Tabel Jenis Antrian & Tambah Layanan Inline -->
+        <div class="admin-col-left space-y-6">
+          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm space-y-6">
+
+            <!-- Card Header & Search -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h3 class="text-lg font-bold text-[#111827]">Jenis antrian</h3>
+                <p class="text-xs text-[#6B7280] mt-0.5" id="servicesSummaryText">
+                  6 aktif · 1 nonaktif. Hanya layanan aktif dapat menerima tiket baru.
+                </p>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="relative w-48">
+                  <input type="text" id="searchServiceInput" placeholder="Cari layanan..." class="w-full py-1.5 pl-8 pr-3 text-xs bg-white border border-[#E5E7EB] rounded-lg text-[#111827] focus:outline-none focus:border-[#235347]" />
+                  <span class="material-symbols-outlined absolute left-2 top-2 text-[#9CA3AF] text-sm">search</span>
+                </div>
+                <!-- Hidden contract buttons for export & add modals -->
+                <button type="button" id="btnExportCsv" class="hidden">Export CSV</button>
+                <button type="button" id="btnExportJson" class="hidden">Export JSON</button>
+                <button type="button" id="btnOpenAddService" class="hidden">Tambah</button>
+                <button type="button" id="btnOpenAddServiceBottom" class="hidden">Tambah</button>
+              </div>
+            </div>
+
+            <!-- Services Table (Exact Figma Spec) -->
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-semibold uppercase tracking-wider text-[11px]">
+                    <th class="py-2.5 px-3">KODE</th>
+                    <th class="py-2.5 px-4">NAMA LAYANAN</th>
+                    <th class="py-2.5 px-3 text-center">STATUS</th>
+                    <th class="py-2.5 px-3 text-center">UBAH STATUS</th>
+                    <th class="py-2.5 px-3 text-right">TINDAKAN</th>
+                  </tr>
+                </thead>
+                <tbody id="service-table-body" class="divide-y divide-[#F3F4F6]">
+                  <!-- Rendered dynamically by index.ts -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Divider -->
+            <div class="border-t border-[#E5E7EB]"></div>
+
+            <!-- Inline Form: Tambah Layanan (Exact Figma Spec) -->
+            <div class="space-y-3">
+              <h4 class="text-sm font-bold text-[#111827]">Tambah layanan</h4>
+              <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div class="w-full sm:w-28">
+                  <label class="block text-[11px] font-medium text-[#6B7280] mb-1" for="newServiceCode">Kode</label>
+                  <input type="text" id="newServiceCode" maxlength="1" placeholder="Contoh: D" class="w-full h-9 px-3 border border-[#E5E7EB] rounded-lg text-xs uppercase font-semibold text-[#111827] focus:outline-none focus:border-[#235347]" />
+                  <p id="newServiceCodeError" class="hidden text-[10px] text-[#DC2626] mt-0.5 font-medium"></p>
+                </div>
+                <div class="w-full sm:flex-1">
+                  <label class="block text-[11px] font-medium text-[#6B7280] mb-1" for="newServiceName">Nama layanan</label>
+                  <input type="text" id="newServiceName" placeholder="Contoh: KULIT" class="w-full h-9 px-3 border border-[#E5E7EB] rounded-lg text-xs font-medium text-[#111827] focus:outline-none focus:border-[#235347]" />
+                  <p id="newServiceNameError" class="hidden text-[10px] text-[#DC2626] mt-0.5 font-medium"></p>
+                </div>
+                <div class="w-full sm:w-auto sm:self-end pt-1 sm:pt-0">
+                  <button type="button" id="btnSaveNewService" class="w-full sm:w-auto h-9 px-5 bg-[#235347] hover:bg-[#1b4339] text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
+                    Tambah Layanan
+                  </button>
+                </div>
+              </div>
+              <p class="text-[11px] text-[#6B7280]">
+                Kode wajib 1 huruf kapital. Kode dan nama harus unik, tanpa membedakan huruf besar/kecil.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN (admin-col-right): Penerbitan Tiket Manual, Antrian Saat Ini, Reset -->
+        <div class="admin-col-right space-y-6">
+
+          <!-- Card 1: Penerbitan Tiket Manual (Exact Figma Spec) -->
+          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm space-y-5">
+            <div>
+              <h3 class="text-lg font-bold text-[#111827]">Penerbitan tiket manual</h3>
+              <p class="text-xs text-[#6B7280] mt-0.5">Bantu pengunjung yang tidak dapat mengambil nomor sendiri.</p>
+            </div>
+
+            <form id="manual-ticket-form" class="space-y-4" onsubmit="event.preventDefault(); emitManualTicket(); return false;">
+              <!-- Layanan Aktif Selector -->
+              <div>
+                <label for="service-select" class="block text-xs font-semibold text-[#111827] mb-1.5">Layanan aktif</label>
+                <div class="relative">
+                  <select id="service-select" class="w-full py-2.5 px-3 bg-white border border-[#E5E7EB] rounded-xl text-xs font-medium text-[#111827] focus:outline-none focus:border-[#235347] cursor-pointer appearance-none">
+                    <!-- Populated dynamically by index.ts -->
+                  </select>
+                  <span class="material-symbols-outlined absolute right-3 top-2.5 pointer-events-none text-[#9CA3AF] text-lg">unfold_more</span>
+                </div>
+              </div>
+
+              <!-- Prioritas: 4 Clean Pills matching Figma -->
+              <div>
+                <label class="block text-xs font-semibold text-[#111827] mb-1.5">Prioritas</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="priority-selector">
+                  <!-- Normal (Default Active) -->
+                  <label data-priority-name="Normal" class="priority-pill flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border-2 border-[#235347] bg-[#EBF4EE] text-[#111827] text-xs font-semibold cursor-pointer transition-all">
+                    <input type="radio" name="priority_tier" value="Normal" checked class="hidden" />
+                    <span class="priority-circle w-3.5 h-3.5 rounded-full border-2 border-[#235347] flex items-center justify-center flex-shrink-0">
+                      <span class="w-1.5 h-1.5 rounded-full bg-[#235347]"></span>
+                    </span>
+                    <span>Normal</span>
+                  </label>
+
+                  <!-- Lansia -->
+                  <label data-priority-name="Lansia" class="priority-pill flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] text-[#4B5563] text-xs font-medium cursor-pointer transition-all">
+                    <input type="radio" name="priority_tier" value="Lansia" class="hidden" />
+                    <span class="priority-circle w-3.5 h-3.5 rounded-full border border-[#D1D5DB] flex items-center justify-center flex-shrink-0"></span>
+                    <span>Lansia</span>
+                  </label>
+
+                  <!-- Disabilitas -->
+                  <label data-priority-name="Disabilitas" class="priority-pill flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] text-[#4B5563] text-xs font-medium cursor-pointer transition-all">
+                    <input type="radio" name="priority_tier" value="Disabilitas" class="hidden" />
+                    <span class="priority-circle w-3.5 h-3.5 rounded-full border border-[#D1D5DB] flex items-center justify-center flex-shrink-0"></span>
+                    <span>Disabilitas</span>
+                  </label>
+
+                  <!-- VIP -->
+                  <label data-priority-name="VIP" class="priority-pill flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-[#E5E7EB] bg-white hover:border-[#D1D5DB] text-[#4B5563] text-xs font-medium cursor-pointer transition-all">
+                    <input type="radio" name="priority_tier" value="VIP" class="hidden" />
+                    <span class="priority-circle w-3.5 h-3.5 rounded-full border border-[#D1D5DB] flex items-center justify-center flex-shrink-0"></span>
+                    <span>VIP</span>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Nama Pasien / Identitas Pengantre -->
+              <div>
+                <label for="patient-rm-nik" class="block text-xs font-semibold text-[#111827] mb-1.5">Nama Pasien / NIK / No. RM (Opsional)</label>
+                <input type="text" id="patient-rm-nik" placeholder="Contoh: Bpk. Budi Santoso / RM-0412" class="w-full py-2.5 px-3 bg-white border border-[#E5E7EB] rounded-xl text-xs font-medium text-[#111827] focus:outline-none focus:border-[#235347]" oninput="window.updateTicketPreviewMRN(this.value)" />
+              </div>
+
+              <!-- Info Box (Exact Figma Spec) -->
+              <div id="manualTicketQueueInfo" class="bg-[#F8FAF9] border border-[#E5E7EB] rounded-xl p-3 flex items-start gap-2.5 text-xs text-[#4B5563]">
+                <span class="material-symbols-outlined text-[#235347] text-base flex-shrink-0 mt-0.5">confirmation_number</span>
+                <span id="manualTicketQueueInfoText">0 tiket menunggu di layanan ini. Tiket baru langsung masuk antrian.</span>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="button" id="btnManualSubmit" class="w-full py-2.5 px-4 bg-[#235347] hover:bg-[#1b4339] text-white text-xs font-semibold rounded-xl shadow-sm transition-colors cursor-pointer flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-base font-bold">add</span>
+                <span>Terbitkan Tiket</span>
+              </button>
+
+              <!-- Hidden Contract Elements for Test Compatibility -->
+              <div class="hidden">
+                <span id="preview-ticket-code">-</span>
+                <span id="preview-service-name">-</span>
+                <span id="preview-priority-badge">Prioritas: Normal</span>
+                <span id="preview-mrn-val">Walk-in Umum</span>
+                <span id="preview-print-time">11/10/2026 - 19:35 WIB</span>
+                <button type="button" id="btnManualPrintPhysical">Cetak Fisik Receipt</button>
+                <input type="checkbox" id="checkAutoPrintOnSubmit" />
+              </div>
+            </form>
+          </div>
+
+          <!-- Card 2: Antrian Saat Ini (Exact Figma Spec) -->
+          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm space-y-4">
+            <h3 class="text-base font-bold text-[#111827]">Antrian saat ini</h3>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="flex flex-col">
+                <span id="metric-calling-tickets" class="text-3xl font-bold text-[#111827]">0</span>
+                <span class="text-xs text-[#6B7280] mt-1">Sedang dipanggil</span>
+              </div>
+              <div class="flex flex-col">
+                <span id="metric-waiting-tickets" class="text-3xl font-bold text-[#111827]">0</span>
+                <span class="text-xs text-[#6B7280] mt-1">Menunggu</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Reset Antrian (Exact Figma Spec) -->
+          <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm space-y-3">
+            <h3 class="text-base font-bold text-[#111827]">Reset Antrian</h3>
+            <p class="text-xs text-[#6B7280] leading-relaxed">
+              Kosongkan seluruh antrian aktif dan reset nomor dari awal. Konfirmasi diperlukan.
+            </p>
+            <div>
+              <button type="button" id="btnResetAllQueues" class="inline-flex items-center gap-1.5 px-4 py-2 bg-[#B91C1C] hover:bg-[#991B1B] text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer">
+                <span class="material-symbols-outlined text-base">restart_alt</span>
+                <span>Reset Antrian</span>
+              </button>
+            </div>
+            <button type="button" id="btnResetAllQueuesBottom" class="hidden">Reset</button>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- SECTION 3: Monitoring Panggilan Bantuan & Nurse Call -->
+      <section id="assistance-dispatch-section" class="bg-white border border-[#E5E7EB] rounded-2xl p-6 shadow-sm space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-[#EBF4EE] text-[#235347] flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-lg">ring_volume</span>
+            </div>
+            <div>
+              <h3 class="text-base font-bold text-[#111827]">Monitoring Panggilan Bantuan &amp; Nurse Call</h3>
+              <p class="text-xs text-[#6B7280]">Panggilan darurat dan bantuan petugas dari kiosk mandiri.</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="assistance-pending-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEF2F2] text-[#DC2626] text-xs font-semibold">
+              <span class="w-2 h-2 rounded-full bg-[#DC2626] animate-pulse"></span>
+              <span>0 Menunggu Petugas</span>
+            </span>
+            <!-- Filter Tabs -->
+            <div class="inline-flex rounded-lg border border-[#E5E7EB] p-0.5 bg-[#F9FAFB] text-xs">
+              <button id="filter-assistance-all" type="button" class="px-2.5 py-1 rounded-md font-medium text-[#111827] bg-white shadow-xs cursor-pointer">Semua</button>
+              <button id="filter-assistance-pending" type="button" class="px-2.5 py-1 rounded-md font-medium text-[#6B7280] hover:text-[#111827] cursor-pointer">Menunggu</button>
+              <button id="filter-assistance-resolved" type="button" class="px-2.5 py-1 rounded-md font-medium text-[#6B7280] hover:text-[#111827] cursor-pointer">Selesai</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-[#E5E7EB] text-[#6B7280] font-semibold uppercase tracking-wider text-[11px]">
+                <th class="py-2.5 px-3">WAKTU</th>
+                <th class="py-2.5 px-3">LOKASI / KIOSK</th>
+                <th class="py-2.5 px-3 text-center">STATUS</th>
+                <th class="py-2.5 px-3">PETUGAS</th>
+                <th class="py-2.5 px-3 text-right">AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="assistance-table-body" class="divide-y divide-[#F3F4F6]">
+              <!-- Populated dynamically by index.ts -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Modal: Tambah Layanan (Figma Spec - media_1791828510455_fa1b67d8.png) -->
+  <div class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden items-center justify-center p-4" id="new-service-modal">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-xl space-y-4">
+      <div class="flex items-center justify-between pb-2 border-b border-[#F3F4F6]">
+        <div>
+          <h3 class="text-lg font-bold text-[#111827]">Tambah layanan</h3>
+          <p class="text-xs text-[#6B7280] mt-0.5">Kode atau nama yang sudah digunakan tidak dapat ditambahkan.</p>
+        </div>
+        <button id="btnCloseNewServiceModal" type="button" class="text-[#9CA3AF] hover:text-[#111827] p-1 rounded-lg hover:bg-[#F3F4F6] transition-colors cursor-pointer">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-3 pt-1">
+        <div>
+          <label class="block text-xs font-semibold text-[#111827] mb-1">Kode</label>
+          <input id="modalServiceCode" class="w-full h-10 px-3 border border-[#D1D5DB] rounded-lg text-sm uppercase font-semibold text-[#111827] focus:outline-none focus:border-[#235347]" placeholder="Contoh: D" maxlength="1" type="text" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-[#111827] mb-1">Nama layanan</label>
+          <input id="modalServiceName" class="w-full h-10 px-3 border border-[#D1D5DB] rounded-lg text-sm text-[#111827] focus:outline-none focus:border-[#235347]" placeholder="Contoh: KULIT atau FARMASI" type="text" />
+        </div>
+        <p class="text-[11px] text-[#6B7280] leading-relaxed pt-1">
+          Gunakan kode 1 huruf kapital dan nama lain. A dan a dianggap sama, begitu pula UMUM-1 dan umum-1.
+        </p>
+      </div>
+
+      <div class="flex items-center justify-end gap-2.5 pt-3 border-t border-[#F3F4F6]">
+        <button id="btnCancelNewService" type="button" class="px-4 py-2 rounded-lg border border-[#E5E7EB] bg-white text-[#111827] text-xs font-semibold hover:bg-[#F9FAFB] transition-colors cursor-pointer">
+          Batal
+        </button>
+        <button id="btnSaveNewServiceModal" type="button" class="px-5 py-2 rounded-lg bg-[#235347] hover:bg-[#1a4036] text-white text-xs font-semibold transition-all cursor-pointer">
+          Tambah Layanan
+        </button>
       </div>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <div class="flex items-center justify-end gap-space-sm pt-space-xs border-t border-surface-container flex-shrink-0">
-      <button id="btnCancelUserModal" class="px-4 py-2 rounded bg-surface-container text-on-surface font-label-md hover:bg-surface-container-high transition-colors cursor-pointer">
-        Tutup
-      </button>
+  <!-- Modal: Reset Seluruh Antrian (Figma Spec - media_1791828510455_fa1b67d8.png) -->
+  <div class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden items-center justify-center p-4" id="reset-all-queues-modal">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-7 shadow-xl space-y-4">
+      <div class="w-12 h-12 rounded-full bg-[#FEF2F2] text-[#DC2626] flex items-center justify-center">
+        <span class="material-symbols-outlined text-2xl font-bold">warning</span>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-bold text-[#111827]">Reset seluruh antrian?</h3>
+        <p class="text-xs text-[#6B7280] mt-1.5 leading-relaxed">
+          Semua tiket yang sedang dipanggil dan menunggu pada layanan aktif akan dikosongkan. Nomor tiket setiap layanan dimulai kembali dari 001.
+        </p>
+      </div>
+
+      <div class="bg-[#F9FAFB] border border-[#F3F4F6] rounded-xl p-3.5 text-xs text-[#374151] space-y-1">
+        <div id="resetSummaryServices" class="font-bold text-[#111827]">6 layanan aktif · 0 tiket</div>
+        <div id="resetSummaryDetails" class="text-[#6B7280]">0 sedang dipanggil dan 0 menunggu.</div>
+        <div class="text-[#9CA3AF] text-[11px]">Daftar jenis layanan tetap tersimpan.</div>
+      </div>
+
+      <p class="text-xs font-bold text-[#DC2626]">
+        Tindakan ini tidak dapat dibatalkan.
+      </p>
+
+      <div class="flex items-center justify-end gap-2.5 pt-2 border-t border-[#F3F4F6]">
+        <button id="btnCancelResetAll" type="button" class="px-4 py-2 rounded-lg border border-[#E5E7EB] bg-white text-[#111827] text-xs font-semibold hover:bg-[#F9FAFB] transition-colors cursor-pointer">
+          Batal
+        </button>
+        <button id="btnConfirmResetAll" type="button" class="px-5 py-2 rounded-lg bg-[#B91C1C] hover:bg-[#991B1B] text-white text-xs font-semibold shadow-xs transition-all cursor-pointer">
+          Ya, Reset Antrian
+        </button>
+      </div>
     </div>
   </div>
-</div>
-<script>
-    // Live Clock Update
-    function updateLiveClock() {
-      const now = new Date();
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      const clockEl = document.getElementById('live-clock');
-      if (clockEl) {
-        clockEl.textContent = `${hours}:${minutes}:${seconds} WIB`;
-      }
-      const previewTimeEl = document.getElementById('preview-timestamp');
-      if (previewTimeEl) {
-        previewTimeEl.textContent = `${hours}:${minutes} WIB`;
-      }
-    }
-    setInterval(updateLiveClock, 1000);
-    updateLiveClock();
-  </script>
-</div></main></div></body></html>
+
+  <!-- Toast Notification Floating Widget -->
+  <div id="toast-notification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <div class="bg-[#111827] text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center gap-3 max-w-md pointer-events-auto border border-gray-700">
+      <span class="material-symbols-outlined text-[#10B981] text-xl">check_circle</span>
+      <div class="flex flex-col">
+        <span id="toast-title" class="text-xs font-bold leading-tight">Notifikasi</span>
+        <span id="toast-body" class="text-[11px] text-gray-300 leading-tight mt-0.5">Pesan sistem.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Page Footer (Exact Figma Spec) -->
+  <footer class="w-full border-t border-[#E5E7EB] py-4 px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6B7280] gap-2 bg-white">
+    <span>Antrian RS · Pelayanan rumah sakit</span>
+    <span>Kelola layanan dengan tertib, layani dengan nyaman.</span>
+  </footer>
+
+</body>
+</html>

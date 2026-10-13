@@ -46,8 +46,8 @@ export function renderNavbar(activePage: string): void {
   // Normalisasi active page (ambil hanya nama file)
   const cleanActivePage = activePage.split('?')[0].split('/').pop() || activePage;
 
-  // Halaman publik murni (Kiosk & Layar Signage) bebas dari navbar staf
-  if (cleanActivePage === 'ambil-antrian.html' || cleanActivePage === 'layar.html') {
+  // Halaman yang menggunakan layout Figma modern bebas dari penulisan ulang navbar
+  if (cleanActivePage === 'ambil-antrian.html' || cleanActivePage === 'layar.html' || cleanActivePage === 'operator.html' || cleanActivePage === 'index.html') {
     return;
   }
 

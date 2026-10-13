@@ -13,53 +13,54 @@
   /* ========================================================================
      Google Stitch Design Tokens - Clinical Flow Management System (Project ID 130103002641058601)
      ======================================================================== */
-  --stitch-surface: #f8f9ff;
-  --stitch-surface-dim: #cbdbf5;
-  --stitch-surface-bright: #f8f9ff;
+  /* Modern High-Legibility Clinical Palette (SIMRS Medika Utama) */
+  --stitch-surface: #f8fafc;
+  --stitch-surface-dim: #cbd5e1;
+  --stitch-surface-bright: #ffffff;
   --stitch-surface-container-lowest: #ffffff;
-  --stitch-surface-container-low: #eff4ff;
-  --stitch-surface-container: #e5eeff;
-  --stitch-surface-container-high: #dce9ff;
-  --stitch-surface-container-highest: #d3e4fe;
-  --stitch-on-surface: #0b1c30;
-  --stitch-on-surface-variant: #3f4850;
-  --stitch-inverse-surface: #213145;
-  --stitch-inverse-on-surface: #eaf1ff;
-  --stitch-outline: #707881;
-  --stitch-outline-variant: #bfc7d2;
-  --stitch-surface-tint: #006398;
-  --stitch-primary: #006194;
+  --stitch-surface-container-low: #f8fafc;
+  --stitch-surface-container: #f1f5f9;
+  --stitch-surface-container-high: #e2e8f0;
+  --stitch-surface-container-highest: #cbd5e1;
+  --stitch-on-surface: #0f172a;
+  --stitch-on-surface-variant: #334155;
+  --stitch-inverse-surface: #0f172a;
+  --stitch-inverse-on-surface: #f8fafc;
+  --stitch-outline: #64748b;
+  --stitch-outline-variant: #e2e8f0;
+  --stitch-surface-tint: #0284c7;
+  --stitch-primary: #0284c7;
   --stitch-on-primary: #ffffff;
-  --stitch-primary-container: #007bb9;
-  --stitch-on-primary-container: #fdfcff;
-  --stitch-inverse-primary: #93ccff;
-  --stitch-secondary: #006c49;
+  --stitch-primary-container: #0369a1;
+  --stitch-on-primary-container: #ffffff;
+  --stitch-inverse-primary: #bae6fd;
+  --stitch-secondary: #059669;
   --stitch-on-secondary: #ffffff;
-  --stitch-secondary-container: #6cf8bb;
-  --stitch-on-secondary-container: #00714d;
-  --stitch-tertiary: #712ae2;
+  --stitch-secondary-container: #ecfdf5;
+  --stitch-on-secondary-container: #065f46;
+  --stitch-tertiary: #6366f1;
   --stitch-on-tertiary: #ffffff;
-  --stitch-tertiary-container: #8a4cfc;
-  --stitch-on-tertiary-container: #fffbff;
-  --stitch-error: #ba1a1a;
+  --stitch-tertiary-container: #4f46e5;
+  --stitch-on-tertiary-container: #ffffff;
+  --stitch-error: #e11d48;
   --stitch-on-error: #ffffff;
-  --stitch-error-container: #ffdad6;
-  --stitch-on-error-container: #93000a;
-  --stitch-primary-fixed: #cce5ff;
-  --stitch-primary-fixed-dim: #93ccff;
-  --stitch-on-primary-fixed: #001d31;
-  --stitch-on-primary-fixed-variant: #004b73;
-  --stitch-secondary-fixed: #6ffbbe;
-  --stitch-secondary-fixed-dim: #4edea3;
-  --stitch-on-secondary-fixed: #002113;
-  --stitch-on-secondary-fixed-variant: #005236;
-  --stitch-tertiary-fixed: #eaddff;
-  --stitch-tertiary-fixed-dim: #d2bbff;
-  --stitch-on-tertiary-fixed: #25005a;
-  --stitch-on-tertiary-fixed-variant: #5a00c6;
-  --stitch-background: #f8f9ff;
-  --stitch-on-background: #0b1c30;
-  --stitch-surface-variant: #d3e4fe;
+  --stitch-error-container: #fee2e2;
+  --stitch-on-error-container: #9f1239;
+  --stitch-primary-fixed: #e0f2fe;
+  --stitch-primary-fixed-dim: #bae6fd;
+  --stitch-on-primary-fixed: #075985;
+  --stitch-on-primary-fixed-variant: #0369a1;
+  --stitch-secondary-fixed: #d1fae5;
+  --stitch-secondary-fixed-dim: #a7f3d0;
+  --stitch-on-secondary-fixed: #065f46;
+  --stitch-on-secondary-fixed-variant: #047857;
+  --stitch-tertiary-fixed: #eef2ff;
+  --stitch-tertiary-fixed-dim: #c7d2fe;
+  --stitch-on-tertiary-fixed: #312e81;
+  --stitch-on-tertiary-fixed-variant: #4338ca;
+  --stitch-background: #f8fafc;
+  --stitch-on-background: #0f172a;
+  --stitch-surface-variant: #f1f5f9;
 
   /* Surface & Backgrounds */
   --bg-canvas: #f8fafc; /* Slate 50 */
@@ -90,6 +91,14 @@
   --primary: #0284c7;
   --primary-hover: #0369a1;
   --primary-contrast: #ffffff;
+
+  /* Figma Antrian RS Theme Tokens */
+  --figma-primary: #235347;
+  --figma-primary-hover: #1a4036;
+  --figma-primary-light: #ebf4ee;
+  --figma-bg: #f8faf9;
+  --figma-card: #ffffff;
+  --figma-border: #e5e7eb;
 
   /* Priority & Triage Tiers (Semantic & Accessible) */
   /* VIP Priority (Royal Violet / Indigo) */
@@ -2373,12 +2382,12 @@ input[type="reset"],
   font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--stitch-outline, #707881);
+  color: var(--stitch-outline, #64748b);
 }
 
 .filter-dropdown-container .form-select {
-  background-color: var(--stitch-surface-container-low, #eff4ff);
-  color: var(--stitch-on-surface, #0b1c30);
+  background-color: var(--stitch-surface-container-low, #f8fafc);
+  color: var(--stitch-on-surface, #0f172a);
   border: 1px solid rgba(191, 199, 210, 0.6);
   border-radius: 6px;
   padding: 0.375rem 0.75rem;
@@ -2390,8 +2399,8 @@ input[type="reset"],
 }
 
 .filter-dropdown-container .form-select:focus {
-  border-color: var(--stitch-primary, #006194);
-  box-shadow: 0 0 0 2px rgba(0, 97, 148, 0.2);
+  border-color: var(--stitch-primary, #0284c7);
+  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
 }
 
 /* ==========================================================================
@@ -2420,8 +2429,8 @@ input[type="reset"],
 }
 
 .enterprise-ticker-bar {
-  background-color: var(--stitch-inverse-surface, #213145);
-  color: var(--stitch-surface-bright, #f8f9ff);
+  background-color: var(--stitch-inverse-surface, #0f172a);
+  color: var(--stitch-surface-bright, #f8fafc);
   border-top: 1px solid rgba(191, 199, 210, 0.2);
 }
 
@@ -2449,7 +2458,7 @@ input[type="reset"],
   gap: 3px;
   height: 32px;
   padding: 4px 8px;
-  background-color: var(--stitch-surface-container-low, #eff4ff);
+  background-color: var(--stitch-surface-container-low, #f8fafc);
   border-radius: 6px;
   transition: opacity 0.3s ease;
 }
@@ -2458,7 +2467,7 @@ input[type="reset"],
   display: inline-block;
   width: 5px;
   height: 100%;
-  background-color: var(--stitch-secondary, #006c49);
+  background-color: var(--stitch-secondary, #059669);
   border-radius: 9999px;
   transform-origin: bottom;
   transform: scaleY(0.25);
@@ -2511,7 +2520,7 @@ details > summary {
   align-items: center;
   gap: 0.375rem;
   font-size: 0.75rem;
-  color: var(--stitch-outline, #707881);
+  color: var(--stitch-outline, #64748b);
   text-decoration: none;
   opacity: 0.65;
   transition: opacity 0.2s ease, color 0.2s ease;
@@ -2519,7 +2528,294 @@ details > summary {
 
 .staff-portal-link:hover {
   opacity: 1;
-  color: var(--stitch-primary, #006194);
+  color: var(--stitch-primary, #0284c7);
 }
 
 
+
+
+/* ==========================================================================
+   16. HIGH-LEGIBILITY & ELEGANT CLINICAL THEME ENHANCEMENTS (MODUL 4)
+   ========================================================================== */
+
+/* Universal Surface & Card Polish */
+.bg-surface-container-lowest {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.04) !important;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.bg-surface-container-lowest:hover {
+  border-color: rgba(203, 213, 225, 0.95);
+}
+
+/* Polished Top Navbar */
+.navbar-header {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow: 0 1px 4px 0 rgba(15, 23, 42, 0.03) !important;
+}
+
+/* Sidebar Navigasi */
+aside.fixed {
+  background-color: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+  box-shadow: 1px 0 4px 0 rgba(15, 23, 42, 0.02) !important;
+}
+
+/* Active Nav Links Pill Indicator */
+.nav-links a[aria-current="page"] {
+  background-color: #0284c7 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 1px 2px 0 rgba(2, 132, 199, 0.35) !important;
+}
+
+.nav-links a:not([aria-current="page"]):hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* Aside Nav Items */
+aside nav a[aria-current="page"] {
+  background-color: #e0f2fe !important;
+  color: #0284c7 !important;
+  font-weight: 600 !important;
+}
+
+aside nav a:not([aria-current="page"]):hover {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* High-Legibility Typography & Contrast */
+.text-on-surface {
+  color: #0f172a !important;
+}
+
+.text-on-surface-variant {
+  color: #334155 !important;
+}
+
+.text-outline {
+  color: #64748b !important;
+}
+
+.text-primary {
+  color: #0284c7 !important;
+}
+
+/* Form Inputs & Select Controls */
+input, select, textarea {
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
+  outline: none !important;
+}
+
+/* High-Density Clinical Table Readability */
+table {
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  width: 100% !important;
+}
+
+thead th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 0.75rem 1rem !important;
+}
+
+tbody td {
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #1e293b !important;
+  padding: 0.875rem 1rem !important;
+}
+
+tbody tr:hover {
+  background-color: #f8fafc !important;
+}
+
+/* Calling & Live Operational Status Badges */
+.bg-secondary-container\/20,
+.bg-secondary-container\/30 {
+  background-color: #ecfdf5 !important;
+  border: 1px solid #a7f3d0 !important;
+}
+
+.text-secondary {
+  color: #047857 !important;
+  font-weight: 600 !important;
+}
+
+/* Tactile Kiosk Buttons (ambil-antrian.html) */
+.priority-btn {
+  border: 1px solid #e2e8f0 !important;
+  background-color: #ffffff !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.priority-btn:hover {
+  border-color: #cbd5e1 !important;
+  background-color: #f8fafc !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05) !important;
+}
+
+.priority-btn.ring-2,
+.priority-btn[data-active="true"] {
+  border-color: #235347 !important;
+  box-shadow: 0 0 0 2px #235347, 0 4px 10px -2px rgba(35, 83, 71, 0.25) !important;
+  background-color: #ebf4ee !important;
+}
+
+/* TV Display Huge Active Numbers (layar.html) */
+.text-display-ticket {
+  color: #235347 !important;
+  letter-spacing: -0.03em !important;
+  font-weight: 800 !important;
+}
+
+/* Signage Header for TV Monitor */
+header.bg-inverse-surface {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 4px 12px 0 rgba(15, 23, 42, 0.15) !important;
+}
+
+/* Equalizer Visualizer Enhancement */
+.sound-wave-bars {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.sound-wave-bars .bar {
+  background: linear-gradient(180deg, #235347 0%, #059669 100%) !important;
+}
+
+/* Button Refinements */
+button.bg-primary {
+  background-color: #235347 !important;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px 0 rgba(35, 83, 71, 0.35);
+  font-weight: 600;
+}
+
+button.bg-primary:hover {
+  background-color: #1a4036 !important;
+}
+
+/* ==========================================================================
+   FIGMA SPEC UTILITY CLASSES & COLOR SYSTEM (100% SPEC COMPLIANT)
+   ========================================================================== */
+
+/* Backgrounds */
+.bg-\[\#235347\] { background-color: #235347 !important; }
+.bg-\[\#1a4036\] { background-color: #1a4036 !important; }
+.bg-\[\#EBF4EE\] { background-color: #ebf4ee !important; }
+.bg-\[\#F8FAF9\] { background-color: #f8faf9 !important; }
+.bg-\[\#FAFCFB\] { background-color: #fafcfb !important; }
+.bg-\[\#FEF2F2\] { background-color: #fef2f2 !important; }
+.bg-\[\#F9FAFB\] { background-color: #f9fafb !important; }
+.bg-\[\#F3F4F6\] { background-color: #f3f4f6 !important; }
+.bg-\[\#567D6B\] { background-color: #567d6b !important; }
+.bg-\[\#B91C1C\] { background-color: #b91c1c !important; }
+.bg-\[\#991B1B\] { background-color: #991b1b !important; }
+.bg-\[\#1F2937\] { background-color: #1f2937 !important; }
+.bg-white { background-color: #ffffff !important; }
+.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5) !important; }
+.bg-black\/60 { background-color: rgba(0, 0, 0, 0.6) !important; }
+
+/* Hover Backgrounds */
+.hover\:bg-\[\#1a4036\]:hover { background-color: #1a4036 !important; }
+.hover\:bg-\[\#F9FAFB\]:hover { background-color: #f9fafb !important; }
+.hover\:bg-\[\#F3F4F6\]:hover { background-color: #f3f4f6 !important; }
+.hover\:bg-\[\#991B1B\]:hover { background-color: #991b1b !important; }
+
+/* Borders */
+.border-\[\#235347\] { border-color: #235347 !important; }
+.border-\[\#E5E7EB\] { border-color: #e5e7eb !important; }
+.border-\[\#D1D5DB\] { border-color: #d1d5db !important; }
+.border-\[\#D5E6DB\] { border-color: #d5e6db !important; }
+.border-\[\#F3F4F6\] { border-color: #f3f4f6 !important; }
+.border-\[\#FCA5A5\] { border-color: #fca5a5 !important; }
+.border-red-500 { border-color: #ef4444 !important; }
+.border-red-200 { border-color: #fecaca !important; }
+.border-2 { border-width: 2px !important; }
+.border-b-2 { border-bottom-width: 2px !important; }
+.hover\:border-\[\#D1D5DB\]:hover { border-color: #d1d5db !important; }
+.focus\:border-\[\#235347\]:focus { border-color: #235347 !important; }
+
+/* Text Colors */
+.text-\[\#235347\] { color: #235347 !important; }
+.text-\[\#111827\] { color: #111827 !important; }
+.text-\[\#6B7280\] { color: #6b7280 !important; }
+.text-\[\#4B5563\] { color: #4b5563 !important; }
+.text-\[\#374151\] { color: #374151 !important; }
+.text-\[\#9CA3AF\] { color: #9ca3af !important; }
+.text-\[\#DC2626\] { color: #dc2626 !important; }
+.text-\[\#991B1B\] { color: #991b1b !important; }
+.text-\[\#10B981\] { color: #10b981 !important; }
+.text-\[\#059669\] { color: #059669 !important; }
+.text-white { color: #ffffff !important; }
+.text-red-600 { color: #dc2626 !important; }
+.hover\:text-\[\#111827\]:hover { color: #111827 !important; }
+.hover\:text-\[\#235347\]:hover { color: #235347 !important; }
+
+/* Sizing & Radius */
+.max-w-4xl { max-width: 56rem !important; }
+.max-w-6xl { max-width: 72rem !important; }
+.max-w-\[420px\] { max-width: 420px !important; }
+.max-w-\[380px\] { max-width: 380px !important; }
+.rounded-2xl { border-radius: 16px !important; }
+.rounded-xl { border-radius: 12px !important; }
+.rounded-lg { border-radius: 8px !important; }
+.shadow-xs { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
+.backdrop-blur-xs { backdrop-filter: blur(2px) !important; -webkit-backdrop-filter: blur(2px) !important; }
+
+/* Admin Responsive Two-Column Layout Rules */
+.admin-two-col-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .admin-two-col-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+  }
+  .admin-two-col-grid > .admin-col-left {
+    flex: 1 1 64% !important;
+    min-width: 0 !important;
+  }
+  .admin-two-col-grid > .admin-col-right {
+    flex: 0 0 380px !important;
+    width: 380px !important;
+    min-width: 340px !important;
+  }
+}
+
+.lg\:col-span-8 {
+  grid-column: span 8 / span 8 !important;
+}
+.lg\:col-span-4 {
+  grid-column: span 4 / span 4 !important;
+}

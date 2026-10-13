@@ -1,7 +1,6 @@
 import { AuthService } from '../services/auth.js';
 document.addEventListener('DOMContentLoaded', () => {
-    // Redirect jika sesi sudah aktif
-    AuthService.redirectIfAuthenticated();
+    // Izinkan pengguna selalu dapat membuka dan memulai dari login.html tanpa redirect paksa
     const form = document.getElementById('loginForm');
     const staffInput = document.getElementById('staffId');
     const passwordInput = document.getElementById('password');
@@ -11,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnIcon = document.getElementById('btnIcon');
     const errorContainer = document.getElementById('loginErrorContainer');
     const errorMessage = document.getElementById('loginErrorMessage');
+    const processingHint = document.getElementById('processingHint');
+    const helpModal = document.getElementById('helpModal');
     // Toggle password visibility
     window.togglePasswordVisibility = () => {
         if (!passwordInput)
@@ -19,37 +20,50 @@ document.addEventListener('DOMContentLoaded', () => {
         passwordInput.type = isPwd ? 'text' : 'password';
         const eyeIcon = document.getElementById('passwordEyeIcon');
         if (eyeIcon) {
-            eyeIcon.textContent = isPwd ? 'visibility_off' : 'visibility';
+            eyeIcon.textContent = isPwd ? 'visibility' : 'visibility_off';
         }
     };
     // Quick select role helper
     window.selectRole = (role) => {
         hideError();
-        if (!staffInput || !passwordInput || !counterSelect)
+        if (!staffInput || !passwordInput)
             return;
         if (role === 'admin') {
             staffInput.value = 'emilys';
             passwordInput.value = 'emilyspass';
-            counterSelect.value = 'loket-1';
+            if (counterSelect)
+                counterSelect.value = 'loket-1';
         }
         else if (role === 'operator') {
             staffInput.value = 'averyp';
             passwordInput.value = 'averyppass';
-            counterSelect.value = 'loket-2';
+            if (counterSelect)
+                counterSelect.value = 'loket-2';
         }
         else if (role === 'supervisor') {
             staffInput.value = 'oliviaw';
             passwordInput.value = 'oliviawpass';
-            counterSelect.value = 'loket-3';
+            if (counterSelect)
+                counterSelect.value = 'loket-3';
         }
         else if (role === 'user' || role === 'patient') {
             staffInput.value = 'michaelw';
             passwordInput.value = 'michaelwpass';
-            counterSelect.value = 'loket-1';
+            if (counterSelect)
+                counterSelect.value = 'loket-1';
         }
         staffInput.focus();
     };
-    // Attach explicit click listeners to avoid relying solely on inline onclick
+    // Help modal helpers
+    window.triggerHelpModal = () => {
+        if (helpModal)
+            helpModal.classList.remove('hidden');
+    };
+    window.closeHelpModal = () => {
+        if (helpModal)
+            helpModal.classList.add('hidden');
+    };
+    // Attach explicit click listeners
     document.getElementById('togglePasswordBtn')?.addEventListener('click', () => {
         window.togglePasswordVisibility?.();
     });
@@ -68,41 +82,66 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnDemoUser')?.addEventListener('click', () => {
         window.selectRole?.('user');
     });
+    document.getElementById('btnFooterHelp')?.addEventListener('click', () => {
+        window.triggerHelpModal?.();
+    });
     const showError = (msg) => {
         if (errorContainer && errorMessage) {
             errorMessage.textContent = msg;
             errorContainer.classList.remove('hidden');
         }
+        staffInput?.classList.add('border-red-400');
+        passwordInput?.classList.add('border-red-400');
     };
     const hideError = () => {
         if (errorContainer) {
             errorContainer.classList.add('hidden');
         }
+        staffInput?.classList.remove('border-red-400');
+        passwordInput?.classList.remove('border-red-400');
     };
+    staffInput?.addEventListener('input', hideError);
+    passwordInput?.addEventListener('input', hideError);
     const setLoading = (loading) => {
         if (!submitBtn || !btnText || !btnIcon)
             return;
         submitBtn.disabled = loading;
         if (loading) {
             submitBtn.classList.add('opacity-90');
-            btnText.textContent = 'Memverifikasi Kredensial...';
+            btnText.textContent = 'Memproses...';
+            btnIcon.classList.remove('hidden');
             btnIcon.classList.add('animate-spin');
             btnIcon.textContent = 'progress_activity';
+            processingHint?.classList.remove('hidden');
         }
         else {
             submitBtn.classList.remove('opacity-90');
-            btnText.textContent = 'Masuk ke Sistem';
+            btnText.textContent = 'Masuk';
+            btnIcon.classList.add('hidden');
             btnIcon.classList.remove('animate-spin');
-            btnIcon.textContent = 'login';
+            processingHint?.classList.add('hidden');
         }
     };
+    // Submit button explicit click listener
+    submitBtn?.addEventListener('click', () => {
+        if (form) {
+            if (typeof form.requestSubmit === 'function') {
+                form.requestSubmit();
+            }
+            else {
+                form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+            }
+        }
+    });
     // Form submit handler
     form?.addEventListener('submit', async (e) => {
         e.preventDefault();
         hideError();
         let username = staffInput?.value.trim() || '';
         let password = passwordInput?.value.trim() || '';
-        const counter = counterSelect?.options[counterSelect.selectedIndex]?.text || 'Loket 1 - Pendaftaran Umum';
+        const counter = (counterSelect && counterSelect.options.length > 0)
+            ? (counterSelect.options[counterSelect.selectedIndex]?.text || 'Loket 01 - Poli Umum')
+            : 'Loket 01 - Poli Umum';
         // Map template default mock NIP to DummyJSON credentials
         if (username === 'MED-00101') {
             username = 'emilys';
@@ -121,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             password = 'michaelwpass';
         }
         if (!username || !password) {
-            showError('Mohon isi ID Staf dan Kata Sandi.');
+            showError('Username atau kata sandi tidak boleh kosong.');
             return;
         }
         setLoading(true);
@@ -129,10 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const user = await AuthService.login(username, password, counter);
             if (btnIcon && btnText && submitBtn) {
                 btnIcon.classList.remove('animate-spin');
+                btnIcon.classList.remove('hidden');
                 btnIcon.textContent = 'check_circle';
-                btnText.textContent = 'Autentikasi Berhasil';
-                submitBtn.classList.remove('bg-primary');
-                submitBtn.classList.add('bg-secondary');
+                btnText.textContent = 'Berhasil Masuk';
+                submitBtn.classList.remove('bg-[#235347]');
+                submitBtn.classList.add('bg-emerald-700');
             }
             setTimeout(() => {
                 if (user.role === 'admin' || user.role === 'moderator') {
@@ -144,11 +184,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 else {
                     window.location.replace('ambil-antrian.html');
                 }
-            }, 700);
+            }, 600);
         }
         catch (err) {
             setLoading(false);
-            const msg = err instanceof Error ? err.message : 'Kredensial salah atau koneksi jaringan gagal.';
+            const errStr = err instanceof Error ? err.message.toLowerCase() : '';
+            let msg = 'Username atau kata sandi salah. Periksa kembali, lalu coba masuk.';
+            if (errStr.includes('network') || errStr.includes('koneksi') || errStr.includes('fetch')) {
+                msg = 'Tidak dapat terhubung ke server. Periksa koneksi internet Anda dan coba lagi.';
+                if (btnText)
+                    btnText.textContent = 'Coba Lagi';
+            }
             showError(msg);
         }
     });

@@ -26,10 +26,13 @@ const DEFAULT_ASSISTANCE_REQUESTS: AssistanceRequest[] = [
 ];
 
 const DEFAULT_SERVICES: ServiceType[] = [
-  { code: 'A', name: 'Poli Umum', isActive: true, currentNumber: 0 },
-  { code: 'B', name: 'Poli Penyakit Dalam', isActive: true, currentNumber: 0 },
-  { code: 'C', name: 'Poli Anak & Tumbuh Kembang', isActive: true, currentNumber: 0 },
-  { code: 'D', name: 'Farmasi & Apotek Terpadu', isActive: true, currentNumber: 0 }
+  { code: 'A', name: 'UMUM-1', isActive: true, currentNumber: 0 },
+  { code: 'B', name: 'UMUM-2', isActive: true, currentNumber: 0 },
+  { code: 'C', name: 'UMUM-3', isActive: true, currentNumber: 0 },
+  { code: 'G', name: 'GIGI', isActive: true, currentNumber: 0 },
+  { code: 'F', name: 'FARMASI', isActive: true, currentNumber: 0 },
+  { code: 'P', name: 'PSIKOLOG', isActive: true, currentNumber: 0 },
+  { code: 'L', name: 'LABORATORIUM', isActive: false, currentNumber: 0 }
 ];
 
 export class StorageService {
@@ -105,13 +108,15 @@ export class StorageService {
     try {
       const raw = localStorage.getItem(KEY_SERVICES);
       if (!raw) {
-        this.saveServices(DEFAULT_SERVICES);
-        return DEFAULT_SERVICES;
+        const initial = DEFAULT_SERVICES.map(s => ({ ...s, currentNumber: 0 }));
+        this.saveServices(initial);
+        return initial;
       }
       const parsed = JSON.parse(raw);
       if (!Array.isArray(parsed) || parsed.length === 0) {
-        this.saveServices(DEFAULT_SERVICES);
-        return DEFAULT_SERVICES;
+        const initial = DEFAULT_SERVICES.map(s => ({ ...s, currentNumber: 0 }));
+        this.saveServices(initial);
+        return initial;
       }
       return parsed.map((s: any) => ({
         code: String(s.code || '').toUpperCase().trim(),
@@ -120,7 +125,7 @@ export class StorageService {
         currentNumber: Number(s.currentNumber) || 0
       }));
     } catch {
-      return DEFAULT_SERVICES;
+      return DEFAULT_SERVICES.map(s => ({ ...s, currentNumber: 0 }));
     }
   }
 
