@@ -1,269 +1,121 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta content="web_standard" name="shell-type"/>
-  <title>Antrian RS - Ambil Nomor Antrian</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-  <style>
-    @layer base {
-      html, body { margin: 0; padding: 0; }
-      main > :first-child { margin-top: 0 !important; }
-      main > :last-child { margin-bottom: 0 !important; }
-    }
-  </style>
-  <link rel="stylesheet" href="css/stitch.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
-  <script type="module" src="dist/pages/ambil-antrian.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ambil Antrian - Antrian RS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="dist/kiosk.js" defer></script>
 </head>
-<body class="bg-[#F8FAF9] font-body-md text-[#111827] antialiased min-h-screen flex flex-col justify-between">
+<body style="background-color: var(--color-bg); min-height: 100vh; display: flex; flex-direction: column;">
 
-  <!-- Top Navigation Header (Figma Spec) -->
-  <header class="w-full bg-white border-b border-[#E5E7EB] py-3.5 px-6 sm:px-10 flex items-center justify-between shadow-none">
-    <div class="flex items-center gap-3">
-      <!-- Green Square Logo with Plus Sign -->
-      <div class="w-9 h-9 rounded-lg bg-[#235347] flex items-center justify-center text-white shadow-sm flex-shrink-0">
-        <span class="material-symbols-outlined text-2xl font-bold">add</span>
-      </div>
-      <div>
-        <h1 class="text-[15px] font-bold text-[#111827] leading-tight">Antrian RS</h1>
-        <p class="text-[11px] text-[#6B7280]">Pelayanan rumah sakit</p>
-      </div>
+  <nav class="navbar">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+      <a href="ambil-antrian.html" class="brand-wrapper">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 6v12M6 12h12"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Antrian RS</span>
+          <span class="brand-subtitle">Pelayanan rumah sakit</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="ambil-antrian.html" class="nav-link active">Ambil Antrian</a></li>
+        <li><a href="layar.html" class="nav-link">Layar Antrian</a></li>
+        <li><a href="login.html" class="nav-link">Masuk Petugas</a></li>
+      </ul>
     </div>
-    <!-- Top Right Nav Links -->
-    <nav class="flex items-center gap-6 text-sm">
-      <a href="ambil-antrian.html" class="text-[#235347] font-semibold border-b-2 border-[#235347] pb-1">Ambil Antrian</a>
-      <a href="layar.html" class="text-[#4B5563] hover:text-[#111827] transition-colors">Layar Antrian</a>
-      <a href="login.html" class="text-[#4B5563] hover:text-[#111827] transition-colors">Masuk Petugas</a>
-    </nav>
-  </header>
+  </nav>
 
-  <!-- Main Kiosk Body (Figma Spec) -->
-  <main class="w-full flex-1 px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center">
-    <div class="w-full max-w-4xl flex flex-col gap-6">
+  <main class="container" style="max-width: 980px; padding-top: 2rem; padding-bottom: 3.5rem; flex: 1;">
+    
+    <div style="margin-bottom: 1.75rem;">
+      <div class="auth-eyebrow" style="margin-bottom: 0.35rem;">LAYANAN MANDIRI</div>
+      <h1 class="page-title" style="font-size: 2rem; margin-bottom: 0.35rem;">
+        Ambil nomor antrian
+      </h1>
+      <p class="page-subtitle" style="font-size: 1rem;">
+        Pilih layanan dan prioritas Anda untuk mengambil nomor antrian.
+      </p>
+    </div>
 
-      <!-- Eyebrow & Titles -->
-      <div>
-        <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#235347] mb-1">LAYANAN MANDIRI</span>
-        <h2 class="text-2xl sm:text-[28px] font-bold text-[#111827] tracking-tight">Ambil nomor antrian</h2>
-        <p class="text-xs sm:text-sm text-[#6B7280] mt-1">Pilih layanan dan prioritas Anda. Nomor langsung masuk antrian, tanpa perlu login.</p>
+    <!-- Main Card enclosing the entire selection process (Exact Figma Layout) -->
+    <div class="card kiosk-main-card">
+      <div class="kiosk-card-header">
+        <h2 style="font-size: 1.15rem; font-weight: 600; color: var(--color-primary); margin: 0;">
+          Pilih layanan
+        </h2>
+        <span id="available-services-count" style="font-size: 0.85rem; color: var(--color-text-muted);">
+          6 layanan tersedia
+        </span>
       </div>
 
-      <!-- Main Clean White Card Container -->
-      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col gap-6">
+      <!-- Service Selection Grid -->
+      <div id="service-options-container" class="kiosk-service-grid" style="margin-bottom: 2rem;"></div>
+
+      <!-- Priority Selection Row -->
+      <div style="border-top: 1px solid var(--color-border); padding-top: 1.5rem; margin-bottom: 1.75rem;">
+        <label class="form-label" style="font-size: 0.95rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.75rem; display: block;">
+          Prioritas
+        </label>
         
-        <!-- Header row of the card -->
-        <div class="flex items-center justify-between">
-          <h3 class="text-base sm:text-lg font-bold text-[#111827]">Pilih layanan</h3>
-          <span id="kioskAvailableCount" class="text-xs sm:text-sm text-[#6B7280]">6 layanan tersedia</span>
+        <div class="radio-cards-grid" id="kiosk-priority-group" style="margin-bottom: 0.65rem;">
+          <label class="radio-card-label selected">
+            <input type="radio" name="kiosk-priority" value="Normal" checked>
+            <span style="font-weight: 500;">Normal</span>
+          </label>
+
+          <label class="radio-card-label">
+            <input type="radio" name="kiosk-priority" value="Lansia">
+            <span style="font-weight: 500;">Lansia</span>
+          </label>
+
+          <label class="radio-card-label">
+            <input type="radio" name="kiosk-priority" value="Disabilitas">
+            <span style="font-weight: 500;">Disabilitas</span>
+          </label>
+
+          <label class="radio-card-label">
+            <input type="radio" name="kiosk-priority" value="VIP">
+            <span style="font-weight: 500;">VIP</span>
+          </label>
         </div>
 
-        <!-- 6 Services Grid (3 columns, 2 rows) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5" id="kiosk-services-grid">
-          <!-- Dynamically populated by ambil-antrian.ts with Figma card design -->
-          <div class="col-span-full py-8 text-center text-[#6B7280]">
-            <span class="material-symbols-outlined text-[#235347] text-2xl animate-spin block mx-auto mb-2">progress_activity</span>
-            Memuat daftar layanan...
-          </div>
+        <div style="font-size: 0.85rem; color: var(--color-text-muted);">
+          Pilih sesuai kebutuhan. Lansia, Disabilitas, dan VIP didahulukan dari antrian Normal.
         </div>
+      </div>
 
-        <!-- Divider line -->
-        <div class="border-t border-[#E5E7EB]"></div>
-
-        <!-- Priority Selection Section -->
+      <!-- Card Action Footer Row -->
+      <div class="kiosk-action-footer">
         <div>
-          <label class="block text-sm font-semibold text-[#111827] mb-2.5">Prioritas</label>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5" id="priority-selector-group">
-            <!-- Priority Option 1: Normal (Default Selected) -->
-            <button type="button" id="priorityBtnRegular" data-priority-code="REGULAR" data-priority-name="Normal" class="priority-pill group bg-[#EBF4EE] border-2 border-[#235347] rounded-xl py-2.5 px-3 flex items-center justify-center gap-2 cursor-pointer transition-all" onclick="selectPriority(this, 'Normal', 'REGULAR')">
-              <span class="priority-radio w-4 h-4 rounded-full border-2 border-[#235347] flex items-center justify-center flex-shrink-0">
-                <span class="w-2 h-2 rounded-full bg-[#235347]"></span>
-              </span>
-              <span class="text-sm font-semibold text-[#111827]">Normal</span>
-            </button>
-
-            <!-- Priority Option 2: Lansia -->
-            <button type="button" id="priorityBtnElderly" data-priority-code="PRIORITY-ELDERLY" data-priority-name="Lansia" class="priority-pill group bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-xl py-2.5 px-3 flex items-center justify-center gap-2 cursor-pointer transition-all" onclick="selectPriority(this, 'Lansia', 'PRIORITY-ELDERLY')">
-              <span class="priority-radio w-4 h-4 rounded-full border border-[#D1D5DB] flex items-center justify-center flex-shrink-0"></span>
-              <span class="text-sm font-medium text-[#4B5563]">Lansia</span>
-            </button>
-
-            <!-- Priority Option 3: Disabilitas -->
-            <button type="button" id="priorityBtnDisability" data-priority-code="PRIORITY-DISABILITY" data-priority-name="Disabilitas" class="priority-pill group bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-xl py-2.5 px-3 flex items-center justify-center gap-2 cursor-pointer transition-all" onclick="selectPriority(this, 'Disabilitas', 'PRIORITY-DISABILITY')">
-              <span class="priority-radio w-4 h-4 rounded-full border border-[#D1D5DB] flex items-center justify-center flex-shrink-0"></span>
-              <span class="text-sm font-medium text-[#4B5563]">Disabilitas</span>
-            </button>
-
-            <!-- Priority Option 4: VIP -->
-            <button type="button" id="priorityBtnVip" data-priority-code="PRIORITY-VIP" data-priority-name="VIP" class="priority-pill group bg-white border border-[#E5E7EB] hover:border-[#D1D5DB] rounded-xl py-2.5 px-3 flex items-center justify-center gap-2 cursor-pointer transition-all" onclick="selectPriority(this, 'VIP', 'PRIORITY-VIP')">
-              <span class="priority-radio w-4 h-4 rounded-full border border-[#D1D5DB] flex items-center justify-center flex-shrink-0"></span>
-              <span class="text-sm font-medium text-[#4B5563]">VIP</span>
-            </button>
+          <div style="font-size: 0.8rem; color: var(--color-text-muted); font-weight: 500;">
+            Pilihan Anda
           </div>
-          <p class="text-xs text-[#6B7280] mt-2.5">Pilih sesuai kebutuhan. Lansia, Disabilitas, dan VIP didahulukan dari antrian Normal.</p>
-        </div>
-
-        <!-- Bottom Action Bar inside card -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-[#F3F4F6]">
-          <div>
-            <span class="block text-[11px] text-[#6B7280]">Pilihan Anda</span>
-            <span id="kioskSelectedSummary" class="text-sm sm:text-base font-bold text-[#111827]">UMUM-1 · Normal</span>
-          </div>
-          <button id="btnAmbilNomor" type="button" class="bg-[#235347] hover:bg-[#1a4036] active:scale-[0.99] text-white px-6 py-2.5 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition-all cursor-pointer">
-            <span>&rarr;</span>
-            <span>Ambil Nomor</span>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- Auto-refresh Notice below card -->
-      <div class="flex items-center gap-2 text-xs text-[#6B7280]">
-        <span class="material-symbols-outlined text-[16px] text-[#6B7280]">sync</span>
-        <span>Daftar layanan diperbarui otomatis. Layanan baru muncul tanpa memuat ulang halaman.</span>
-      </div>
-
-    </div>
-
-    <!-- Hidden Contract Elements for Test Compatibility -->
-    <div class="hidden" style="display:none;" aria-hidden="true">
-      <span id="kiosk-live-clock">10:00:00 WIB</span>
-      <span id="kiosk-live-date">Senin, 13 Okt 2026</span>
-      <button id="lang-id" type="button" onclick="setLanguage('id')">ID</button>
-      <button id="lang-en" type="button" onclick="setLanguage('en')">EN</button>
-      <button id="btn-audio-guide" type="button" onclick="playVoiceGuide()">Audio Guide</button>
-      <button id="btn-nurse-call" type="button" onclick="callAttendant()">Nurse Call</button>
-      <span id="modal-wait-estimate">~5 Menit</span>
-      <span id="modal-timestamp">10:00 WIB</span>
-      <button id="btnCloseModalHeader" type="button" onclick="closeTicketModal()">Close Header</button>
-      <span id="kiosk-status-badge">Kiosk Terminal 02</span>
-      <span id="kiosk-main-title">Kiosk Antrian</span>
-      <span id="kiosk-sub-title">Sub Title</span>
-      <span id="priority-section-title">Prioritas</span>
-      <span id="priority-section-subtitle">Sub Prioritas</span>
-      <span id="priority-vip-title">VIP</span>
-      <span id="priority-vip-desc">Desc</span>
-      <span id="priority-disab-title">Disabilitas</span>
-      <span id="priority-disab-desc">Desc</span>
-      <span id="priority-elder-title">Lansia</span>
-      <span id="priority-elder-desc">Desc</span>
-      <span id="priority-normal-title">Normal</span>
-      <span id="priority-normal-desc">Desc</span>
-      <span id="services-section-title">Layanan</span>
-      <span id="services-section-subtitle">Sub Layanan</span>
-      <span id="footer-staff-portal">Portal Staf</span>
-    </div>
-
-    <!-- KIOSK PATIENT ACTIVE TICKET CARD (DOM Contract) -->
-    <div id="user-active-ticket-card" class="hidden">
-      <span id="user-active-status-badge">Menunggu Antrean</span>
-      <span id="user-active-ticket-number">--</span>
-      <span id="user-active-service-name">Poli Umum</span>
-      <span id="user-active-priority-badge">Normal</span>
-      <span id="user-active-ahead-count">0 Pasien di depan Anda</span>
-      <button id="btnDropUserTicket" type="button">Batalkan / Drop Tiket</button>
-    </div>
-    <div id="user-quota-warning-banner" class="hidden">
-      <span>Anda memiliki tiket antrean aktif.</span>
-    </div>
-
-    <!-- MODAL: Patient Called Notification Pop-Up (DOM Contract) -->
-    <div id="modal-patient-called" class="fixed inset-0 z-50 bg-black/60 hidden items-center justify-center p-4">
-      <div class="bg-white rounded-2xl p-6 max-w-sm w-full text-center">
-        <h2 class="text-xl font-bold text-[#111827]">NOMOR ANDA SEDANG DIPANGGIL!</h2>
-        <p class="text-sm font-semibold text-[#059669] mt-2" id="patient-called-counter-text">Silakan segera menuju Loket</p>
-        <p class="text-xs text-[#6B7280] mt-1" id="patient-called-ticket-text">Pasien (Nomor A-001)</p>
-        <button id="btnClosePatientCalledModal" type="button" class="w-full mt-4 py-2.5 bg-[#235347] text-white rounded-lg font-semibold text-sm">Saya Mengerti</button>
-      </div>
-    </div>
-
-    <!-- MODAL: Tiket Berhasil Diambil (Figma Spec - Exact 100% Match) -->
-    <div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden items-center justify-center p-4" id="ticket-modal-backdrop">
-      <div class="relative w-full max-w-[380px] bg-white rounded-2xl shadow-xl p-6 sm:p-7 flex flex-col items-center text-center">
-        
-        <!-- Top Green Circular Checkmark -->
-        <div class="w-12 h-12 rounded-full bg-[#EBF4EE] text-[#235347] flex items-center justify-center mb-3">
-          <span class="material-symbols-outlined text-2xl font-bold">check</span>
-        </div>
-
-        <!-- Title & Subtitle -->
-        <h3 class="text-lg font-bold text-[#111827]" id="modal-title-text">Nomor antrian berhasil diambil</h3>
-        <p class="text-xs text-[#6B7280] mt-1">Tiket Anda sudah masuk antrian. Tidak perlu menunggu persetujuan admin.</p>
-
-        <!-- Divider line -->
-        <div class="w-full border-t border-[#E5E7EB] my-4"></div>
-
-        <!-- Nomor Anda Label & Large Green Ticket -->
-        <span class="text-xs text-[#6B7280]">Nomor Anda</span>
-        <div class="text-[52px] sm:text-[56px] font-black text-[#235347] tracking-tight leading-none my-1" id="modal-ticket-code">
-          A-002
-        </div>
-        <div class="text-base font-bold text-[#111827]" id="modal-service-name">
-          UMUM-1
-        </div>
-        <div class="mt-1">
-          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#F3F4F6] text-xs text-[#4B5563] font-medium" id="modal-priority-text">
-            &bull; Normal
-          </span>
-        </div>
-
-        <!-- Divider line -->
-        <div class="w-full border-t border-[#E5E7EB] my-4"></div>
-
-        <!-- Live Queue Status List -->
-        <div class="w-full flex flex-col gap-1.5 text-xs">
-          <div class="flex items-center justify-between text-[#6B7280]">
-            <span>Sedang dipanggil</span>
-            <span id="modalCurrentCallingText" class="font-bold text-[#111827]">A-001</span>
-          </div>
-          <div class="flex items-center justify-between text-[#6B7280]">
-            <span>Menunggu, termasuk Anda</span>
-            <span id="modalWaitingCountText" class="font-bold text-[#111827]">1 tiket</span>
+          <div id="selection-summary-text" style="font-size: 1.15rem; font-weight: 600; color: var(--color-primary); margin-top: 0.15rem;">
+            Pilih salah satu layanan
           </div>
         </div>
 
-        <!-- Informational note -->
-        <p class="text-[11px] text-[#6B7280] text-left mt-3 leading-relaxed" id="modalQueueNote">
-          Tidak ada tiket menunggu di depan Anda. Simpan nomor ini dan pantau panggilan pada Layar Antrian.
-        </p>
-
-        <!-- Action Buttons -->
-        <div class="w-full flex flex-col gap-2 mt-5">
-          <button id="btnPrintAction" type="button" class="w-full bg-[#235347] hover:bg-[#1a4036] active:scale-[0.99] text-white py-2.5 rounded-lg font-semibold text-sm transition-all cursor-pointer">
-            Ambil Antrian Lain
-          </button>
-          <button id="btnCloseModalFooter" type="button" onclick="closeTicketModal()" class="w-full bg-white hover:bg-[#F9FAFB] border border-[#E5E7EB] text-[#111827] py-2.5 rounded-lg font-semibold text-sm transition-all cursor-pointer">
-            Kembali
-          </button>
-        </div>
-
+        <button type="button" id="submit-ticket-btn" class="btn btn-primary btn-lg" style="min-width: 180px;" disabled>
+          &rarr; Ambil Nomor
+        </button>
       </div>
-    </div>
-
-    <!-- Notification Toast for Attendant Call / Print Status -->
-    <div class="fixed bottom-6 right-6 z-50 bg-[#1F2937] text-white px-5 py-3.5 rounded-xl shadow-lg flex items-center gap-3 transition-opacity opacity-0 pointer-events-none" id="kiosk-toast">
-      <span class="material-symbols-outlined text-[#10B981] text-2xl" id="toast-icon">check_circle</span>
-      <span class="text-sm font-medium" id="toast-message">Tiket berhasil diambil.</span>
-    </div>
-
   </main>
 
-  <!-- Footer (Figma Spec: Butuh bantuan? Silakan hubungi petugas) -->
-  <footer class="w-full bg-white border-t border-[#E5E7EB] py-3.5 px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#6B7280]">
-    <div class="flex items-center gap-3">
+  <!-- Global Footer Matching Figma -->
+  <footer class="app-footer">
+    <div class="container-wide app-footer-inner">
       <span>Antrian RS &middot; Pelayanan rumah sakit</span>
-    </div>
-    <div>
-      <button type="button" id="btnFooterHelpdeskKiosk" onclick="callAttendant()" class="text-[#4B5563] hover:text-[#111827] hover:underline cursor-pointer bg-transparent border-0 p-0 text-inherit font-medium transition-colors">
-        Butuh bantuan? Silakan hubungi petugas.
-      </button>
+      <span>Butuh bantuan? Silakan hubungi petugas.</span>
     </div>
   </footer>
+
+  <div id="kiosk-modal-portal"></div>
 
 </body>
 </html>

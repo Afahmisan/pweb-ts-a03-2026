@@ -1,4 +1,6 @@
-/**
- * Barrel / re-export module for types
- */
-export * from './models/types.js';
+export const PRIORITY_WEIGHTS = {
+    VIP: 4,
+    Disabilitas: 3,
+    Lansia: 2,
+    Normal: 1,
+};

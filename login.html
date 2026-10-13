@@ -1,197 +1,117 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta content="web_blank" name="shell-type"/>
-  <title>Antrian RS - Masuk Petugas</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="css/stitch.css"/>
-  <link rel="stylesheet" href="css/style.css"/>
-  <script type="module" src="dist/pages/login.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Masuk - Antrian RS</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="dist/login.js" defer></script>
 </head>
-<body class="bg-[#F8FAF9] font-body-md text-[#111827] antialiased min-h-screen flex flex-col justify-between">
+<body style="display: flex; flex-direction: column; min-height: 100vh; background-color: var(--color-bg);">
 
-  <!-- Top Navigation Header (Figma Spec) -->
-  <header class="w-full bg-white border-b border-[#E5E7EB] py-3.5 px-6 sm:px-10 flex items-center justify-between shadow-none">
-    <div class="flex items-center gap-3">
-      <!-- Green Square Logo with Plus Sign -->
-      <div class="w-9 h-9 rounded-lg bg-[#235347] flex items-center justify-center text-white shadow-sm flex-shrink-0">
-        <span class="material-symbols-outlined text-2xl font-bold">add</span>
+  <header class="auth-header">
+    <div class="auth-header-inner">
+      <div class="brand-wrapper">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 6v12M6 12h12"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Antrian RS</span>
+          <span class="brand-subtitle">Pelayanan rumah sakit</span>
+        </div>
       </div>
-      <div>
-        <h1 class="text-[15px] font-bold text-[#111827] leading-tight">Antrian RS</h1>
-        <p class="text-[11px] text-[#6B7280]">Pelayanan rumah sakit</p>
-      </div>
-    </div>
-    <!-- Top Right Links / Status (Figma Spec) -->
-    <div class="flex items-center gap-4 text-xs">
-      <a href="ambil-antrian.html" class="text-[#4B5563] hover:text-[#111827] transition-colors">Ambil Antrian</a>
-      <a href="layar.html" class="text-[#4B5563] hover:text-[#111827] transition-colors">Layar Antrian</a>
-      <button type="button" onclick="triggerHelpModal()" class="hidden sm:flex items-center gap-1.5 text-xs text-[#4B5563] hover:text-[#111827] bg-transparent border-0 cursor-pointer transition-colors">
-        <span class="material-symbols-outlined text-[16px]">headset_mic</span>
+
+      <div class="auth-help-link">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: inline-block; vertical-align: middle; margin-right: 0.25rem;">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
         <span>Butuh bantuan? Hubungi petugas</span>
-      </button>
+      </div>
     </div>
   </header>
 
-  <!-- Main Login Card Section (Exact 100% Match to Figma Screen) -->
-  <main class="w-full flex-1 flex flex-col items-center justify-center px-4 py-8 sm:py-12">
-    <div class="w-full max-w-[420px] flex flex-col gap-5">
+  <main class="auth-main">
+    <div class="auth-card-wrapper">
+      
+      <div class="card auth-card">
+        <div class="auth-eyebrow">AKSES PETUGAS</div>
+        <h1 class="page-title" style="font-size: 1.85rem; margin-bottom: 0.45rem; font-weight: 700;">
+          Selamat datang kembali
+        </h1>
+        <p class="page-subtitle" style="margin-bottom: 1.5rem; line-height: 1.45;">
+          Masuk untuk mengelola layanan dan panggilan antrian rumah sakit.
+        </p>
 
-      <!-- White Card Container (Figma Spec) -->
-      <div class="bg-white border border-[#E5E7EB] rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col">
-        <!-- Eyebrow & Titles Inside Card -->
-        <div class="mb-5">
-          <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-[#235347] mb-1">AKSES PETUGAS</span>
-          <h2 class="text-2xl font-bold text-[#111827] tracking-tight">Selamat datang kembali</h2>
-          <p class="text-xs text-[#6B7280] mt-1">Masuk untuk mengelola layanan dan panggilan antrian rumah sakit.</p>
-        </div>
+        <div id="alert-container"></div>
 
-        <!-- Clinical Login Form -->
-        <form class="space-y-4" id="loginForm">
-          <!-- Field 1: Username -->
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-[#111827]" for="staffId">
-              Username
-            </label>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="username" class="form-label">Username</label>
             <input 
-              autocomplete="username" 
-              class="w-full h-11 px-3.5 rounded-lg border border-[#D1D5DB] bg-white text-[#111827] text-sm focus:outline-none focus:border-[#235347] focus:ring-1 focus:ring-[#235347] transition-all shadow-xs" 
-              id="staffId" 
-              name="staffId" 
-              placeholder="Masukkan username" 
-              required="" 
               type="text" 
-              value="emilys"
-            />
+              id="username" 
+              name="username" 
+              class="form-input" 
+              placeholder="Masukkan username" 
+              required 
+              autocomplete="username"
+              autofocus
+            >
           </div>
 
-          <!-- Field 2: Kata Sandi -->
-          <div class="space-y-1.5">
-            <label class="block text-xs font-semibold text-[#111827]" for="password">
-              Kata sandi
-            </label>
-            <div class="relative flex items-center">
+          <div class="form-group" style="margin-bottom: 1.5rem;">
+            <label for="password" class="form-label">Kata sandi</label>
+            <div class="input-with-icon">
               <input 
-                autocomplete="current-password" 
-                class="w-full h-11 pl-3.5 pr-10 rounded-lg border border-[#D1D5DB] bg-white text-[#111827] text-sm focus:outline-none focus:border-[#235347] focus:ring-1 focus:ring-[#235347] transition-all shadow-xs" 
+                type="password" 
                 id="password" 
                 name="password" 
+                class="form-input" 
                 placeholder="Masukkan kata sandi" 
-                required="" 
-                type="password" 
-                value="emilyspass"
-              />
-              <button 
-                aria-label="Tampilkan atau sembunyikan kata sandi" 
-                class="absolute right-2.5 p-1 text-[#9CA3AF] hover:text-[#4B5563] transition-colors flex items-center justify-center cursor-pointer border-0 bg-transparent" 
-                id="togglePasswordBtn" 
-                onclick="togglePasswordVisibility()" 
-                type="button"
+                required 
+                autocomplete="current-password"
               >
-                <span class="material-symbols-outlined text-[19px]" id="passwordEyeIcon">visibility_off</span>
+              <button type="button" id="toggle-pwd-btn" class="input-icon-btn" title="Lihat kata sandi" aria-label="Lihat kata sandi">
+                <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
               </button>
             </div>
           </div>
 
-          <!-- Hidden Loket select for contract compatibility without displaying in UI -->
-          <select id="counterSelect" class="hidden" style="display:none;" aria-hidden="true">
-            <option value="loket-1" selected>Loket 01 - Poli Umum</option>
-            <option value="loket-2">Loket 02 - Poli Penyakit Dalam</option>
-            <option value="loket-3">Loket 03 - Poli Anak &amp; Imunisasi</option>
-            <option value="loket-4">Loket 04 - Farmasi &amp; Resep</option>
-          </select>
-
-          <!-- Error Feedback Container (Figma State 2 & 3: Pink/Red Alert Box) -->
-          <div id="loginErrorContainer" class="hidden p-3 rounded-lg border border-red-200 bg-[#FEF2F2] text-[#991B1B] text-xs flex items-center gap-2">
-            <span class="material-symbols-outlined text-base flex-shrink-0 text-red-600">error</span>
-            <span id="loginErrorMessage">Username atau kata sandi salah. Periksa kembali, lalu coba masuk.</span>
-          </div>
-
-          <!-- Submit Action Button -->
-          <div class="pt-1">
-            <button 
-              class="w-full h-11 bg-[#235347] hover:bg-[#1a4036] active:scale-[0.99] text-white rounded-lg font-semibold text-sm flex items-center justify-center gap-2 shadow-xs transition-all cursor-pointer" 
-              id="submitButton" 
-              type="submit"
-            >
-              <span class="material-symbols-outlined text-lg hidden" id="btnIcon">progress_activity</span>
-              <span id="btnText">Masuk</span>
-            </button>
-            <p id="processingHint" class="hidden text-xs text-[#6B7280] text-center mt-2.5">
-              Sedang memverifikasi username dan kata sandi. Mohon tunggu.
-            </p>
-          </div>
+          <button type="submit" id="submit-btn" class="btn btn-primary btn-block btn-lg" style="margin-bottom: 1.25rem;">
+            <span id="btn-spinner" class="spinner" style="display: none; margin-right: 0.5rem;"></span>
+            <span id="btn-text">Masuk</span>
+          </button>
         </form>
 
-        <!-- Quick Demo Role Switcher (Contract preserved & convenient for evaluators) -->
-        <div class="mt-6 pt-4 border-t border-[#E5E7EB]">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-[11px] font-semibold text-[#6B7280]">Demo Akun Cepat</span>
-            <span class="text-[11px] text-[#9CA3AF]">DummyJSON API</span>
+        <div style="text-align: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--color-border);">
+          <div style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 0.5rem;">
+            Untuk pengunjung, tidak perlu login.
           </div>
-          <div class="grid grid-cols-3 gap-1.5 text-center">
-            <button id="btnDemoAdmin" class="py-1.5 px-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] hover:bg-[#F3F4F6] text-left transition-colors cursor-pointer" onclick="selectRole('admin')" type="button">
-              <span class="block text-[10px] font-bold text-[#235347]">Admin</span>
-              <span class="block text-[11px] font-medium text-[#111827] truncate">emilys</span>
-            </button>
-            <button id="btnDemoOperator" class="py-1.5 px-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] hover:bg-[#F3F4F6] text-left transition-colors cursor-pointer" onclick="selectRole('operator')" type="button">
-              <span class="block text-[10px] font-bold text-[#059669]">Operator</span>
-              <span class="block text-[11px] font-medium text-[#111827] truncate">averyp</span>
-            </button>
-            <button id="btnDemoSupervisor" class="py-1.5 px-2 rounded-lg border border-[#E5E7EB] bg-[#F9FAFB] hover:bg-[#F3F4F6] text-left transition-colors cursor-pointer" onclick="selectRole('supervisor')" type="button">
-              <span class="block text-[10px] font-bold text-[#4F46E5]">Supervisor</span>
-              <span class="block text-[11px] font-medium text-[#111827] truncate">oliviaw</span>
-            </button>
+          <div style="display: flex; justify-content: center; gap: 1.5rem; font-size: 0.9rem;">
+            <a href="ambil-antrian.html" style="color: var(--color-brand); font-weight: 600; text-decoration: none;">
+              Ambil Antrian &#8599;
+            </a>
+            <a href="layar.html" style="color: var(--color-brand); font-weight: 600; text-decoration: none;">
+              Layar Antrian &#8599;
+            </a>
           </div>
         </div>
-
       </div>
 
-      <!-- Visitor Public Links (Figma Spec) -->
-      <div class="text-center">
-        <p class="text-xs text-[#6B7280]">Untuk pengunjung, tidak perlu login.</p>
-        <div class="flex items-center justify-center gap-5 mt-1.5">
-          <a href="ambil-antrian.html" class="text-xs font-semibold text-[#235347] hover:underline inline-flex items-center gap-0.5">
-            Ambil Antrian <span>&rarr;</span>
-          </a>
-          <a href="layar.html" class="text-xs font-semibold text-[#235347] hover:underline inline-flex items-center gap-0.5">
-            Layar Antrian <span>&rarr;</span>
-          </a>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Help Modal for Petugas Bantuan -->
-    <div id="helpModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs hidden items-center justify-center p-4">
-      <div class="bg-white rounded-2xl max-w-sm w-full p-6 text-center shadow-xl">
-        <div class="w-12 h-12 rounded-full bg-[#EBF4EE] text-[#235347] flex items-center justify-center mx-auto mb-3">
-          <span class="material-symbols-outlined text-2xl font-bold">support_agent</span>
-        </div>
-        <h3 class="text-lg font-bold text-[#111827]">Pusat Bantuan Petugas</h3>
-        <p class="text-xs text-[#6B7280] mt-1">Jika Anda mengalami kendala saat masuk ke sistem antrian, silakan hubungi tim IT Administrator SIMRS atau Ext. 104.</p>
-        <button type="button" onclick="closeHelpModal()" class="w-full mt-4 bg-[#235347] text-white py-2.5 rounded-lg text-sm font-semibold cursor-pointer">
-          Tutup
-        </button>
-      </div>
     </div>
   </main>
 
-  <!-- Footer (Figma Spec: Invariant pojok kanan bawah JANGAN DIHAPUS) -->
-  <footer class="w-full bg-white border-t border-[#E5E7EB] py-3.5 px-6 sm:px-10 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-[#6B7280]">
-    <div class="flex items-center gap-3">
+  <footer class="app-footer">
+    <div class="container-wide app-footer-inner">
       <span>Antrian RS &middot; Pelayanan rumah sakit</span>
-    </div>
-    <div>
-      <button type="button" id="btnFooterHelp" onclick="triggerHelpModal()" class="text-[#4B5563] hover:text-[#111827] hover:underline cursor-pointer bg-transparent border-0 p-0 text-inherit font-medium transition-colors">
-        Butuh bantuan? Silakan hubungi petugas.
-      </button>
+      <span>Butuh bantuan? Silakan hubungi petugas.</span>
     </div>
   </footer>
 

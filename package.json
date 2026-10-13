@@ -1,21 +1,13 @@
 {
-  "name": "pweb-ts-a03-2026",
+  "name": "antrian-rumah-sakit",
   "version": "1.0.0",
-  "description": "Sistem Antrian Rumah Sakit Terpadu - Native TypeScript & Clinical Enterprise Design",
+  "description": "Sistem Antrian Rumah Sakit Berbasis Web Native TypeScript",
   "type": "module",
   "scripts": {
+    "start": "node server.mjs",
     "build": "tsc",
-    "watch": "tsc --watch"
+    "test": "node test_antislop.mjs && node test_position_display.mjs"
   },
-  "keywords": [
-    "typescript",
-    "queue-management",
-    "hospital",
-    "clinical",
-    "native"
-  ],
-  "author": "Front-End Systems Architect",
-  "license": "MIT",
   "devDependencies": {
     "typescript": "^5.0.0"
   }

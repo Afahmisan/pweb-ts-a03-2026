@@ -1,11 +1,11 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".",
-  "redirects": [
+  "cleanUrls": false,
+  "rewrites": [
     {
       "source": "/",
-      "destination": "/ambil-antrian.html",
-      "permanent": false
+      "destination": "/login.html"
     }
   ]
 }

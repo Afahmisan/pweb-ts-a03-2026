@@ -1,659 +1,406 @@
-/**
- * ==============================================================================
- * SISTEM ANTREAN RUMAH SAKIT TERPADU (SIMRS CLINICAL FLOW)
- * Pure CSS3 Clinical-Grade Enterprise Design System (Stitch Spec Compliant)
- * Zero Dependencies / Zero External Frameworks
- * ==============================================================================
- */
-
-/* ==========================================================================
-   1. DESIGN TOKENS & CSS VARIABLES (:root)
-   ========================================================================== */
 :root {
-  /* ========================================================================
-     Google Stitch Design Tokens - Clinical Flow Management System (Project ID 130103002641058601)
-     ======================================================================== */
-  /* Modern High-Legibility Clinical Palette (SIMRS Medika Utama) */
-  --stitch-surface: #f8fafc;
-  --stitch-surface-dim: #cbd5e1;
-  --stitch-surface-bright: #ffffff;
-  --stitch-surface-container-lowest: #ffffff;
-  --stitch-surface-container-low: #f8fafc;
-  --stitch-surface-container: #f1f5f9;
-  --stitch-surface-container-high: #e2e8f0;
-  --stitch-surface-container-highest: #cbd5e1;
-  --stitch-on-surface: #0f172a;
-  --stitch-on-surface-variant: #334155;
-  --stitch-inverse-surface: #0f172a;
-  --stitch-inverse-on-surface: #f8fafc;
-  --stitch-outline: #64748b;
-  --stitch-outline-variant: #e2e8f0;
-  --stitch-surface-tint: #0284c7;
-  --stitch-primary: #0284c7;
-  --stitch-on-primary: #ffffff;
-  --stitch-primary-container: #0369a1;
-  --stitch-on-primary-container: #ffffff;
-  --stitch-inverse-primary: #bae6fd;
-  --stitch-secondary: #059669;
-  --stitch-on-secondary: #ffffff;
-  --stitch-secondary-container: #ecfdf5;
-  --stitch-on-secondary-container: #065f46;
-  --stitch-tertiary: #6366f1;
-  --stitch-on-tertiary: #ffffff;
-  --stitch-tertiary-container: #4f46e5;
-  --stitch-on-tertiary-container: #ffffff;
-  --stitch-error: #e11d48;
-  --stitch-on-error: #ffffff;
-  --stitch-error-container: #fee2e2;
-  --stitch-on-error-container: #9f1239;
-  --stitch-primary-fixed: #e0f2fe;
-  --stitch-primary-fixed-dim: #bae6fd;
-  --stitch-on-primary-fixed: #075985;
-  --stitch-on-primary-fixed-variant: #0369a1;
-  --stitch-secondary-fixed: #d1fae5;
-  --stitch-secondary-fixed-dim: #a7f3d0;
-  --stitch-on-secondary-fixed: #065f46;
-  --stitch-on-secondary-fixed-variant: #047857;
-  --stitch-tertiary-fixed: #eef2ff;
-  --stitch-tertiary-fixed-dim: #c7d2fe;
-  --stitch-on-tertiary-fixed: #312e81;
-  --stitch-on-tertiary-fixed-variant: #4338ca;
-  --stitch-background: #f8fafc;
-  --stitch-on-background: #0f172a;
-  --stitch-surface-variant: #f1f5f9;
+  --color-primary: #1B4D3E;
+  --color-brand: #2D6A4F;
+  --color-brand-hover: #22543D;
+  --color-brand-light: #E8F5E9;
+  --color-brand-border: #A7F3D0;
+  --color-brand-focus: rgba(45, 106, 79, 0.25);
 
-  /* Surface & Backgrounds */
-  --bg-canvas: #f8fafc; /* Slate 50 */
-  --bg-canvas-subtle: #f1f5f9; /* Slate 100 */
-  --bg-surface: #ffffff; /* Crisp white card layer */
-  --bg-surface-elevated: #ffffff;
-  --bg-surface-tint: #f0f7ff;
-  
-  /* Borders & Dividers */
-  --border-light: #e2e8f0; /* Slate 200 - 1px crisp structural border */
-  --border-focus: #0284c7; /* Clinical primary focus ring */
-  --border-medium: #cbd5e1; /* Slate 300 */
-  
-  /* Typography & Text Hierarchy */
-  --text-main: #0f172a; /* Slate 900 - High-contrast clinical headline */
-  --text-body: #334155; /* Slate 700 - Balanced body copy */
-  --text-muted: #64748b; /* Slate 500 - Timestamps & secondary descriptors */
-  --text-light: #94a3b8; /* Slate 400 */
-  --text-inverse: #ffffff;
-  
-  /* Brand Clinical Primary (Deep Trust Blue) */
-  --primary-50: #f0f9ff;
-  --primary-100: #e0f2fe;
-  --primary-600: #0284c7;
-  --primary-700: #0369a1;
-  --primary-800: #075985;
-  --primary-dark: #004b73;
-  --primary: #0284c7;
-  --primary-hover: #0369a1;
-  --primary-contrast: #ffffff;
+  --color-bg: #F8F9FA;
+  --color-surface: #FFFFFF;
+  --color-border: #E5E7EB;
+  --color-border-hover: #D1D5DB;
 
-  /* Figma Antrian RS Theme Tokens */
-  --figma-primary: #235347;
-  --figma-primary-hover: #1a4036;
-  --figma-primary-light: #ebf4ee;
-  --figma-bg: #f8faf9;
-  --figma-card: #ffffff;
-  --figma-border: #e5e7eb;
+  --color-text-main: #111827;
+  --color-text-body: #374151;
+  --color-text-muted: #4B5563;
+  --color-text-light: #6B7280;
 
-  /* Priority & Triage Tiers (Semantic & Accessible) */
-  /* VIP Priority (Royal Violet / Indigo) */
-  --vip-bg: #eef2ff;
-  --vip-text: #4338ca;
-  --vip-border: #c7d2fe;
-  
-  /* Disabilitas Priority (Amber / Gold) */
-  --disability-bg: #fef3c7;
-  --disability-text: #b45309;
-  --disability-border: #fde68a;
-  
-  /* Lansia Priority (Orange) */
-  --elderly-bg: #ffedd5;
-  --elderly-text: #c2410c;
-  --elderly-border: #fed7aa;
-  
-  /* Normal Queue (Slate) */
-  --normal-bg: #f1f5f9;
-  --normal-text: #475569;
-  --normal-border: #cbd5e1;
+  --color-success: #059669;
+  --color-success-bg: #ECFDF5;
+  --color-danger: #DC2626;
+  --color-danger-hover: #B91C1C;
+  --color-danger-bg: #FEF2F2;
+  --color-danger-border: #FECACA;
+  --color-warning: #B45309;
+  --color-warning-bg: #FFFBEB;
+  --color-info: #1D4ED8;
+  --color-info-bg: #EFF6FF;
 
-  /* Status Colors */
-  /* Operational Active / Calling (Emerald Green) */
-  --active-bg: #ecfdf5;
-  --active-text: #065f46;
-  --active-border: #a7f3d0;
-  --active-solid: #059669;
+  --priority-vip: #6D28D9;
+  --priority-vip-bg: #F5F3FF;
+  --priority-disabilitas: #1D4ED8;
+  --priority-disabilitas-bg: #EFF6FF;
+  --priority-lansia: #047857;
+  --priority-lansia-bg: #ECFDF5;
+  --priority-normal: #374151;
+  --priority-normal-bg: #F3F4F6;
 
-  /* Destructive / Cancelled / Skipped (Rose / Red) */
-  --danger-bg: #fff1f2;
-  --danger-text: #be123c;
-  --danger-border: #fecdd3;
-  --danger-solid: #e11d48;
-  --danger-hover: #be123c;
-
-  /* Elevations & Shadows (Restrained Nordic Functionalism) */
-  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
-
-  /* Border Radii */
-  --radius-xs: 2px;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-full: 9999px;
-
-  /* Spacing Rhythms */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-10: 2.5rem;
-  --space-12: 3rem;
-
-  /* Typography Directives */
-  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-tabular: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+  --radius-md: 8px;
+  --radius-lg: 12px;
 }
 
-/* ==========================================================================
-   2. CSS RESET & GLOBAL BASICS
-   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html {
-  font-size: 16px;
+html, body {
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: var(--bg-canvas);
-  color: var(--text-body);
-  font-family: var(--font-family);
-  width: 100%;
-  max-width: 100%;
   overflow-x: hidden;
-  overflow-y: auto !important;
-  height: auto;
-  min-height: 100%;
-  scroll-behavior: smooth;
 }
 
-body {
-  min-height: 100vh;
-  height: auto !important;
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  overflow-y: visible !important;
-  margin: 0;
-  padding: 0;
-  display: block !important;
-  position: relative;
-  overscroll-behavior: auto !important;
-}
-
-/* Visible, clean clinical scrollbars so the user can easily see and scroll the page */
-::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
-  display: block !important;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f5f9 !important;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1 !important;
-  border-radius: 9999px !important;
-  border: 2px solid #f1f5f9 !important;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8 !important;
-}
-
-* {
-  scrollbar-width: thin !important;
-  scrollbar-color: #cbd5e1 #f1f5f9 !important;
-}
-
-/* Tabular Number Alignment for Clinical Sequences */
-.font-code-tabular,
-.ticket-number,
-.badge-code,
-.tabular-numbers {
-  font-family: var(--font-tabular);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1, "zero" 1;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.15s ease;
-}
-a:hover {
-  color: var(--primary-hover);
-  text-decoration: underline;
-}
-
-button, input, select, textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-}
-
-/* ==========================================================================
-   3. TYPOGRAPHY & UTILITY CLASSES
-   ========================================================================== */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-main);
-  font-weight: 600;
-  line-height: 1.25;
-}
-
-.text-main { color: var(--text-main); }
-.text-body { color: var(--text-body); }
-.text-muted { color: var(--text-muted); }
-.text-primary { color: var(--primary); }
-.font-bold { font-weight: 700; }
-.font-semibold { font-weight: 600; }
-.font-medium { font-weight: 500; }
-
-.u-hidden { display: none !important; }
-.u-flex { display: flex; }
-.u-items-center { align-items: center; }
-.u-justify-between { justify-content: space-between; }
-.u-gap-2 { gap: var(--space-2); }
-.u-gap-4 { gap: var(--space-4); }
-
-/* ==========================================================================
-   NAVBAR & NAVIGATION LAYOUT (3-ZONE & SMART SCROLL)
-   ========================================================================== */
-.navbar-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  transition: transform 0.3s ease-in-out;
-}
-
-.navbar-header.nav-hidden {
-  transform: translateY(-100%);
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.nav-brand {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  margin-left: 1.5rem;
-  margin-right: auto; /* Menempel setelah logo/brand, tidak melayang di tengah */
-}
-
-.nav-user-section {
-  display: flex;
-  align-items: center;
-  margin-left: auto; /* Profil selalu menempel rapat di sisi kanan layar */
-  flex-shrink: 0;
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
 }
 
 .navbar {
-  background-color: var(--bg-surface);
-  border-bottom: 1px solid var(--border-light);
-  padding: 0.75rem var(--space-6);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: var(--shadow-sm);
 }
 
-.navbar__brand {
+.brand-wrapper {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  flex-shrink: 0;
 }
 
-.navbar__logo-box {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--primary);
-  color: #ffffff;
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background-color: var(--color-brand);
+  color: #FFFFFF;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.navbar__brand-title {
-  font-size: 1.05rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: -0.01em;
+  flex-shrink: 0;
 }
 
-.navbar__brand-subtitle {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.navbar__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.navbar__user-profile {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding-right: var(--space-3);
-  border-right: 1px solid var(--border-light);
-}
-
-.navbar__avatar {
-  width: 2rem;
-  height: 2rem;
-  border-radius: var(--radius-full);
-  object-fit: cover;
-  border: 1px solid var(--border-light);
-}
-
-.navbar__user-info {
+.brand-text {
   display: flex;
   flex-direction: column;
 }
 
-.navbar__user-name {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-main);
+.brand-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--color-primary);
   line-height: 1.2;
 }
 
-/* ==========================================================================
-   5. BUTTONS & INTERACTIVE CONTROLS
-   ========================================================================== */
+.brand-subtitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.45rem 0.65rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--color-brand);
+}
+
+.nav-link.active {
+  color: var(--color-brand);
+  font-weight: 600;
+  background-color: var(--color-brand-light);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.user-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.user-role-badge {
+  background-color: var(--color-brand-light);
+  color: var(--color-brand);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+}
+
+.container-wide {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.25;
+}
+
+.page-subtitle {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  max-width: 100%;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.35rem;
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.25rem;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  border-radius: var(--radius-sm);
+  font-family: inherit;
+  border-radius: var(--radius-md);
   border: 1px solid transparent;
   cursor: pointer;
-  transition: all 0.15s ease;
+  text-decoration: none;
+  min-height: 44px;
   user-select: none;
-  white-space: nowrap;
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--border-focus);
-  outline-offset: 2px;
+  box-sizing: border-box;
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
-  pointer-events: none;
 }
 
-.btn--primary {
-  background-color: var(--primary);
-  color: #ffffff;
-}
-.btn--primary:hover {
-  background-color: var(--primary-hover);
+.btn-primary {
+  background-color: var(--color-brand);
+  color: #FFFFFF;
+  border-color: var(--color-brand);
 }
 
-.btn--success {
-  background-color: var(--active-solid);
-  color: #ffffff;
-}
-.btn--success:hover {
-  background-color: #047857;
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
 }
 
-.btn--secondary {
-  background-color: var(--bg-surface-tint);
-  color: var(--primary);
-  border-color: #bfdbfe;
-}
-.btn--secondary:hover {
-  background-color: #dbeafe;
+.btn-dark {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+  border-color: var(--color-primary);
 }
 
-.btn--ghost {
-  background-color: transparent;
-  color: var(--text-body);
-  border-color: var(--border-light);
-}
-.btn--ghost:hover {
-  background-color: var(--bg-canvas-subtle);
-  color: var(--text-main);
+.btn-dark:hover:not(:disabled) {
+  background-color: #123329;
 }
 
-.btn--danger-ghost {
-  background-color: transparent;
-  color: var(--danger-solid);
-  border-color: var(--danger-border);
-}
-.btn--danger-ghost:hover {
-  background-color: var(--danger-bg);
+.btn-outline {
+  background-color: #FFFFFF;
+  border-color: var(--color-border);
+  color: var(--color-text-body);
 }
 
-.btn--danger {
-  background-color: var(--danger-solid);
-  color: #ffffff;
-}
-.btn--danger:hover {
-  background-color: var(--danger-hover);
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--color-bg);
+  border-color: var(--color-border-hover);
+  color: var(--color-text-main);
 }
 
-.btn--sm {
-  padding: 0.25rem 0.625rem;
+.btn-danger {
+  background-color: var(--color-danger);
+  color: #FFFFFF;
+  border-color: var(--color-danger);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background-color: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+}
+
+.btn-danger-outline {
+  background-color: #FFFFFF;
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
+}
+
+.btn-danger-outline:hover:not(:disabled) {
+  background-color: var(--color-danger-bg);
+  border-color: var(--color-danger);
+}
+
+.btn-recall {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border-color: #FCD34D;
+  font-weight: 600;
+}
+
+.btn-recall:hover:not(:disabled) {
+  background-color: #FDE68A;
+  border-color: #F59E0B;
+  color: #78350F;
+}
+
+.badge-recalled {
+  background-color: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FCD34D;
   font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
   border-radius: var(--radius-sm);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
 }
 
-.btn--lg {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border-radius: var(--radius-md);
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  min-height: 38px;
 }
 
-.btn--block {
+.btn-lg {
+  padding: 0.85rem 1.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  min-height: 48px;
+}
+
+.btn-block {
   width: 100%;
 }
 
-/* Quick demo chips in login */
-.role-chip-group {
-  display: flex;
-  gap: var(--space-2);
-  margin-top: var(--space-2);
-}
-
-.btn-chip {
-  flex: 1;
-  padding: 0.375rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 500;
-  border-radius: var(--radius-sm);
-  background: var(--bg-canvas-subtle);
-  border: 1px solid var(--border-light);
-  color: var(--text-body);
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-align: center;
-}
-.btn-chip:hover {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
-  color: var(--text-main);
-}
-
-/* ==========================================================================
-   6. TRIAGE BADGES & STATUS PILLS
-   ========================================================================== */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.2rem 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-}
-
-.badge--lg {
-  padding: 0.35rem 0.75rem;
-  font-size: 0.875rem;
-  border-radius: var(--radius-md);
-}
-
-.badge__dot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: var(--radius-full);
-  background-color: currentColor;
-  animation: pulse-dot 1.8s infinite;
-}
-
-@keyframes pulse-dot {
-  0% { transform: scale(0.9); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(0.9); opacity: 0.8; }
-}
-
-.badge--primary {
-  background-color: var(--primary-100);
-  color: var(--primary-700);
-  border: 1px solid #bae6fd;
-}
-
-.badge--vip {
-  background-color: var(--vip-bg);
-  color: var(--vip-text);
-  border: 1px solid var(--vip-border);
-}
-
-.badge--disability {
-  background-color: var(--disability-bg);
-  color: var(--disability-text);
-  border: 1px solid var(--disability-border);
-}
-
-.badge--elderly {
-  background-color: var(--elderly-bg);
-  color: var(--elderly-text);
-  border: 1px solid var(--elderly-border);
-}
-
-.badge--normal {
-  background-color: var(--normal-bg);
-  color: var(--normal-text);
-  border: 1px solid var(--normal-border);
-}
-
-.badge--active {
-  background-color: var(--active-bg);
-  color: var(--active-text);
-  border: 1px solid var(--active-border);
-}
-
-.badge--danger {
-  background-color: var(--danger-bg);
-  color: var(--danger-text);
-  border: 1px solid var(--danger-border);
-}
-
-.service-code-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: var(--radius-sm);
-  background-color: var(--primary-100);
-  color: var(--primary-700);
-  font-weight: 700;
-  font-size: 0.875rem;
-}
-
-/* ==========================================================================
-   7. INPUTS & FORM CONTROLS
-   ========================================================================== */
 .form-group {
-  margin-bottom: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
+  margin-bottom: 1rem;
 }
 
 .form-label {
-  font-size: 0.8125rem;
-  font-weight: 600;
-  color: var(--text-main);
-  display: flex;
-  justify-content: space-between;
-}
-
-.form-hint {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  font-weight: 400;
-}
-
-.input, .select {
-  width: 100%;
-  height: 2.5rem;
-  padding: 0 0.75rem;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-medium);
-  border-radius: var(--radius-sm);
-  color: var(--text-main);
+  display: block;
   font-size: 0.875rem;
-  transition: all 0.15s ease;
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.4rem;
 }
 
-.input:focus, .select:focus {
+.form-input, .form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+  box-sizing: border-box;
+}
+
+.form-input:focus, .form-select:focus {
   outline: none;
-  border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-focus);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+  text-transform: none;
+  font-weight: 400;
 }
 
 .input-with-icon {
@@ -662,2160 +409,1273 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
 }
 
-.input-with-icon .input {
-  padding-left: 2.25rem;
+.input-with-icon .form-input {
+  padding-right: 2.75rem;
 }
 
-.input-icon {
+.input-icon-btn {
   position: absolute;
-  left: 0.75rem;
-  color: var(--text-muted);
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-}
-
-.btn-input-action {
-  position: absolute;
-  right: 0.5rem;
+  right: 0.75rem;
   background: none;
   border: none;
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   cursor: pointer;
   padding: 0.25rem;
   display: flex;
   align-items: center;
-}
-.btn-input-action:hover {
-  color: var(--text-main);
-}
-
-/* ==========================================================================
-   8. ALERTS & FEEDBACK CONTAINERS
-   ========================================================================== */
-.alert {
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.8125rem;
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-  line-height: 1.4;
-}
-
-.alert--error {
-  background-color: var(--danger-bg);
-  color: var(--danger-text);
-  border: 1px solid var(--danger-border);
-}
-
-.alert--success {
-  background-color: var(--active-bg);
-  color: var(--active-text);
-  border: 1px solid var(--active-border);
-}
-
-.alert--info {
-  background-color: var(--primary-50);
-  color: var(--primary-700);
-  border: 1px solid var(--primary-100);
-}
-
-/* Spinner */
-.spinner {
-  width: 1rem;
-  height: 1rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: var(--radius-full);
-  border-top-color: #ffffff;
-  animation: spin 0.8s linear infinite;
-  display: inline-block;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* ==========================================================================
-   9. CARDS & STRUCTURAL CONTAINERS
-   ========================================================================== */
-.card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  overflow: hidden;
-}
-
-.card__header {
-  padding: var(--space-4) var(--space-5);
-  border-bottom: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.card__title {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.card__subtitle {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 0.125rem;
-}
-
-.card__body {
-  padding: var(--space-5);
-}
-
-.card__footer {
-  padding: var(--space-3) var(--space-5);
-  background-color: var(--bg-canvas);
-  border-top: 1px solid var(--border-light);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* ==========================================================================
-   10. TABLES (HIGH-DENSITY CLINICAL SPEC)
-   ========================================================================== */
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 0.8125rem;
-}
-
-.table th {
-  background-color: var(--bg-canvas-subtle);
-  color: var(--text-muted);
-  font-weight: 600;
-  padding: 0.625rem 1rem;
-  border-bottom: 1px solid var(--border-light);
-  text-transform: uppercase;
-  font-size: 0.6875rem;
-  letter-spacing: 0.05em;
-}
-
-.table td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-light);
-  color: var(--text-body);
-  vertical-align: middle;
-}
-
-.table__row:hover {
-  background-color: #f8fafc;
-}
-
-.table__row--next {
-  background-color: #f0fdf4 !important;
-  border-left: 3px solid var(--active-solid);
-}
-
-.table__empty {
-  text-align: center;
-  padding: var(--space-8) !important;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
-   11. PAGE-SPECIFIC LAYOUTS
-   ========================================================================== */
-
-/* --- A. LOGIN PAGE --- */
-.login-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  padding: var(--space-4);
-  background-color: var(--bg-canvas);
 }
 
-.login-card {
-  width: 100%;
-  max-width: 26rem;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-8);
-  position: relative;
-  overflow: hidden;
-}
-
-.login-card__top-bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background-color: var(--primary);
-}
-
-.login-card__header {
-  text-align: center;
-  margin-bottom: var(--space-6);
-}
-
-.login-card__logo {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: var(--radius-md);
-  background-color: var(--primary-50);
-  color: var(--primary);
+.badge {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: var(--space-3);
-  border: 1px solid var(--primary-100);
-}
-
-.login-card__badge-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.25rem 0.625rem;
-  border-radius: var(--radius-full);
-  background: var(--bg-canvas-subtle);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin-bottom: var(--space-4);
-}
-
-/* --- B. ADMIN DASHBOARD (2-COLUMN GRID) --- */
-.admin-layout {
-  padding: var(--space-6);
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-4);
-  margin-bottom: var(--space-6);
-}
-
-.stat-card {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.stat-card__icon {
-  width: 3rem;
-  height: 3rem;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.stat-card__val {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1;
-}
-
-.stat-card__lbl {
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
   font-size: 0.75rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-top: 0.25rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
 }
 
-.admin-grid-2col {
+.badge-normal {
+  background-color: var(--priority-normal-bg);
+  color: var(--priority-normal);
+  border: 1px solid #E5E7EB;
+}
+
+.badge-lansia {
+  background-color: var(--priority-lansia-bg);
+  color: var(--priority-lansia);
+  border: 1px solid #A7F3D0;
+}
+
+.badge-disabilitas {
+  background-color: var(--priority-disabilitas-bg);
+  color: var(--priority-disabilitas);
+  border: 1px solid #BFDBFE;
+}
+
+.badge-vip {
+  background-color: var(--priority-vip-bg);
+  color: var(--priority-vip);
+  border: 1px solid #DDD6FE;
+}
+
+.badge-status {
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-status.aktif {
+  background-color: var(--color-brand-light);
+  color: var(--color-brand);
+  border: 1px solid var(--color-brand-border);
+}
+
+.badge-status.nonaktif {
+  background-color: var(--color-bg);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border);
+}
+
+.badge-status.dipanggil {
+  color: var(--color-warning);
+  background-color: var(--color-warning-bg);
+  border: 1px solid #FDE68A;
+}
+
+.badge-status.menunggu {
+  color: var(--color-text-muted);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+}
+
+.badge-status.selesai {
+  color: var(--color-success);
+  background-color: var(--color-success-bg);
+  border: 1px solid #A7F3D0;
+}
+
+.radio-cards-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: var(--space-6);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 1024px) {
-  .admin-grid-2col {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Ticket Result Preview Box in Admin */
-.ticket-issued-box {
-  background-color: var(--bg-canvas);
-  border: 1px dashed var(--border-medium);
+.radio-card-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-5);
-  margin-top: var(--space-5);
-  text-align: center;
-}
-
-.ticket-issued-box__number {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: var(--primary);
-  margin: var(--space-2) 0;
-}
-
-/* --- C. OPERATOR COCKPIT --- */
-.operator-layout {
-  padding: var(--space-6);
-  max-width: 1440px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.operator-cockpit-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: var(--space-6);
-}
-
-@media (max-width: 1024px) {
-  .operator-cockpit-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.active-call-card {
-  background: var(--bg-surface);
-  border: 2px solid var(--primary);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  text-align: center;
-  position: relative;
-  box-shadow: var(--shadow-md);
-}
-
-.active-call-card__badge-live {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-}
-
-.active-call-card__ticket-num {
-  font-size: 4.5rem;
-  font-weight: 800;
-  color: var(--primary);
-  line-height: 1;
-  margin: var(--space-4) 0;
-  letter-spacing: -0.02em;
-}
-
-.active-call-card__service-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--text-main);
-}
-
-.active-call-card__desk-name {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-}
-
-.active-call-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-  margin-top: var(--space-6);
-}
-
-.active-call-actions .btn--call-next {
-  grid-column: span 2;
-  height: 3rem;
-  font-size: 1.1rem;
-}
-
-.empty-active-state {
-  padding: var(--space-12) var(--space-6);
-  text-align: center;
-  color: var(--text-muted);
-  border: 2px dashed var(--border-medium);
-  border-radius: var(--radius-lg);
-}
-
-/* --- D. DISPLAY TV MONITOR (LAYAR.HTML) --- */
-.tv-display-page {
-  background-color: #0b1727; /* High-contrast clinical dark monitor */
-  color: #f8fafc;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-6);
-}
-
-.tv-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: var(--space-4);
-  margin-bottom: var(--space-6);
-}
-
-.tv-header__brand {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-}
-
-.tv-header__title {
-  color: #ffffff;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.tv-header__subtitle {
-  color: #94a3b8;
-  font-size: 0.875rem;
-}
-
-.tv-clock {
-  text-align: right;
-}
-
-.tv-clock__time {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #38bdf8;
-  line-height: 1;
-}
-
-.tv-clock__date {
-  font-size: 0.875rem;
-  color: #94a3b8;
-  margin-top: 0.25rem;
-}
-
-.tv-hero-banner {
-  background: linear-gradient(135deg, #075985 0%, #0369a1 100%);
-  border: 1px solid #0284c7;
-  border-radius: var(--radius-xl);
-  padding: var(--space-8);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
-  margin-bottom: var(--space-8);
-}
-
-.tv-hero__label {
-  font-size: 1.125rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: #bae6fd;
-  text-transform: uppercase;
-}
-
-.tv-hero__ticket {
-  font-size: 6.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  line-height: 1;
-  margin: var(--space-2) 0;
-  letter-spacing: -0.02em;
-}
-
-.tv-hero__meta {
-  font-size: 1.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
   font-weight: 500;
-  color: #e0f2fe;
+  color: var(--color-text-body);
+  user-select: none;
 }
 
-.tv-hero__desk-box {
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6) var(--space-8);
-  text-align: center;
+.radio-card-label input[type="radio"] {
+  accent-color: var(--color-brand);
+  cursor: pointer;
 }
 
-.tv-hero__desk-label {
-  font-size: 1rem;
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.tv-hero__desk-val {
-  font-size: 2.25rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-top: 0.25rem;
-}
-
-.tv-counters-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-6);
-  flex: 1;
-}
-
-.display-card {
-  background-color: #132238;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: all 0.2s ease;
-}
-
-.display-card--active {
-  border-color: #38bdf8;
-  background-color: #172e4c;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-}
-
-.display-card__header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-}
-
-.display-card__badge {
-  width: 2rem;
-  height: 2rem;
-  border-radius: var(--radius-sm);
-  background-color: #0284c7;
-  color: #ffffff;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.display-card__title {
-  font-size: 1.15rem;
+.radio-card-label.selected {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-light);
+  color: var(--color-primary);
   font-weight: 600;
-  color: #ffffff;
 }
 
-.display-card__ticket-box {
-  text-align: center;
-  background: rgba(0, 0, 0, 0.25);
-  border-radius: var(--radius-md);
-  padding: var(--space-4);
-  margin-bottom: var(--space-4);
+.kiosk-service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
-.display-card__ticket-label {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-  display: block;
-  margin-bottom: 0.25rem;
+.kiosk-service-card {
+  background: #FFFFFF;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.display-card__ticket-number {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #38bdf8;
-  line-height: 1;
+.kiosk-service-card.selected {
+  border-color: var(--color-brand);
+  background-color: var(--color-brand-light);
 }
 
-.display-card__desk {
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  text-align: center;
-  display: block;
-}
-
-.display-card__footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: var(--space-3);
+.service-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 0.8125rem;
-  color: #94a3b8;
+  margin-bottom: 1rem;
 }
 
-.display-card__footer strong {
-  color: #38bdf8;
-}
-
-/* Status indicator dot */
-.status-indicator {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: var(--radius-full);
-}
-.status-indicator--online {
-  background-color: #10b981;
-  box-shadow: 0 0 8px #10b981;
-}
-.status-indicator--offline {
-  background-color: #64748b;
-}
-
-/* --- E. SELF-SERVICE KIOSK (AMBIL-ANTRIAN.HTML) --- */
-.kiosk-page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--bg-canvas);
-  padding: var(--space-6);
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.kiosk-header {
-  text-align: center;
-  margin-bottom: var(--space-8);
-}
-
-.kiosk-header__brand {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-2);
-}
-
-.kiosk-header__title {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text-main);
-  letter-spacing: -0.01em;
-}
-
-.kiosk-header__desc {
-  font-size: 1.05rem;
-  color: var(--text-muted);
-}
-
-.kiosk-priority-panel {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5);
-  margin-bottom: var(--space-8);
-  box-shadow: var(--shadow-sm);
-}
-
-.kiosk-priority-label {
-  font-size: 0.875rem;
+.service-badge-square {
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-brand);
+  color: #FFFFFF;
+  font-size: 1.35rem;
   font-weight: 700;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  margin-bottom: var(--space-3);
-  display: block;
-}
-
-.kiosk-priority-selector {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-3);
-}
-
-.kiosk-prio-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: var(--space-4);
   border-radius: var(--radius-md);
-  border: 2px solid var(--border-light);
-  background: var(--bg-surface);
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-align: left;
-}
-
-.kiosk-prio-btn:hover {
-  border-color: var(--border-medium);
-  background: var(--bg-canvas);
-}
-
-.kiosk-prio-btn--active {
-  border-color: var(--primary) !important;
-  background-color: var(--primary-50) !important;
-}
-
-.kiosk-prio-btn__title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.kiosk-prio-btn__desc {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-}
-
-.kiosk-services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-6);
-}
-
-.kiosk-card {
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: var(--space-6);
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-align: left;
-  width: 100%;
-}
-
-.kiosk-card:hover {
-  transform: translateY(-2px);
-  border-color: var(--primary);
-  box-shadow: var(--shadow-md);
-}
-
-.kiosk-card__code {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: var(--radius-md);
-  background-color: var(--primary);
-  color: #ffffff;
-  font-size: 1.75rem;
-  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.kiosk-card__content {
-  flex: 1;
-}
-
-.kiosk-card__title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.2;
-}
-
-.kiosk-card__meta {
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
-  display: block;
-}
-
-/* Modal Ticket Preview in Kiosk */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(4px);
+.kiosk-summary-card {
+  padding: 1.25rem 1.5rem;
+  background-color: #FFFFFF;
+  border: 2px solid var(--color-brand);
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: var(--space-4);
-  z-index: 100;
-}
-
-.ticket-receipt-modal {
-  width: 100%;
-  max-width: 24rem;
-  background: #ffffff;
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-8);
-  text-align: center;
-  border-top: 6px solid var(--primary);
-}
-
-.receipt-header {
-  border-bottom: 1px dashed var(--border-medium);
-  padding-bottom: var(--space-4);
-  margin-bottom: var(--space-6);
-}
-
-.receipt-ticket-num {
-  font-size: 4rem;
-  font-weight: 800;
-  color: var(--primary);
-  line-height: 1;
-  margin: var(--space-3) 0;
-  letter-spacing: -0.02em;
-}
-
-.receipt-meta-row {
-  display: flex;
   justify-content: space-between;
-  font-size: 0.875rem;
-  padding: 0.375rem 0;
-  border-bottom: 1px solid var(--border-light);
+  gap: 1rem;
 }
 
-.receipt-meta-row:last-child {
+.add-service-grid {
+  display: grid;
+  grid-template-columns: 135px 1fr auto;
+  gap: 0.75rem;
+  align-items: flex-end;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  -webkit-overflow-scrolling: touch;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+  min-width: 500px;
+}
+
+.data-table th {
+  background-color: #F9FAFB;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-main);
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td {
   border-bottom: none;
 }
 
-/* ==========================================================================
-   11. THERMAL RECEIPT PRINT SYSTEM (58mm / 80mm ESC/POS STANDARD)
-   Pure CSS3 thermal receipt formatting engine for Kiosk & Manual dispensing.
-   ========================================================================== */
+.guide-banner {
+  background-color: var(--color-brand-light);
+  border: 1px solid var(--color-brand-border);
+  color: var(--color-primary);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
 
-/* Screen styling helpers for thermal receipt */
-.thermal-receipt {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  color: var(--on-surface, #1e293b);
+.call-number-box {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  margin: 1rem 0;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+.call-number-large {
+  font-size: clamp(2.5rem, 8vw, 3.75rem);
+  font-weight: 700;
+  color: var(--color-brand);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+/* Smooth background pulse animation matching theme for calling cards */
+@keyframes call-bg-pulse {
+  0%, 100% {
+    background-color: var(--color-surface);
+  }
+  50% {
+    background-color: #E8F5E9;
+  }
+}
+
+@keyframes call-bg-pulse-urgent {
+  0%, 100% {
+    background-color: var(--color-surface);
+  }
+  50% {
+    background-color: #DCFCE7;
+  }
+}
+
+.card-flash,
+.card-calling-pulse {
+  animation: call-bg-pulse 2.2s ease-in-out infinite;
+  border: 1px solid var(--color-brand-border) !important;
+  box-shadow: none !important;
+}
+
+.card-flash-urgent {
+  animation: call-bg-pulse-urgent 1.3s ease-in-out infinite;
+  border: 1px solid var(--color-brand-border) !important;
+  box-shadow: none !important;
+}
+
+/* Figma Screenshot Aligned Styles: Layar.png */
+.layar-page {
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.display-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.display-sync-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.display-sync-status {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--color-brand);
+  font-weight: 600;
+}
+
+.dot-green {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+}
+
+.display-last-time {
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+}
+
+/* 3-Column Grid Matching Figma Layar.png */
+.display-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .display-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .display-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Exact Figma Card Design */
+.display-figma-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.display-card-calling {
+  animation: call-bg-pulse 2.2s ease-in-out infinite;
+  border: 1px solid var(--color-brand-border) !important;
+  box-shadow: none !important;
+}
+
+.display-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.display-card-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.display-card-code-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background-color: #F3F4F6;
+  color: #4B5563;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.display-card-body {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+.display-card-calling-label {
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin-bottom: 0.5rem;
+}
+
+.display-card-number {
+  font-size: clamp(3.2rem, 6.5vw, 4.4rem);
+  font-weight: 700;
+  color: var(--color-brand);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.display-card-empty-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #4B5563;
+  margin-bottom: 0.25rem;
+}
+
+.display-card-empty-sub {
+  font-size: 0.85rem;
+  color: #9CA3AF;
+}
+
+.display-card-footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.display-card-footer-label {
+  color: #6B7280;
+}
+
+.display-card-footer-count {
+  font-weight: 600;
+  color: #111827;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Footer Banner on Layar.png */
+.display-footer-banner {
+  background-color: #EAF3ED;
+  border-top: 1px solid #D5E4D9;
+  padding: 1.15rem 0;
+  font-size: 0.9rem;
+  color: #2D6A4F;
+  margin-top: auto;
+}
+
+.display-footer-banner-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Global Page Footer for Login, Admin, Operator, Kiosk */
+.app-footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--color-border);
+  padding: 1.25rem 0;
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin-top: auto;
+}
+
+.app-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* Figma Login Eyebrow & Help Link */
+.auth-eyebrow {
+  color: var(--color-brand);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.auth-help-link {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Figma Ambil-Antrian.png Kiosk Card */
+.kiosk-main-card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.kiosk-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.kiosk-service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 840px) {
+  .kiosk-service-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .kiosk-service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kiosk-service-card-figma {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.kiosk-service-card-figma:hover {
+  border-color: var(--color-brand);
+}
+
+.kiosk-service-card-figma.selected {
+  border-color: var(--color-brand);
+  background-color: #F4F9F6;
+}
+
+.kiosk-card-badge-box {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #F3F4F6;
+  color: #4B5563;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kiosk-card-badge-box.selected {
+  background-color: var(--color-brand);
+  color: #FFFFFF;
+}
+
+.kiosk-card-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.kiosk-card-service-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kiosk-card-service-wait {
+  font-size: 0.8rem;
+  color: #6B7280;
+  margin-top: 0.15rem;
+}
+
+.kiosk-card-radio-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.kiosk-card-radio-circle.selected {
+  border-color: var(--color-brand);
+}
+
+.kiosk-card-radio-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+}
+
+.kiosk-action-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.kiosk-sync-note {
+  font-size: 0.85rem;
+  color: #6B7280;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Modal Ticket Slip Dialog Matching figma/ambil-struk.png */
+.kiosk-ticket-dialog {
+  max-width: 440px;
+  width: 92%;
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 2rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+.kiosk-modal-check-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: #E8F5E9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.kiosk-modal-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #111827;
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.kiosk-modal-subtitle {
+  font-size: 0.85rem;
+  color: #6B7280;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.kiosk-modal-divider {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 1.25rem 0;
+}
+
+.kiosk-modal-big-number {
+  font-size: 3.75rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+/* Modal and Mobile Responsive Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(17, 24, 39, 0.75);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  z-index: 100;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-content {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  max-width: 460px;
+  width: 100%;
+  border: 1px solid var(--color-border);
+  margin: auto;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+}
+
+.modal-ticket-content {
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+}
+
+.ticket-modal-success-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-brand-light);
+  color: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.75rem;
+  border: 1px solid var(--color-brand-border);
+}
+
+.ticket-modal-title {
+  font-size: clamp(1.2rem, 4vw, 1.35rem);
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+  line-height: 1.25;
+}
+
+.ticket-modal-desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.modal-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.modal-actions-grid .btn {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.modal-dismiss-wrapper {
+  margin-top: 0.85rem;
+}
+
+.modal-dismiss-btn {
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.modal-btn-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ticket-slip {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1rem;
+  text-align: center;
+  margin: 1rem 0;
   box-sizing: border-box;
 }
 
-.receipt-divider {
-  border-top: 1px dashed var(--outline-variant, #cbd5e1);
-  margin: 0.5rem 0;
+.ticket-slip-title {
+  font-size: clamp(1.1rem, 3.5vw, 1.25rem);
+  font-weight: 600;
+  color: var(--color-text-main);
+  margin-bottom: 0.35rem;
+}
+
+.ticket-slip-divider {
+  border: none;
+  border-top: 1px dashed var(--color-border);
+  margin: 0.65rem 0;
+}
+
+.ticket-slip-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ticket-slip-number {
+  font-size: clamp(2.25rem, 11vw, 3.75rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.1;
+  margin: 0.25rem 0;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.ticket-slip-details {
+  text-align: left;
+  font-size: 0.875rem;
+  margin: 0.65rem 0;
+}
+
+.ticket-slip-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.35rem 0;
+  gap: 0.75rem;
+  border-bottom: 1px solid #F3F4F6;
+}
+
+.ticket-slip-row:last-child {
+  border-bottom: none;
+}
+
+.ticket-slip-row .label {
+  color: var(--color-text-muted);
+  font-size: 0.825rem;
+  flex-shrink: 0;
+}
+
+.ticket-slip-row .value {
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-align: right;
+  word-break: break-word;
+}
+
+.ticket-slip-footer-text {
+  font-size: 0.8rem;
+  color: var(--color-text-body);
+  line-height: 1.4;
+  margin-top: 0.5rem;
+}
+
+/* Header & Section Components */
+.kiosk-header,
+.display-header,
+.auth-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.85rem 1.5rem;
+}
+
+.kiosk-header-inner,
+.auth-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.display-header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.display-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.display-clock {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.display-actions,
+.kiosk-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.kiosk-footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.auth-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.auth-card-wrapper {
+  max-width: 440px;
   width: 100%;
 }
 
-.receipt-header {
-  text-align: center;
+.auth-card {
+  padding: 2rem 1.75rem;
 }
 
-.receipt-number-box {
-  text-align: center;
+.operator-action-primary-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.receipt-footer {
-  text-align: center;
-  font-size: 0.75rem;
-  font-style: italic;
-}
-
-/* --------------------------------------------------------------------------
-   @media print - Thermal Receipt Print Engine
-   Hides navigation, sidebars, buttons, backgrounds, and non-ticket elements.
-   Formats receipt precisely to 58mm / 80mm roll width.
-   -------------------------------------------------------------------------- */
-@media print {
-  @page {
-    size: 80mm auto;
-    margin: 0mm;
-  }
-
-  /* Reset global document viewport for thermal roll paper */
-  html, body {
-    width: 80mm !important;
-    max-width: 80mm !important;
-    min-width: 0 !important;
-    margin: 0 auto !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    font-size: 10pt !important;
-    line-height: 1.3 !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
-    overflow: visible !important;
-    height: auto !important;
-  }
-
-  /* Sembunyikan seluruh navbar, sidebar, background, aksi, dan elemen non-tiket */
-  header, nav, aside, footer,
-  .navbar, .sidebar, .top-bar, .bottom-bar,
-  #app-header, #app-footer,
-  #sidebar, #navbar,
-  .metric-card, .metrics-grid,
-  #counter-cards-grid,
-  #service-table-container, .service-table,
-  #priority-selector, #priority-selector-group,
-  #kiosk-services-grid,
-  .modal-actions,
-  #btnCloseModalHeader, #btnCloseModalFooter,
-  #btnPrintAction, #btnPrintPhysical,
-  #btn-audio-guide, #btn-nurse-call,
-  #lang-id, #lang-en,
-  #btnManualSubmit, #btnManualPrintPhysical,
-  #kiosk-toast, #toast-notification,
-  .no-print,
-  button, input, select, textarea,
-  .material-symbols-outlined,
-  form label, form input, form select,
-  .lg\:col-span-7, .col-span-full {
-    display: none !important;
-    visibility: hidden !important;
-  }
-
-  /* Sembunyikan semua elemen default di body kecuali thermal receipt */
-  body * {
-    visibility: hidden;
-  }
-
-  /* Tampilkan hanya kontainer receipt dan elemen di dalamnya */
-  .thermal-receipt,
-  .thermal-receipt *,
-  #thermal-receipt-kiosk,
-  #thermal-receipt-kiosk *,
-  #thermal-receipt-preview,
-  #thermal-receipt-preview * {
-    visibility: visible !important;
-  }
-
-  /* Reset layout modal agar tidak menggunakan overlay/backdrop */
-  #ticket-modal-backdrop,
-  .modal-overlay,
-  .modal-container {
-    position: static !important;
-    display: block !important;
-    background: transparent !important;
-    backdrop-filter: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-
-  #ticket-modal-backdrop > div {
-    position: static !important;
-    width: 100% !important;
-    max-width: 80mm !important;
-    padding: 0 !important;
-    margin: 0 auto !important;
-    background: #ffffff !important;
-    box-shadow: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-  }
-
-  /* Format Khusus Struk Thermal Receipt Berukuran 58mm / 80mm */
-  .thermal-receipt,
-  #thermal-receipt-kiosk,
-  #thermal-receipt-preview {
-    display: block !important;
-    position: absolute !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 76mm !important;
-    max-width: 80mm !important;
-    margin: 0 auto !important;
-    padding: 4mm 3mm !important;
-    background: #ffffff !important;
-    background-color: #ffffff !important;
-    color: #000000 !important;
-    border: none !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Header Rumah Sakit */
-  .thermal-receipt .receipt-header,
-  #thermal-receipt-kiosk .receipt-header,
-  #thermal-receipt-preview .receipt-header {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    margin-bottom: 2mm !important;
-  }
-
-  .thermal-receipt .receipt-header img {
-    display: none !important; /* Optimasi thermal: hilangkan gambar agar hemat tinta roll */
-  }
-
-  .thermal-receipt .receipt-header .font-title-sm,
-  .thermal-receipt .receipt-header span:first-of-type,
-  #thermal-receipt-preview .receipt-header .font-label-sm {
-    display: block !important;
-    font-size: 13pt !important;
-    font-weight: 800 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-    color: #000000 !important;
-    line-height: 1.2 !important;
-    margin-bottom: 0.5mm !important;
-    text-align: center !important;
-  }
-
-  .thermal-receipt .receipt-header .font-body-sm,
-  .thermal-receipt .receipt-header .font-label-sm,
-  .thermal-receipt .receipt-header span,
-  #thermal-receipt-preview .receipt-header .font-body-sm,
-  #thermal-receipt-preview .receipt-header .font-label-sm {
-    display: block !important;
-    font-size: 8pt !important;
-    color: #000000 !important;
-    line-height: 1.2 !important;
-    text-align: center !important;
-  }
-
-  /* Garis Pemisah Thermal (Dashed Divider) */
-  .thermal-receipt .receipt-divider,
-  .receipt-divider {
-    display: block !important;
-    border: none !important;
-    border-top: 1px dashed #000000 !important;
-    margin: 2mm 0 !important;
-    width: 100% !important;
-    height: 0 !important;
-  }
-
-  .receipt-title {
-    display: block !important;
-    font-size: 8.5pt !important;
-    font-weight: 700 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    text-align: center !important;
-    margin: 1mm 0 !important;
-    color: #000000 !important;
-  }
-
-  /* Nomor Tiket Besar Tebal di Tengah */
-  .thermal-receipt #modal-ticket-code,
-  .thermal-receipt #preview-ticket-code,
-  .thermal-receipt .font-display-ticket {
-    display: block !important;
-    text-align: center !important;
-    font-size: 34pt !important;
-    font-weight: 900 !important;
-    line-height: 1 !important;
-    margin: 2mm 0 !important;
-    color: #000000 !important;
-    font-family: "Courier New", Courier, monospace, sans-serif !important;
-    font-variant-numeric: tabular-nums !important;
-    letter-spacing: -0.5px !important;
-  }
-
-  /* Poli Tujuan */
-  .thermal-receipt #modal-service-name,
-  .thermal-receipt #preview-service-name,
-  .thermal-receipt .font-title-md {
-    display: block !important;
-    text-align: center !important;
-    font-size: 12pt !important;
-    font-weight: 800 !important;
-    line-height: 1.2 !important;
-    color: #000000 !important;
-    margin: 1.5mm 0 !important;
-  }
-
-  /* Kategori Prioritas */
-  .thermal-receipt #modal-priority-pill,
-  .thermal-receipt #modal-priority-text,
-  .thermal-receipt #preview-priority-badge {
-    display: block !important;
-    text-align: center !important;
-    font-size: 9.5pt !important;
-    font-weight: 700 !important;
-    color: #000000 !important;
-    background: transparent !important;
-    border: 1px solid #000000 !important;
-    border-radius: 2px !important;
-    padding: 1mm 2.5mm !important;
-    margin: 1.5mm auto !important;
-    width: fit-content !important;
-  }
-
-  /* Baris Metadata (Waktu Cetak, Loket, Estimasi Tunggu) */
-  .thermal-receipt .receipt-meta,
-  .thermal-receipt .receipt-meta-print,
-  .thermal-receipt .bg-surface-container-lowest,
-  .thermal-receipt .bg-surface-container-low {
-    display: block !important;
-    background: transparent !important;
-    padding: 1mm 0 !important;
-    margin: 1mm 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    width: 100% !important;
-  }
-
-  .thermal-receipt .receipt-meta > div,
-  .thermal-receipt .receipt-meta-print > div,
-  .thermal-receipt .receipt-meta-row {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    font-size: 8.5pt !important;
-    color: #000000 !important;
-    line-height: 1.3 !important;
-    padding: 0.5mm 0 !important;
-    border-bottom: 0.5px dotted #666666 !important;
-  }
-
-  .thermal-receipt .receipt-meta > div:last-child,
-  .thermal-receipt .receipt-meta-print > div:last-child {
-    border-bottom: none !important;
-  }
-
-  .thermal-receipt .receipt-meta span,
-  .thermal-receipt .receipt-meta-print span,
-  .thermal-receipt #modal-timestamp,
-  .thermal-receipt #modal-wait-estimate,
-  .thermal-receipt #preview-print-time,
-  .thermal-receipt #preview-timestamp,
-  .thermal-receipt #preview-mrn-val {
-    color: #000000 !important;
-    font-weight: 600 !important;
-  }
-
-  /* Catatan Kaki: "Harap simpan tiket ini hingga dipanggil" */
-  .thermal-receipt .receipt-footer,
-  .thermal-receipt p.italic,
-  .thermal-receipt #modal-receipt-footer,
-  .thermal-receipt #preview-receipt-footer {
-    display: block !important;
-    text-align: center !important;
-    font-size: 8pt !important;
-    font-weight: 600 !important;
-    font-style: italic !important;
-    color: #000000 !important;
-    margin-top: 2mm !important;
-    line-height: 1.25 !important;
-  }
-}
-
-/* ==========================================================================
-   12. ULTRA-RESPONSIVE ADAPTIVE ENGINE (MOBILE, TABLET, DESKTOP, 4K TV)
-   Pure CSS3 Media Queries & Modern Layout Directives
-   Strict Zero-Framework / Zero-Library Native Architecture
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   12.1 GLOBAL RESPONSIVE SAFETY & TOUCH OPTIMIZATIONS
-   -------------------------------------------------------------------------- */
-html {
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
-  height: auto !important;
-}
-
-body {
-  width: 100% !important;
-  max-width: 100vw !important;
-  overflow-x: hidden !important;
-  overflow-y: visible !important;
-  height: auto !important;
-  display: block !important;
-  position: relative;
-  overscroll-behavior: auto !important;
-}
-
-main, section, header, nav, footer, div, article {
-  box-sizing: border-box;
-}
-
-/* Touch targets: min-height 44px on interactive controls */
-button, 
-input[type="button"], 
-input[type="submit"], 
-input[type="reset"], 
-.btn, 
-.priority-btn {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* --------------------------------------------------------------------------
-   12.1 TABLET & DESKTOP NAVBAR UTILITY ADAPTATIONS (>= 768px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 768px) {
-  .md\:flex {
-    display: flex !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   12.2 DESKTOP & LARGE DISPLAY BASELINE (> 1024px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 1024px) {
-  /* Counter cards in public TV display screen balance automatically */
-  #counter-cards-grid {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)) !important;
-    gap: 1rem !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   12.3 TABLET & COMPACT DESKTOP (640px to 1023.98px)
-   -------------------------------------------------------------------------- */
-@media (max-width: 1023.98px) {
-  /* --- A. Shared Header & Sidebar Adaptations --- */
-  header.fixed {
-    position: sticky !important;
-    top: 0 !important;
-    height: auto !important;
-    min-height: 4rem !important;
-    z-index: 50 !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
-
-  header.fixed > div {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-    height: auto !important;
-    min-height: 4rem !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-    padding-top: 0.5rem !important;
-    padding-bottom: 0.5rem !important;
-  }
-
-  /* Aside Sidebar transforms into horizontal scroll navigation bar */
-  aside.fixed {
-    position: sticky !important;
-    top: 4rem !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: auto !important;
-    z-index: 45 !important;
-    flex-direction: row !important;
-    border-bottom: 1px solid var(--border-light, #e2e8f0);
-    background: #ffffff !important;
-    padding: 0.5rem 1rem !important;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04) !important;
-  }
-
-  aside.fixed > div:first-child {
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  aside.fixed > div:first-child > div:first-child {
-    display: none !important; /* Hide uppercase Navigasi label */
-  }
-
-  aside.fixed nav {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0.5rem !important;
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    width: 100% !important;
-    padding-bottom: 2px !important;
-    margin: 0 !important;
-  }
-
-  aside.fixed nav a {
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    padding: 0.5rem 0.875rem !important;
-    border-radius: 0.375rem !important;
-    font-size: 0.8125rem !important;
-  }
-
-  /* Hide progress capacity meter from tablet horizontal nav */
-  aside.fixed > div:last-child {
-    display: none !important;
-  }
-
-  /* Reset main pl-64 left offset */
-  .pl-64 {
-    padding-left: 0 !important;
-    width: 100% !important;
-    max-width: 100vw !important;
-  }
-
-  main.pt-16 {
-    padding-top: 0.5rem !important;
-  }
-
-  /* --- B. Admin Dashboard (index.html) --- */
-  section.w-full.bg-surface-container-low {
-    padding: 0.75rem 1rem !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.5rem !important;
-  }
-
-  .w-full.p-space-xl {
-    padding: 1rem !important;
-    gap: 1.25rem !important;
-  }
-
-  /* 2-Column Operational Grid: Stacks vertically (CRUD top, Manual Form bottom) */
-  .grid.grid-cols-1.lg\:grid-cols-12 {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-  }
-
-  .lg\:col-span-7,
-  .lg\:col-span-5 {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* Metric cards grid: 2 columns */
-  section.grid.grid-cols-1.sm\:grid-cols-2.xl\:grid-cols-4 {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.75rem !important;
-  }
-
-  /* --- C. Operator Console (operator.html) --- */
-  .w-full.bg-surface-container-lowest.px-space-xl {
-    padding: 1rem !important;
-  }
-
-  .w-full.bg-surface-container-lowest.px-space-xl > div {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0.75rem !important;
-  }
-
-  .p-space-xl.grid.grid-cols-1.lg\:grid-cols-12 {
-    display: flex !important;
-    flex-direction: column !important;
-    padding: 1rem !important;
-    gap: 1.5rem !important;
-  }
-
-  /* --- D. Public TV Display (layar.html) --- */
-  header.w-full.bg-inverse-surface {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    padding: 1rem !important;
-    gap: 0.75rem !important;
-  }
-
-  header.w-full.bg-inverse-surface > div:last-child {
-    justify-content: space-between !important;
-  }
-
-  .grid.grid-cols-1.lg\:grid-cols-12.gap-space-xl.items-center {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 1.5rem !important;
-  }
-
-  #hero-ticket-num {
-    font-size: clamp(4.5rem, 11vw, 7.5rem) !important;
-  }
-
-  #counter-cards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-  }
-
-  /* --- E. Self-Service Kiosk (ambil-antrian.html) --- */
-  .max-w-7xl {
-    padding: 1rem !important;
-    gap: 1.25rem !important;
-  }
-
-  header.bg-surface-container-lowest {
-    padding: 1.25rem !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 1rem !important;
-  }
-
-  header.bg-surface-container-lowest > div:last-child {
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-  }
-
-  #priority-selector-group {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.75rem !important;
-  }
-
-  #kiosk-services-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   12.4 MOBILE SPECIFIC (< 640px)
-   Full-width layouts, single-column stacks, thumb-friendly tap ergonomics
-   -------------------------------------------------------------------------- */
-@media (max-width: 639.98px) {
-  /* Global horizontal safety */
-  .p-space-xl,
-  .px-space-xl,
-  .py-space-xl,
-  .p-space-lg,
-  .px-space-lg,
-  .py-space-lg {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-  }
-
-  /* --- A. Global Header on Mobile --- */
-  header.fixed > div {
-    padding-left: 0.75rem !important;
-    padding-right: 0.75rem !important;
-    justify-content: space-between !important;
-  }
-
-  header.fixed .flex.items-center.gap-space-sm img {
-    height: 1.75rem !important;
-  }
-
-  header.fixed .flex.items-center.gap-space-sm span:first-child {
-    font-size: 0.875rem !important;
-  }
-
-  header.fixed .flex.items-center.gap-space-sm span:last-child {
-    display: none !important;
-  }
-
-  header.fixed .inline-flex.items-center.gap-space-xs {
-    display: none !important; /* Hide long counter pill on tiny screens */
-  }
-
-  #btnLogout {
-    padding-left: 0 !important;
-  }
-
-  #btnLogout img {
-    width: 2rem !important;
-    height: 2rem !important;
-  }
-
-  #btnLogout > div {
-    display: none !important; /* Hide long staff name, leave avatar clickable */
-  }
-
-  /* --- B. Login Screen (login.html) --- */
-  main > div.flex.flex-col.w-full {
-    padding: 1.25rem 0.5rem !important;
-  }
-
-  .max-w-md {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 1.5rem 1rem !important;
-    border-radius: 0.75rem !important;
-    margin: 0 !important;
-  }
-
-  .max-w-md .w-16.h-16 {
-    width: 3.5rem !important;
-    height: 3.5rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .max-w-md h1 {
-    font-size: 1.25rem !important;
-    line-height: 1.35 !important;
-  }
-
-  .mb-space-lg.flex.items-center {
-    font-size: 0.6875rem !important;
-    padding: 0.375rem 0.75rem !important;
-    text-align: center !important;
-    white-space: normal !important;
-    max-width: 95% !important;
-    line-height: 1.3 !important;
-  }
-
-  /* Form touch ergonomics */
-  #staffId, 
-  #password, 
-  #counterSelect {
-    height: 2.875rem !important; /* 46px */
-    font-size: 1rem !important; /* 16px to prevent iOS auto-zoom */
-  }
-
-  #submitButton {
-    height: 3rem !important; /* 48px min touch target */
-    font-size: 0.9375rem !important;
-    width: 100% !important;
-    min-height: 48px !important;
-  }
-
-  /* Quick-select container & cards */
-  .mt-space-lg.pt-space-md.-mx-space-xl {
-    margin-left: -1rem !important;
-    margin-right: -1rem !important;
-    margin-bottom: -1.5rem !important;
-    padding: 1rem !important;
-  }
-
-  /* Quick demo roles: Stack cleanly into 1 column without cutting off text */
-  .grid.grid-cols-3 {
-    grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
-  }
-
-  .grid.grid-cols-3 > button {
-    width: 100% !important;
-    min-height: 48px !important;
-    padding: 0.625rem 0.875rem !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
-
-  .grid.grid-cols-3 > button > span:first-child {
-    margin-bottom: 0 !important;
-  }
-
-  /* --- C. Admin Dashboard (index.html) --- */
-  /* Metric cards: 1 column vertical stack */
-  section.grid.grid-cols-1.sm\:grid-cols-2.xl\:grid-cols-4 {
-    grid-template-columns: 1fr !important;
-    gap: 0.75rem !important;
-  }
-
-  /* Search & Add Poli action bar */
-  .flex.items-center.justify-between.gap-space-sm {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 0.75rem !important;
-  }
-
-  .flex.items-center.justify-between.gap-space-sm > div,
-  .flex.items-center.justify-between.gap-space-sm > button {
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  /* Table horizontal scroll wrapper */
-  .overflow-x-auto {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-    width: 100% !important;
-    display: block !important;
-  }
-
-  table {
-    min-width: 520px !important;
-  }
-
-  /* Priority selector on manual ticket issuer */
-  #priority-selector {
-    gap: 0.5rem !important;
-  }
-
-  #priority-selector > label {
-    padding: 0.75rem !important;
-    min-height: 48px !important;
-  }
-
-  /* Modal Dialog for New Service */
-  #modalNewService > div {
-    padding: 1.25rem 1rem !important;
-    max-width: 95vw !important;
-    width: 100% !important;
-    max-height: 90vh !important;
-    overflow-y: auto !important;
-    border-radius: 0.75rem !important;
-  }
-
-  /* --- D. Operator Console (operator.html) --- */
-  /* Active ticket number clamp for phones */
-  #active-ticket-num {
-    font-size: clamp(2.75rem, 14vw, 4.25rem) !important;
-    line-height: 1 !important;
-    padding: 0.5rem 0 !important;
-  }
-
-  /* Patient metadata strip */
-  .grid.grid-cols-1.md\:grid-cols-3 {
-    grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
-  }
-
-  /* Live timers */
-  .grid.grid-cols-1.sm\:grid-cols-3.gap-space-md {
-    grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
-  }
-
-  /* Action buttons: 1 column full width */
-  .grid.grid-cols-1.sm\:grid-cols-2,
-  .grid.grid-cols-1.sm\:grid-cols-3 {
-    grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
-  }
-
-  #btn-call-repeat,
-  #btn-call-next,
-  #btn-call-skip,
-  #btn-call-complete {
-    min-height: 48px !important;
-    padding: 0.75rem 1rem !important;
-    font-size: 0.9375rem !important;
-    width: 100% !important;
-    justify-content: center !important;
-  }
-
-  /* Filter pills */
-  .inline-flex.p-1.rounded-full.bg-surface-container {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: space-between !important;
-  }
-
-  .inline-flex.p-1.rounded-full.bg-surface-container button {
-    flex: 1 !important;
-    text-align: center !important;
-    padding: 0.375rem 0.25rem !important;
-    font-size: 0.75rem !important;
-  }
-
-  /* --- E. Public TV Screen (layar.html) --- */
-  #hero-ticket-num {
-    font-size: clamp(3.25rem, 15vw, 5.5rem) !important;
-    line-height: 0.95 !important;
-  }
-
-  #hero-counter-num {
-    font-size: clamp(2.25rem, 10vw, 3.5rem) !important;
-  }
-
-  #counter-cards-grid {
-    grid-template-columns: 1fr !important;
-    gap: 0.75rem !important;
-  }
-
-  /* --- F. Self-Service Kiosk (ambil-antrian.html) --- */
-  header.bg-surface-container-lowest h1 {
-    font-size: 1.25rem !important;
-    line-height: 1.35 !important;
-  }
-
-  header.bg-surface-container-lowest p {
-    font-size: 0.875rem !important;
-  }
-
-  /* Priority badges 1 column on mobile */
-  #priority-selector-group {
-    grid-template-columns: 1fr !important;
-    gap: 0.625rem !important;
-  }
-
-  .priority-btn {
-    min-height: 52px !important;
-    padding: 0.875rem 1rem !important;
-    width: 100% !important;
-  }
-
-  /* Services Grid 1 column on mobile */
-  #kiosk-services-grid {
-    grid-template-columns: 1fr !important;
-    gap: 0.75rem !important;
-  }
-
-  #kiosk-services-grid > button {
-    min-height: 130px !important;
-    padding: 1rem !important;
-  }
-
-  /* Thermal Receipt Preview Modal */
-  #ticket-modal-backdrop {
-    padding: 0.5rem !important;
-  }
-
-  #ticket-modal-backdrop > div {
-    padding: 1.25rem 1rem !important;
-    max-width: 95vw !important;
-    width: 100% !important;
-    max-height: 92vh !important;
-    overflow-y: auto !important;
-  }
-
-  #ticket-modal-backdrop .font-display-ticket {
-    font-size: 2.75rem !important;
-    line-height: 1 !important;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   12.5 ULTRA-WIDE SCREENS & 4K CLINICAL SIGNAGE MONITORS (>= 1920px)
-   -------------------------------------------------------------------------- */
-@media (min-width: 1920px) {
-  /* Extra clarity for huge hospital corridor displays */
-  #hero-ticket-num {
-    font-size: 140px !important;
-  }
-  
-  #hero-counter-num {
-    font-size: 72px !important;
-  }
-}
-
-/* ==========================================================================
-   13. FILTER DROPDOWN SELECTOR (TUGAS 2)
-   ========================================================================== */
-.filter-dropdown-container {
-  display: inline-flex;
-  align-items: center;
+.operator-action-secondary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
 }
 
-.filter-dropdown-container label {
-  font-size: 11px;
-  line-height: 14px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--stitch-outline, #64748b);
-}
-
-.filter-dropdown-container .form-select {
-  background-color: var(--stitch-surface-container-low, #f8fafc);
-  color: var(--stitch-on-surface, #0f172a);
-  border: 1px solid rgba(191, 199, 210, 0.6);
-  border-radius: 6px;
-  padding: 0.375rem 0.75rem;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.filter-dropdown-container .form-select:focus {
-  border-color: var(--stitch-primary, #0284c7);
-  box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
-}
-
-/* ==========================================================================
-   14. RUNNING TEXT NEWS TICKER MARQUEE (TUGAS 3)
-   ========================================================================== */
-@keyframes marquee {
-  0% {
-    transform: translateX(100%);
+@media print {
+  body * {
+    visibility: hidden !important;
   }
-  100% {
-    transform: translateX(-100%);
+  #printable-ticket, #printable-ticket * {
+    visibility: visible !important;
+  }
+  #printable-ticket {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80mm !important;
+    margin: 0;
+    padding: 8mm;
+    border: none;
   }
 }
 
-.ticker-track-wrapper {
-  overflow: hidden;
-  white-space: nowrap;
-  width: 100%;
-}
-
-.ticker-content {
-  display: inline-block;
-  white-space: nowrap;
-  animation: marquee 25s linear infinite;
-  will-change: transform;
-}
-
-.enterprise-ticker-bar {
-  background-color: var(--stitch-inverse-surface, #0f172a);
-  color: var(--stitch-surface-bright, #f8fafc);
-  border-top: 1px solid rgba(191, 199, 210, 0.2);
-}
-
-/* ==========================================================================
-   15. AUDIO WAVEFORM EQUALIZER ANIMATION (TUGAS 4)
-   ========================================================================== */
-@keyframes wavePulse {
-  0% {
-    transform: scaleY(0.2);
-    height: 20%;
-  }
-  50% {
-    transform: scaleY(0.7);
-    height: 70%;
-  }
-  100% {
-    transform: scaleY(1);
-    height: 100%;
-  }
-}
-
-.sound-wave-bars {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 3px;
-  height: 32px;
-  padding: 4px 8px;
-  background-color: var(--stitch-surface-container-low, #f8fafc);
-  border-radius: 6px;
-  transition: opacity 0.3s ease;
-}
-
-.sound-wave-bars .bar {
-  display: inline-block;
-  width: 5px;
-  height: 100%;
-  background-color: var(--stitch-secondary, #059669);
-  border-radius: 9999px;
-  transform-origin: bottom;
-  transform: scaleY(0.25);
-  opacity: 0.3;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.sound-wave-bars.active .bar {
-  opacity: 1;
-  animation: wavePulse 0.8s ease-in-out infinite alternate;
-}
-
-.sound-wave-bars.active .bar:nth-child(1) {
-  animation-delay: 0.1s;
-}
-
-.sound-wave-bars.active .bar:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.sound-wave-bars.active .bar:nth-child(3) {
-  animation-delay: 0.3s;
-}
-
-.sound-wave-bars.active .bar:nth-child(4) {
-  animation-delay: 0.4s;
-}
-
-.sound-wave-bars.active .bar:nth-child(5) {
-  animation-delay: 0.15s;
-}
-
-.sound-wave-bars:not(.active) .bar {
-  animation: none !important;
-  transform: scaleY(0.25) !important;
-  opacity: 0.3 !important;
-}
-
-/* Collapsible Details & Summary Styling */
-details > summary::-webkit-details-marker {
-  display: none;
-}
-details > summary {
-  list-style: none;
-}
-
-/* Discrete Staff Portal Link for Public Kiosk Footer */
-.staff-portal-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  font-size: 0.75rem;
-  color: var(--stitch-outline, #64748b);
-  text-decoration: none;
-  opacity: 0.65;
-  transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.staff-portal-link:hover {
-  opacity: 1;
-  color: var(--stitch-primary, #0284c7);
-}
-
-
-
-
-/* ==========================================================================
-   16. HIGH-LEGIBILITY & ELEGANT CLINICAL THEME ENHANCEMENTS (MODUL 4)
-   ========================================================================== */
-
-/* Universal Surface & Card Polish */
-.bg-surface-container-lowest {
-  background-color: #ffffff !important;
-  border: 1px solid rgba(226, 232, 240, 0.9) !important;
-  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.04) !important;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-.bg-surface-container-lowest:hover {
-  border-color: rgba(203, 213, 225, 0.95);
-}
-
-/* Polished Top Navbar */
-.navbar-header {
-  background-color: rgba(255, 255, 255, 0.95) !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  backdrop-filter: blur(12px) !important;
-  box-shadow: 0 1px 4px 0 rgba(15, 23, 42, 0.03) !important;
-}
-
-/* Sidebar Navigasi */
-aside.fixed {
-  background-color: #ffffff !important;
-  border-right: 1px solid #e2e8f0 !important;
-  box-shadow: 1px 0 4px 0 rgba(15, 23, 42, 0.02) !important;
-}
-
-/* Active Nav Links Pill Indicator */
-.nav-links a[aria-current="page"] {
-  background-color: #0284c7 !important;
-  color: #ffffff !important;
-  font-weight: 600 !important;
-  box-shadow: 0 1px 2px 0 rgba(2, 132, 199, 0.35) !important;
-}
-
-.nav-links a:not([aria-current="page"]):hover {
-  background-color: #f1f5f9 !important;
-  color: #0f172a !important;
-}
-
-/* Aside Nav Items */
-aside nav a[aria-current="page"] {
-  background-color: #e0f2fe !important;
-  color: #0284c7 !important;
-  font-weight: 600 !important;
-}
-
-aside nav a:not([aria-current="page"]):hover {
-  background-color: #f8fafc !important;
-  color: #0f172a !important;
-}
-
-/* High-Legibility Typography & Contrast */
-.text-on-surface {
-  color: #0f172a !important;
-}
-
-.text-on-surface-variant {
-  color: #334155 !important;
-}
-
-.text-outline {
-  color: #64748b !important;
-}
-
-.text-primary {
-  color: #0284c7 !important;
-}
-
-/* Form Inputs & Select Controls */
-input, select, textarea {
-  border: 1px solid #cbd5e1 !important;
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: #0284c7 !important;
-  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15) !important;
-  outline: none !important;
-}
-
-/* High-Density Clinical Table Readability */
-table {
-  border-collapse: separate !important;
-  border-spacing: 0 !important;
-  width: 100% !important;
-}
-
-thead th {
-  background-color: #f8fafc !important;
-  color: #475569 !important;
-  font-weight: 600 !important;
-  font-size: 0.75rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  border-bottom: 1px solid #e2e8f0 !important;
-  padding: 0.75rem 1rem !important;
-}
-
-tbody td {
-  border-bottom: 1px solid #f1f5f9 !important;
-  color: #1e293b !important;
-  padding: 0.875rem 1rem !important;
-}
-
-tbody tr:hover {
-  background-color: #f8fafc !important;
-}
-
-/* Calling & Live Operational Status Badges */
-.bg-secondary-container\/20,
-.bg-secondary-container\/30 {
-  background-color: #ecfdf5 !important;
-  border: 1px solid #a7f3d0 !important;
-}
-
-.text-secondary {
-  color: #047857 !important;
-  font-weight: 600 !important;
-}
-
-/* Tactile Kiosk Buttons (ambil-antrian.html) */
-.priority-btn {
-  border: 1px solid #e2e8f0 !important;
-  background-color: #ffffff !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.priority-btn:hover {
-  border-color: #cbd5e1 !important;
-  background-color: #f8fafc !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05) !important;
-}
-
-.priority-btn.ring-2,
-.priority-btn[data-active="true"] {
-  border-color: #235347 !important;
-  box-shadow: 0 0 0 2px #235347, 0 4px 10px -2px rgba(35, 83, 71, 0.25) !important;
-  background-color: #ebf4ee !important;
-}
-
-/* TV Display Huge Active Numbers (layar.html) */
-.text-display-ticket {
-  color: #235347 !important;
-  letter-spacing: -0.03em !important;
-  font-weight: 800 !important;
-}
-
-/* Signage Header for TV Monitor */
-header.bg-inverse-surface {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-  border: 1px solid #334155 !important;
-  box-shadow: 0 4px 12px 0 rgba(15, 23, 42, 0.15) !important;
-}
-
-/* Equalizer Visualizer Enhancement */
-.sound-wave-bars {
-  background-color: #f1f5f9 !important;
-  border: 1px solid #e2e8f0 !important;
-}
-
-.sound-wave-bars .bar {
-  background: linear-gradient(180deg, #235347 0%, #059669 100%) !important;
-}
-
-/* Button Refinements */
-button.bg-primary {
-  background-color: #235347 !important;
-  color: #ffffff !important;
-  box-shadow: 0 1px 2px 0 rgba(35, 83, 71, 0.35);
-  font-weight: 600;
-}
-
-button.bg-primary:hover {
-  background-color: #1a4036 !important;
-}
-
-/* ==========================================================================
-   FIGMA SPEC UTILITY CLASSES & COLOR SYSTEM (100% SPEC COMPLIANT)
-   ========================================================================== */
-
-/* Backgrounds */
-.bg-\[\#235347\] { background-color: #235347 !important; }
-.bg-\[\#1a4036\] { background-color: #1a4036 !important; }
-.bg-\[\#EBF4EE\] { background-color: #ebf4ee !important; }
-.bg-\[\#F8FAF9\] { background-color: #f8faf9 !important; }
-.bg-\[\#FAFCFB\] { background-color: #fafcfb !important; }
-.bg-\[\#FEF2F2\] { background-color: #fef2f2 !important; }
-.bg-\[\#F9FAFB\] { background-color: #f9fafb !important; }
-.bg-\[\#F3F4F6\] { background-color: #f3f4f6 !important; }
-.bg-\[\#567D6B\] { background-color: #567d6b !important; }
-.bg-\[\#B91C1C\] { background-color: #b91c1c !important; }
-.bg-\[\#991B1B\] { background-color: #991b1b !important; }
-.bg-\[\#1F2937\] { background-color: #1f2937 !important; }
-.bg-white { background-color: #ffffff !important; }
-.bg-black\/50 { background-color: rgba(0, 0, 0, 0.5) !important; }
-.bg-black\/60 { background-color: rgba(0, 0, 0, 0.6) !important; }
-
-/* Hover Backgrounds */
-.hover\:bg-\[\#1a4036\]:hover { background-color: #1a4036 !important; }
-.hover\:bg-\[\#F9FAFB\]:hover { background-color: #f9fafb !important; }
-.hover\:bg-\[\#F3F4F6\]:hover { background-color: #f3f4f6 !important; }
-.hover\:bg-\[\#991B1B\]:hover { background-color: #991b1b !important; }
-
-/* Borders */
-.border-\[\#235347\] { border-color: #235347 !important; }
-.border-\[\#E5E7EB\] { border-color: #e5e7eb !important; }
-.border-\[\#D1D5DB\] { border-color: #d1d5db !important; }
-.border-\[\#D5E6DB\] { border-color: #d5e6db !important; }
-.border-\[\#F3F4F6\] { border-color: #f3f4f6 !important; }
-.border-\[\#FCA5A5\] { border-color: #fca5a5 !important; }
-.border-red-500 { border-color: #ef4444 !important; }
-.border-red-200 { border-color: #fecaca !important; }
-.border-2 { border-width: 2px !important; }
-.border-b-2 { border-bottom-width: 2px !important; }
-.hover\:border-\[\#D1D5DB\]:hover { border-color: #d1d5db !important; }
-.focus\:border-\[\#235347\]:focus { border-color: #235347 !important; }
-
-/* Text Colors */
-.text-\[\#235347\] { color: #235347 !important; }
-.text-\[\#111827\] { color: #111827 !important; }
-.text-\[\#6B7280\] { color: #6b7280 !important; }
-.text-\[\#4B5563\] { color: #4b5563 !important; }
-.text-\[\#374151\] { color: #374151 !important; }
-.text-\[\#9CA3AF\] { color: #9ca3af !important; }
-.text-\[\#DC2626\] { color: #dc2626 !important; }
-.text-\[\#991B1B\] { color: #991b1b !important; }
-.text-\[\#10B981\] { color: #10b981 !important; }
-.text-\[\#059669\] { color: #059669 !important; }
-.text-white { color: #ffffff !important; }
-.text-red-600 { color: #dc2626 !important; }
-.hover\:text-\[\#111827\]:hover { color: #111827 !important; }
-.hover\:text-\[\#235347\]:hover { color: #235347 !important; }
-
-/* Sizing & Radius */
-.max-w-4xl { max-width: 56rem !important; }
-.max-w-6xl { max-width: 72rem !important; }
-.max-w-\[420px\] { max-width: 420px !important; }
-.max-w-\[380px\] { max-width: 380px !important; }
-.rounded-2xl { border-radius: 16px !important; }
-.rounded-xl { border-radius: 12px !important; }
-.rounded-lg { border-radius: 8px !important; }
-.shadow-xs { box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important; }
-.backdrop-blur-xs { backdrop-filter: blur(2px) !important; -webkit-backdrop-filter: blur(2px) !important; }
-
-/* Admin Responsive Two-Column Layout Rules */
-.admin-two-col-grid {
+.alert {
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-@media (min-width: 1024px) {
-  .admin-two-col-grid {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-start !important;
-    gap: 1.5rem !important;
-    width: 100% !important;
+.alert-danger {
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger-border);
+}
+
+.alert-success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid #A7F3D0;
+}
+
+.spinner {
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--color-text-muted);
+}
+
+/* Responsive design breakpoints */
+
+/* Prevent horizontal viewport wobble on mobile */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Tablet & Intermediate (< 960px) */
+@media (max-width: 960px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
   }
-  .admin-two-col-grid > .admin-col-left {
-    flex: 1 1 64% !important;
-    min-width: 0 !important;
-  }
-  .admin-two-col-grid > .admin-col-right {
-    flex: 0 0 380px !important;
-    width: 380px !important;
-    min-width: 340px !important;
+  .radio-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.lg\:col-span-8 {
-  grid-column: span 8 / span 8 !important;
+/* Tablet Portrait & Mobile Landscape (< 768px) */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .navbar > div:first-child {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem !important;
+  }
+
+  .nav-links {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    gap: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .nav-actions {
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.5rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .display-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .display-header-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .display-hero {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+
+  .display-hero-right {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 1px solid var(--color-border);
+    padding-top: 0.75rem;
+  }
 }
-.lg\:col-span-4 {
-  grid-column: span 4 / span 4 !important;
+
+/* Standard Mobile (< 640px) */
+@media (max-width: 640px) {
+  .container, .container-wide {
+    padding: 1.25rem 1rem;
+  }
+
+  .page-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .page-title {
+    font-size: 1.45rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .kiosk-service-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .kiosk-summary-card {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .kiosk-summary-card button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .add-service-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .add-service-grid button {
+    width: 100%;
+  }
+
+  /* Single-scroll modal overlay on mobile: avoids nested scroll traps */
+  .modal-overlay {
+    padding: 0.75rem 0.5rem;
+    align-items: flex-start;
+  }
+
+  .modal-content {
+    margin: 0.5rem auto 1.5rem;
+    max-height: none;
+    overflow-y: visible;
+  }
+}
+
+/* Mid Mobile & Phones (< 520px) */
+@media (max-width: 520px) {
+  .modal-actions-grid {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .modal-actions-grid .btn {
+    width: 100%;
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Compact Mobile (< 480px) */
+@media (max-width: 480px) {
+  .container, .container-wide {
+    padding: 1rem 0.75rem;
+  }
+
+  .card {
+    padding: 1rem 0.85rem;
+    border-radius: var(--radius-md);
+  }
+
+  .radio-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .radio-card-label {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .kiosk-header,
+  .display-header,
+  .auth-header {
+    padding: 0.75rem 0.85rem;
+  }
+
+  .auth-main {
+    padding: 1rem 0.75rem;
+  }
+
+  .auth-card {
+    padding: 1.25rem 1rem;
+  }
+
+  .modal-content {
+    padding: 1.25rem 0.85rem;
+    border-radius: var(--radius-md);
+  }
+
+  .ticket-slip {
+    padding: 1rem 0.75rem;
+    margin: 0.75rem 0;
+  }
+
+  .ticket-slip-title {
+    font-size: 1.1rem;
+  }
+
+  .ticket-slip-number {
+    font-size: clamp(2.25rem, 12vw, 3rem);
+  }
+
+  .ticket-slip-details {
+    font-size: 0.85rem;
+  }
+
+  .modal-btn-row {
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+  }
+
+  .modal-btn-row .btn {
+    width: 100%;
+    min-height: 46px;
+  }
+}
+
+/* Very Small Mobile (< 380px, e.g. iPhone SE 1st Gen, Galaxy Fold outer screen) */
+@media (max-width: 380px) {
+  .ticket-slip {
+    padding: 0.85rem 0.65rem;
+  }
+
+  .ticket-slip-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    padding: 0.3rem 0;
+  }
+
+  .ticket-slip-row .value {
+    text-align: left;
+  }
+
+  .operator-action-primary-grid,
+  .operator-action-secondary-grid {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+
+  .operator-action-primary-grid .btn,
+  .operator-action-secondary-grid .btn {
+    min-height: 46px;
+    width: 100%;
+  }
 }

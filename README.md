@@ -1,260 +1,143 @@
-# SIMRS Medika Utama - Sistem Antrean Poliklinik Terpadu
-**Format Repositori:** pweb-ts-a03-2026 (Kelompok A03)  
-**Live Demo:** [https://clinical-queue-medika.vercel.app](https://clinical-queue-medika.vercel.app)  
-**Arsitektur Inti:** Native TypeScript (ES2020) + Pure CSS3 Clinical Enterprise (Google Stitch Design System)  
-**Dependensi Runtime:** **0 Dependensi Eksternal (Strict Zero-Framework, Zero-Library)**  
-**Panduan Pengujian Lengkap:** [Lihat DEMO_GUIDE.md](DEMO_GUIDE.md)
+# Sistem Antrian Rumah Sakit (Hospital Queue System)
+
+> **Tugas Praktikum Modul 3: Pemrograman Web 2026**  
+> Proyek aplikasi web antrian rumah sakit yang dibangun murni secara native (*from scratch*) menggunakan **HTML5, Native CSS, dan TypeScript** tanpa framework atau pustaka eksternal.
+
+🌐 **Live Production Deployment**: [https://antrian-rumah-sakit.vercel.app](https://antrian-rumah-sakit.vercel.app)
 
 ---
 
-## 🏥 1. Gambaran Umum Sistem
-
-**SIMRS Medika Utama** adalah sistem manajemen antrean poliklinik dan admisi rumah sakit kelas *enterprise (clinical-grade)* yang dirancang untuk mendukung operasional multi-layanan rawat jalan secara terintegrasi. Sistem menghubungkan **Kiosk Pendaftaran Mandiri Pasien**, **Monitor Display TV Ruang Tunggu**, **Konsol Pemanggilan Operator Loket**, dan **Dashboard Manajemen Administrator/Supervisor** dalam ekosistem tersinkronisasi instan lintas jendela/tab browser (*cross-window real-time synchronization*).
-
-### Prinsip Desain Google Stitch Clinical System
-Antarmuka dibangun dengan mengadopsi standar sistem EHR (*Electronic Health Record*) modern seperti Epic Systems dan Google Stitch Design Tokens:
-* **Nordic Functionalism**: Tata letak data padat yang ergonomis bagi petugas medis, tanpa ornamen berlebihan (*clean & utilitarian*).
-* **WCAG AAA Contrast Standard**: Palet warna triage klinis dengan rasio kontras tinggi untuk memastikan keterbacaan optimal bagi pasien lanjut usia dan disabilitas.
-* **Tabular Numbers Alignment**: Seluruh penomoran tiket, jam digital, dan timer konsultasi menggunakan `font-variant-numeric: tabular-nums` guna mencegah pergeseran layout saat angka berganti.
-* **Murni Native CSS3**: 100% bebas dari framework CSS eksternal (tanpa Tailwind CDN, Bootstrap, atau jQuery).
+## 📋 Daftar Isi
+1. [Fitur Utama](#-fitur-utama)
+2. [5 Halaman Utama](#-5-halaman-utama)
+3. [Akun Pengujian (Credentials Matrix)](#-akun-pengujian-credentials-matrix)
+4. [Arsitektur & Standar Teknis](#-arsitektur--standar-teknis)
+5. [Fitur Nilai Tambahan (Bonus)](#-fitur-nilai-tambahan-bonus)
+6. [Panduan Menjalankan di Komputer Lokal](#-panduan-menjalankan-di-komputer-lokal)
+7. [Struktur Direktori](#-struktur-direktori)
 
 ---
 
-## 🏛️ 2. Diagram Alur Arsitektur Sistem (Mermaid)
+## 🌟 Fitur Utama
 
-```mermaid
-flowchart TD
-    subgraph UI_Layer["🖥️ Lapisan Antarmuka Pengguna (5 Halaman)"]
-        direction TB
-        PageLogin["🔐 login.html<br/>(Portal Autentikasi Staf)"]
-        PageAdmin["⚙️ index.html<br/>(Dashboard Manajemen SIMRS)"]
-        PageOperator["🩺 operator.html<br/>(Cockpit Konsol Operator Loket)"]
-        PageLayar["📺 layar.html<br/>(Monitor Display TV Ruang Tunggu)"]
-        PageKiosk["📱 ambil-antrian.html<br/>(Kiosk Mandiri Pasien)"]
-    end
+- **100% Native TypeScript & CSS**: Tidak menggunakan framework seperti React, Vue, jQuery, Bootstrap, atau Tailwind.
+- **Autentikasi DummyJSON API**: Integrasi endpoint POST `https://dummyjson.com/auth/login` dengan pembagian hak akses (*Role-Based Access Control*).
+- **Penjadwalan Antrian Berprioritas (*Priority Queue*)**:
+  - `VIP` (Bobot 4) &rarr; `Disabilitas` (Bobot 3) &rarr; `Lansia` (Bobot 2) &rarr; `Normal` (Bobot 1).
+  - Tiket dengan prioritas setara diproses secara **FIFO** (*First-In, First-Out*).
+- **Persistensi Data Penuh (LocalStorage)**:
+  - Sesi login (`hospital_session`)
+  - Master layanan (`hospital_services`)
+  - Tiket antrian (`hospital_tickets`)
+  - Penghitung nomor antrian 3-digit (`hospital_counters`)
+- **Sinkronisasi Real-Time Multi-Tab**: Menggunakan `BroadcastChannel`, `StorageEvent`, dan fallback polling berkala (2–3 detik) tanpa reload halaman.
+- **Format Tiket Standar Rumah Sakit**: Format `Kode-3 Digit` (contoh: `A-001`, `B-012`).
 
-    subgraph Auth_Layer["☁️ Layanan Autentikasi Eksternal"]
-        DummyJSONAPI["DummyJSON REST API<br/>POST https://dummyjson.com/auth/login"]
-    end
+---
 
-    subgraph Core_Engine["⚙️ Mesin Inti TypeScript (src/)"]
-        AuthService["AuthService<br/>(JWT Token & Route Guard)"]
-        QueueService["QueueService<br/>(Mesin Triage Prioritas & FIFO)"]
-        StorageService["StorageService<br/>(State Manager & Multi-Tab Sync)"]
-        SpeechService["SpeechService<br/>(Web Speech & Web Audio Chime)"]
-        ExportService["ExportService<br/>(RFC 4180 CSV & Audit Trail JSON)"]
-    end
+## 🖥️ 5 Halaman Utama
 
-    subgraph Hardware_Browser["🌐 Browser Hardware & Perangkat Keras"]
-        LocalStorage[("💾 LocalStorage Browser<br/>• medika_tickets<br/>• medika_services<br/>• medika_active_ticket<br/>• medika_last_call_event")]
-        AudioCtx["🔊 Web Audio API<br/>(Dual Sine-Wave Oscillators)"]
-        SpeechSynth["🗣️ SpeechSynthesis<br/>(Voice Engine id-ID)"]
-        ThermalPrinter["🖨️ Thermal Printer 80mm<br/>(@media print CSS3 Slip)"]
-    end
+| Halaman | Berkas | Akses | Deskripsi & Fungsi |
+| :--- | :--- | :---: | :--- |
+| **Login** | [`login.html`](login.html) | Publik | Formulir masuk petugas dengan animasi loading state, verifikasi DummyJSON, visual error alert, dan auto-redirect sesuai role. |
+| **Kiosk Pasien** | [`ambil-antrian.html`](ambil-antrian.html) | Publik | Layanan mandiri pengunjung untuk memilih poliklinik dan kategori prioritas, dengan modal cetak struk virtual (`window.print()`). |
+| **Layar Monitor** | [`layar.html`](layar.html) | Publik | Monitor display TV ruang tunggu, menampilkan nomor yang sedang dipanggil per loket, jumlah antrian tersisa, dan tombol Fullscreen. |
+| **Panel Operator** | [`operator.html`](operator.html) | Petugas | Panel kendali pemanggilan antrian: *Panggil Berikutnya*, *Lewati*, *Selesai*, dan *Panggil Ulang*. |
+| **Dashboard Admin** | [`index.html`](index.html) | Admin / Mod | CRUD Master Layanan (validasi regex 1 huruf kapital `^[A-Z]$`, pencegahan duplikasi *case-insensitive*, toggle aktif/nonaktif, delete), Reset Antrian ke `001`, dan penerbitan tiket manual. |
 
-    %% Auth Flow
-    PageLogin --> AuthService
-    AuthService <--> DummyJSONAPI
-    AuthService --> StorageService
+---
 
-    %% Patient Flow
-    PageKiosk --> QueueService
-    QueueService --> StorageService
-    PageKiosk -. "Cetak Tiket Kiosk" .-> ThermalPrinter
+## 🔐 Akun Pengujian (Credentials Matrix)
 
-    %% Admin Flow
-    PageAdmin --> QueueService
-    PageAdmin --> StorageService
-    PageAdmin --> ExportService
-    PageAdmin -. "Cetak Tiket Manual F9" .-> ThermalPrinter
+Berdasarkan referensi akun resmi DummyJSON:
 
-    %% Operator Flow
-    PageOperator --> QueueService
-    PageOperator --> SpeechService
-    QueueService --> StorageService
+| Username | Password | Role API | Hak Akses Sistem | Halaman Tujuan Pasca Login |
+| :--- | :--- | :--- | :--- | :--- |
+| **`emilys`** | `emilyspass` | `admin` | Administrator | `index.html` (Dashboard Admin) |
+| **`oliviaw`** | `oliviawpass` | `moderator` | Disetarakan Admin | `index.html` (Dashboard Admin) |
+| **`averyp`** | `averyppass` | `user` | Operator Loket | `operator.html` (Panel Operator) |
+| **`michaelw`** | `michaelwpass` | `user` | Operator Loket | `operator.html` (Panel Operator) |
 
-    %% Display Flow
-    StorageService -. "Storage Event (<10ms)" .-> PageLayar
-    StorageService -. "Storage Event (<10ms)" .-> PageOperator
-    StorageService -. "Storage Event (<10ms)" .-> PageAdmin
-    PageLayar --> SpeechService
+*Catatan: Halaman `layar.html` dan `ambil-antrian.html` bersifat publik dan dapat diakses langsung tanpa login.*
 
-    %% Hardware Audio & Storage Binding
-    StorageService <--> LocalStorage
-    SpeechService --> AudioCtx
-    SpeechService --> SpeechSynth
+---
+
+## 🏗️ Arsitektur & Standar Teknis
+
+```
+src/
+├── types.ts      # Definisi interface TypeScript & konstanta bobot prioritas
+├── storage.ts    # Manajemen LocalStorage, BroadcastChannel bus, & CRUD event
+├── auth.ts       # Integrasi API DummyJSON, guardPage, & manajemen sesi
+├── queue.ts      # Algoritma Priority Queue & transisi status tiket
+├── audio.ts      # Web Speech API & Web Audio API synthesizer
+├── login.ts      # Logika interaktif formulir login
+├── admin.ts      # Logika interaktif Dashboard Admin & modal dialog
+├── operator.ts   # Logika interaktif Panel Operator & pemanggilan
+├── display.ts    # Logika monitor TV display & Fullscreen API
+└── kiosk.ts      # Logika kiosk mandiri ambil antrian pasien
 ```
 
 ---
 
-## 📁 3. Struktur Direktori Proyek
+## 🔊 Fitur Nilai Tambahan (Bonus)
 
-```text
-Tugas2/
-├── package.json               # Konfigurasi npm scripts (build, watch, test) & metadata
-├── tsconfig.json              # Kompiler TypeScript ketat (ES2020, strict: true, noImplicitAny)
-├── DEMO_GUIDE.md              # Panduan demonstrasi komprehensif untuk asisten praktikum
-├── README.md                  # Dokumentasi arsitektur dan spesifikasi teknis sistem
-├── test_e2e_verification.js   # Automated E2E verification suite (27 test cases lolos 100%)
-├── css/
-│   ├── style.css              # Pure CSS3 Modular (Design Tokens :root, Layout, Print 80mm)
-│   └── stitch.css             # Google Stitch Clinical Component System Tokens
-├── src/
-│   ├── models/
-│   │   └── types.ts           # Antarmuka TypeScript (UserProfile, Ticket, QueuePriority, dll.)
-│   ├── services/
-│   │   ├── auth.ts            # Integrasi DummyJSON login & Route Auth Guards
-│   │   ├── storage.ts         # Wrapper terpusat LocalStorage & sinkronisasi multi-tab
-│   │   ├── queue.ts           # Algoritma triage prioritas klinis & FIFO sorting
-│   │   ├── speech.ts          # Web Speech API suara Indonesia & Web Audio API chime sintetis
-│   │   └── export.ts          # Generator laporan harian CSV (RFC 4180 BOM) & JSON audit trail
-│   └── pages/
-│       ├── login.ts           # Controller autentikasi & Quick-Select role autofill
-│       ├── index.ts           # Controller dashboard admin, CRUD poli, & cetak manual
-│       ├── operator.ts        # Controller konsol pemanggilan loket & timer konsultasi
-│       ├── layar.ts           # Controller monitor TV display & auto audio broadcast
-│       └── ambil-antrian.ts   # Controller kiosk mandiri & modal tiket pratinjau
-├── dist/                      # Direktori keluaran kompilasi TypeScript (*.js)
-├── login.html                 # Halaman portal login staf medis & operator
-├── index.html                 # Halaman dashboard manajemen antrean (Admin/Moderator)
-├── operator.html              # Halaman konsol cockpit pemanggilan loket (Operator)
-├── layar.html                 # Halaman layar informasi publik ruang tunggu (Display TV)
-└── ambil-antrian.html         # Halaman kiosk pendaftaran mandiri pasien rawat jalan
-```
+1. **Panggilan Suara Otomatis (Web Speech API)**: Pengumuman suara berbasis Bahasa Indonesia alami (*id-ID*), e.g., *"Nomor antrian A-001 silakan menuju loket UMUM-1"*.
+2. **Synthesizer Chime Bel Rumah Sakit (Web Audio API)**: Suara bel 2-nada sintetis (*ding-dong*) sebelum pengumuman suara dimulai.
+3. **Kontrol Suara Interaktif**: Tombol kontrol untuk mengaktifkan (*Suara Aktif*) atau mematikan (*Bisu*) audio pada layar monitor.
+4. **JavaScript Fullscreen API**: Tombol toggle mode Layar Penuh pada `layar.html` untuk tampilan optimal pada Smart TV / monitor dinding.
+5. **Aksesibilitas Pasien**: Kartu monitor berkedip visual (*flashing pulse*) saat nomor dipanggil guna memudahkan pasien disabilitas rungu.
 
 ---
 
-## 🔑 4. Tabel Kredensial Uji DummyJSON
+## 🚀 Panduan Menjalankan di Komputer Lokal
 
-Sistem mengintegrasikan layanan otentikasi [DummyJSON Auth](https://dummyjson.com/docs/auth). Fitur **Quick-Select Role** telah disematkan langsung di formulir `login.html` untuk mempermudah pengujian satu klik:
+### 1. Prasyarat
+- [Node.js](https://nodejs.org/) (versi 18 atau lebih baru).
 
-| Role | Username | Password | Tenaga Medis | ID Staf | Loket Default | Otorisasi & Hak Akses |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Admin** | `emilys` | `emilyspass` | dr. Hendra Setiawan, Sp.PD | `MED-00101` | Loket 1 - Pendaftaran Umum | **Akses Penuh**: Dashboard Admin (`index.html`) & Konsol Operator (`operator.html`) |
-| **Moderator** | `oliviaw` | `oliviawpass` | Ns. Budiarto Santoso, S.Kep | `MED-44210` | Loket 3 - Poli Anak & Imunisasi | **Akses Penuh (Paritas Admin)**: Hak akses disetarakan dengan Administrator |
-| **Operator** | `averyp` | `averyppass` | Rina Astuti, A.Md.RMIK | `MED-88402` | Loket 2 - Poli Penyakit Dalam | **Terisolasi**: Khusus konsol operator. Ditolak masuk ke Dashboard Admin |
-
-> **Detail Endpoint REST API**:
-> - URL: `POST https://dummyjson.com/auth/login`
-> - Request Body: `{"username": "...", "password": "...", "expiresInMins": 60}`
-> - Response: Token JWT, identitas profil, avatar, dan role disimpan ke `localStorage`.
-
----
-
-## 🚀 5. Panduan Instalasi & Menjalankan Proyek
-
-### A. Persyaratan Awal
-* Pastikan [Node.js](https://nodejs.org/) (versi 16 atau lebih baru) telah terpasang.
-
-### B. Kompilasi TypeScript
-Jalankan perintah berikut di direktori proyek:
+### 2. Pemasangan & Kompilasi
 ```bash
-# Kompilasi seluruh kode sumber TypeScript ke folder dist/
+# Clone repository
+git clone https://github.com/Afahmisan/pweb-ts-a03-2026.git
+cd pweb-ts-a03-2026
+
+# Pasang dependensi compiler (TypeScript)
+npm install
+
+# Kompilasi TypeScript ke JavaScript (dist/)
 npm run build
-
-# Atau jalankan compiler dalam mode watch (otomatis recompile saat file disimpan)
-npm run watch
 ```
 
-### C. Menjalankan di Browser
-Gunakan ekstensi **Live Server** di VS Code atau web server statis lokal apa pun (`npx serve .` / `python -m http.server 5500`):
-* **Portal Login**: `http://localhost:5500/login.html`
-* **Dashboard Admin**: `http://localhost:5500/index.html`
-* **Konsol Operator**: `http://localhost:5500/operator.html`
-* **Display TV Monitor**: `http://localhost:5500/layar.html`
-* **Kiosk Mandiri Pasien**: `http://localhost:5500/ambil-antrian.html`
-
-### D. Menjalankan Uji Otomatis (E2E Test Runner)
+### 3. Menjalankan Server Lokal
 ```bash
-node test_e2e_verification.js
+# Jalankan server lokal bawaan
+npm start
 ```
-*(Seluruh 7 Test Suites dan 27 Test Cases lolos 100% tanpa error).*
+Buka peramban pada alamat: [http://localhost:3000](http://localhost:3000) (atau port yang tertera pada terminal).
+
+*Catatan: Anda juga dapat membukanya langsung menggunakan ekstensi VS Code **Live Server**.*
 
 ---
 
-## ⚖️ 6. Logika Mesin Antrean & Aturan Triage Prioritas
+## 📁 Struktur Direktori
 
-Sistem mengimplementasikan algoritma triage medis klinis ketat (*Strict Clinical Triage Engine*) pada file `src/services/queue.ts`:
-
-1. **Bobot Peringkat Prioritas (*Tier Weight Ranking*)**:
-   * **VIP / Fast-Track**: Bobot `4` (Peringkat tertinggi)
-   * **Disabilitas & Akses Khusus**: Bobot `3`
-   * **Lansia & Geriatri**: Bobot `2`
-   * **Normal / Pasien Reguler**: Bobot `1` (Standar)
-2. **Kaidah Invarian FIFO (*First In, First Out*)**:
-   * Jika dua pasien memiliki bobot prioritas yang sama, pasien yang mendaftar lebih awal (`createdAt` lebih kecil) akan selalu dipanggil lebih dahulu.
-   * Tiket berkategori prioritas tinggi (misal: Disabilitas yang datang jam 09:10) akan **mendahului** tiket berkategori normal (yang datang jam 09:00).
-3. **Format Nomor Tiket**:
-   * Menggunakan format satu huruf kode layanan diikuti tiga digit angka berurutan: `[KODE]-[001]` (Contoh: `A-001`, `B-042`).
-   * Counter nomor tiket bersifat terisolasi per layanan poliklinik dan dapat direset secara individual.
-
----
-
-## 💎 7. Fitur Nilai Tambah / Bonus Unggulan
-
-### 1. Dual Audio Engine: Ding-Dong Web Audio API + Web Speech API (id-ID)
-* **Sintesis Nada Lonceng Rumah Sakit Murni (Web Audio API)**:
-  Sistem membangkitkan melodi pembuka dua nada lonceng (*hospital chime*) secara sintetis langsung dari browser tanpa mengunduh file MP3/WAV eksternal:
-  - Nada 1: $E_5$ ($659.25\text{ Hz}$, gain $0.20$, durasi $350\text{ ms}$)
-  - Nada 2: $G_5$ ($783.99\text{ Hz}$, gain $0.25$, durasi $550\text{ ms}$)
-* **Artikulasi Tenang Bahasa Indonesia (Web Speech API)**:
-  Suara narator dikonfigurasi dengan `lang = 'id-ID'` pada tempo tenang (`rate = 0.92`).
-* **Pengejaan Digit Terpisah**:
-  Untuk mencegah kebingungan pendengaran pasien di ruang tunggu yang ramai, nomor tiket diurai per karakter digit. Contoh: Tiket `A-003` disuarakan menjadi:
-  > *"Nomor antrian A, nol nol tiga, silakan menuju Loket 01."*
-* **Mekanisme Anti-Autoplay Block**:
-  Browser modern memblokir audio otomatis sebelum ada interaksi pengguna. Sistem memiliki modul `unlockAudio()` yang secara otomatis membuka status suspensi `AudioContext` saat ada klik/sentuhan pertama pada layar.
-
-### 2. Standar Cetak Kertas Thermal Printer 80mm (`@media print`)
-* Mengadopsi tata letak struk thermal standar rumah sakit (*receipt slip 80mm*):
-  - Lebar cetak dipatok presisi pada `80mm` dengan padding `10mm`.
-  - Seluruh elemen antarmuka web, navbar, dan tombol aksi otomatis disembunyikan total (`display: none !important`), menyisakan hanya kartu fisik struk tiket.
-  - Dilengkapi watermark logo klinik, timestamp pencetakan, dan estimasi waktu tunggu.
-
-### 3. Ekspor Data Laporan CSV (RFC 4180 Standar) & JSON Audit Trail
-* Tersedia pada Dashboard Admin (`index.html`):
-  - **Ekspor CSV (.csv)**: Memenuhi standar RFC 4180 (escaping kutip ganda) dan disematkan **UTF-8 Byte Order Mark (BOM: `\uFEFF`)** sehingga file langsung terbuka dengan rapi di Microsoft Excel tanpa masalah teks berantakan (*encoding mojibake*).
-  - **Audit Trail JSON (.json)**: Mengekspor snapshot riwayat lengkap mencakup metadata sesi, daftar poliklinik, statistik operasional, dan riwayat status seluruh tiket untuk keperluan arsip rekam medis digital.
-
-### 4. Sinkronisasi Real-Time Dwifungsi (Local Storage Event & Heartbeat Polling)
-* Memanfaatkan event browser native `window.addEventListener('storage', ...)` yang memicu pembaruan data secara instan (<10 milidetik) lintas tab.
-* Dilengkapi *fallback short-polling heartbeat* (interval 1.5 – 2.5 detik) untuk memastikan data tetap mutakhir jika browser menonaktifkan event storage pada tab yang berada di latar belakang (*background tab throttling*).
-
-### 5. Aksesibilitas Pintasan Keyboard Klinis (Hotkeys)
-Operator dan administrator dapat menjalankan alur kerja penuh tanpa bergantung pada mouse:
-* `F2`: Panggil Ulang Tiket Aktif (*Recall Ticket*)
-* `F3` atau `Spasi`: Panggil Tiket Berikutnya (*Call Next*)
-* `F4`: Lewati Pasien Tidak Hadir (*Skip Ticket*)
-* `F5`: Selesaikan Pelayanan Konsultasi (*Complete Ticket*)
-* `F9`: Cetak Cepat Tiket Manual di Dashboard Admin
-* `F`: Beralih ke Mode Layar Penuh TV pada Display Monitor
-* `Escape`: Menutup Modal Dialog
-
----
-
-## 🧪 8. Verifikasi Kualitas & Hasil Pengujian E2E
-
-Proyek dilengkapi modul pengujian otomatis end-to-end (`test_e2e_verification.js`) untuk menjamin kepatuhan spesifikasi:
-
-```text
-=========================================================================
-  SIMRS MEDIKA UTAMA - AUTOMATED E2E & SMOKE TEST VERIFICATION SUITE      
-=========================================================================
-  ✔ SUITE 1: TypeScript Compilation & Build Integrity (100% Pass)
-  ✔ SUITE 2: Framework & Dependency Purity Audit (Zero External Framework)
-  ✔ SUITE 3: DOM ID Contract Verification across all 5 HTML pages (100% Pass)
-  ✔ SUITE 4: Design Tokens & Responsive Layout Rules Verification (100% Pass)
-  ✔ SUITE 5: Priority Queue Engine Logic & FIFO Invariants (100% Pass)
-  ✔ SUITE 6: Queue State Lifecycle & Reset Invariants (100% Pass)
-  ✔ SUITE 7: Auth Guards & Role Mapping Matrix (DummyJSON Parity)
-=========================================================================
-  Total Test Cases : 27 | Passed: 27 | Failed: 0 (100% SUCCESS)
-=========================================================================
 ```
-
----
-
-## 📖 9. Panduan Uji Lanjut untuk Asisten Laboratorium
-
-Untuk skenario demonstrasi langkah-demi-langkah (step-by-step) lengkap saat mengevaluasi 5 halaman sistem di hadapan asisten praktikum, silakan buka dokumen:
-👉 **[DEMO_GUIDE.md - Panduan Lengkap Demonstrasi Pengujian](DEMO_GUIDE.md)**
+.
+├── css/
+│   └── style.css            # Desain CSS native terpadu (Figma-accurate, WCAG compliant)
+├── dist/                    # Berkas JavaScript hasil kompilasi TypeScript
+├── figma/                   # Berkas referensi desain Figma UI/UX
+├── src/                     # Berkas kode sumber TypeScript murni
+├── .gitignore
+├── .vercelignore
+├── ambil-antrian.html       # Kiosk Mandiri Ambil Antrian
+├── index.html               # Dashboard Admin
+├── layar.html               # Layar Monitor Antrian Publik
+├── login.html               # Halaman Login Petugas
+├── operator.html            # Panel Operator Loket
+├── package.json             # Konfigurasi npm scripts & TypeScript
+├── README.md                # Dokumentasi proyek
+├── server.mjs               # Server lokal statis berbasis Node.js native
+├── tsconfig.json            # Konfigurasi kompilasi TypeScript
+└── vercel.json              # Konfigurasi static hosting Vercel
+```
